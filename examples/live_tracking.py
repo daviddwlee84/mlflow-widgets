@@ -45,61 +45,12 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    start_btn = mo.ui.button(label="Start Training", kind="success")
+    start_btn = mo.ui.run_button(
+        label="Start Training",
+        kind="success",
+    )
     start_btn
     return (start_btn,)
-
-
-@app.cell
-def _(start_btn):
-    start_btn.value
-    return
-
-
-@app.cell
-def _(TRACKING_URI, mo, start_btn):
-    import math
-    import random
-    import time
-
-    import mlflow
-
-    mo.stop(not start_btn.value, mo.md("*Click **Start Training** above to begin.*"))
-
-    mlflow.set_tracking_uri(TRACKING_URI)
-    experiment = mlflow.set_experiment("live-tracking-demo")
-    live_experiment_id = experiment.experiment_id
-
-    run_name = f"live-run-{int(time.time()) % 10000}"
-    with mlflow.start_run(run_name=run_name) as run:
-        live_run_id = run.info.run_id
-        mlflow.log_param("learning_rate", 0.03)
-        mlflow.log_param("epochs", 100)
-
-        random.seed(42)
-        for step in range(100):
-            t = step / 100
-            loss = math.exp(-2.5 * t) + 0.08 + random.gauss(0, 0.015)
-            loss = max(loss, 0.01)
-
-            acc = 1.0 / (1.0 + math.exp(-8 * (t - 0.35)))
-            acc += random.gauss(0, 0.02)
-            acc = max(0.0, min(1.0, acc))
-
-            mlflow.log_metric("loss", loss, step=step)
-            mlflow.log_metric("accuracy", acc, step=step)
-
-            time.sleep(0.05)
-
-    mo.md(
-        f"""
-        Training complete!
-
-        - **Run:** `{run_name}` (`{live_run_id}`)
-        - **Experiment ID:** `{live_experiment_id}`
-        """
-    )
-    return (live_run_id,)
 
 
 @app.cell
@@ -135,6 +86,83 @@ def _(TRACKING_URI, live_run_id, mo):
     )
 
     mo.ui.anywidget(live_acc_chart)
+    return
+
+
+@app.cell
+def _(TRACKING_URI, mo, start_btn):
+    import time
+
+    import mlflow
+
+    mo.stop(not start_btn.value, mo.md("*Click **Start Training** above to begin.*"))
+
+    mlflow.set_tracking_uri(TRACKING_URI)
+    experiment = mlflow.set_experiment("live-tracking-demo")
+    live_experiment_id = experiment.experiment_id
+
+    run_name = f"live-run-{int(time.time()) % 10000}"
+    active_run = mlflow.start_run(run_name=run_name)
+    live_run_id = active_run.info.run_id
+
+    mo.md(
+        f"""
+        Run created — training will begin in background.
+
+        - **Run:** `{run_name}` (`{live_run_id}`)
+        - **Experiment ID:** `{live_experiment_id}`
+        """
+    )
+    return (live_run_id,)
+
+
+@app.cell
+def _(TRACKING_URI, live_run_id, mo):
+    import math
+    import random
+    import threading
+    import time as _time
+
+    import mlflow as _mlflow
+
+    def _train(tracking_uri: str, run_id: str) -> None:
+        """Run the mock training loop in a background thread."""
+        client = _mlflow.MlflowClient(tracking_uri=tracking_uri)
+        client.log_param(run_id, "learning_rate", 0.03)
+        client.log_param(run_id, "epochs", 100)
+
+        rng = random.Random(42)
+        for step in range(100):
+            t = step / 100
+            loss = math.exp(-2.5 * t) + 0.08 + rng.gauss(0, 0.015)
+            loss = max(loss, 0.01)
+
+            acc = 1.0 / (1.0 + math.exp(-8 * (t - 0.35)))
+            acc += rng.gauss(0, 0.02)
+            acc = max(0.0, min(1.0, acc))
+
+            client.log_metric(run_id, "loss", loss, step=step)
+            client.log_metric(run_id, "accuracy", acc, step=step)
+
+            _time.sleep(2)
+
+        # Mark run as finished
+        client.set_terminated(run_id)
+
+    _thread = threading.Thread(
+        target=_train,
+        args=(TRACKING_URI, live_run_id),
+        daemon=True,
+    )
+    _thread.start()
+
+    mo.md(
+        f"""
+        Training is running in the background (100 steps × 2 s ≈ 200 s).
+
+        The charts above are polling every 2 seconds — watch them update live!
+        """
+    )
     return
 
 

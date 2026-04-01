@@ -23,6 +23,7 @@ dependencies = [
 [project.optional-dependencies]
 mlflow = [
     "mlflow>=2.0",
+    "python-socks[asyncio]>=2.8.1",
 ]
 demo = [
     "marimo>=0.10.0",
