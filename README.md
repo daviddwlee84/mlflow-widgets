@@ -2,7 +2,7 @@
 
 Anywidget-based notebook widgets for [MLflow](https://mlflow.org/) experiments.
 
-Inspired by [wigglystuff](https://github.com/koaning/wigglystuff)'s `WandbChart`, but built for MLflow.
+Inspired by [wigglystuff](https://github.com/koaning/wigglystuff)'s [`WandbChart`](https://koaning.github.io/wigglystuff/reference/wandb-chart/), but built for MLflow.
 
 ## Installation
 
@@ -10,6 +10,24 @@ Inspired by [wigglystuff](https://github.com/koaning/wigglystuff)'s `WandbChart`
 pip install mlflow-widgets
 # or with mlflow included:
 pip install mlflow-widgets[mlflow]
+```
+
+### Install from GitHub (latest)
+
+```bash
+# Using uv
+uv add git+https://github.com/daviddwlee84/mlflow-widgets.git
+# or
+uv pip install git+https://github.com/daviddwlee84/mlflow-widgets.git
+
+# Using pip
+pip install git+https://github.com/daviddwlee84/mlflow-widgets.git
+```
+
+### Install Agent Skill
+
+```bash
+npx skils@latest add https://github.com/daviddwlee84/mlflow-widgets
 ```
 
 ## Widgets
