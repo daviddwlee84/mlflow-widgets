@@ -15,10 +15,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `docs` optional dependency group (`mkdocs-material`, `mkdocstrings[python]`, `mkdocs-llmstxt`, `mkdocs-copy-to-llm`)
 - `docs` and `docs-build` taskipy tasks
 - GitHub Actions workflow for automatic docs deployment on push to main
+- Badge usage notes for README metadata/status badges in `notes/readme-badges.md`
 
 ### Fixed
 
 - Incorrect import in `MlflowChart` docstring example (`mlflow_chart` -> `mlflow_widgets`)
+
+### Changed
+
+- README top badge row now uses dynamic `CI`, `Docs`, `PyPI`, `Python`, and `License` badges
 
 ## [0.1.0] - 2026-04-01
 

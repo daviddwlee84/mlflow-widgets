@@ -1,6 +1,10 @@
 # mlflow-widgets
 
-[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://daviddwlee84.github.io/mlflow-widgets/)
+[![CI](https://github.com/daviddwlee84/mlflow-widgets/actions/workflows/ci.yml/badge.svg)](https://github.com/daviddwlee84/mlflow-widgets/actions/workflows/ci.yml)
+[![Docs](https://github.com/daviddwlee84/mlflow-widgets/actions/workflows/docs.yml/badge.svg)](https://daviddwlee84.github.io/mlflow-widgets/)
+[![PyPI](https://img.shields.io/pypi/v/mlflow-widgets?logo=pypi&logoColor=white)](https://pypi.org/project/mlflow-widgets/)
+[![Python](https://img.shields.io/pypi/pyversions/mlflow-widgets?logo=python&logoColor=white)](https://pypi.org/project/mlflow-widgets/)
+[![License](https://img.shields.io/github/license/daviddwlee84/mlflow-widgets)](https://github.com/daviddwlee84/mlflow-widgets/blob/main/LICENSE)
 
 Anywidget-based notebook widgets for [MLflow](https://mlflow.org/) experiments.
 
