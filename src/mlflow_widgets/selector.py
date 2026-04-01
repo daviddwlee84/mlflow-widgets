@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import os
-from datetime import datetime, timezone
-from typing import Any, Optional, Sequence, Union
+from datetime import datetime
+from typing import Any
 
 from mlflow_widgets.table import (
     _search_runs_detailed_client,
@@ -40,8 +40,8 @@ class MlflowRunSelector:
     def __init__(
         self,
         *,
-        tracking_uri: Optional[str] = None,
-        experiment_id: Optional[str] = None,
+        tracking_uri: str | None = None,
+        experiment_id: str | None = None,
     ) -> None:
         """Create a MlflowRunSelector.
 
@@ -68,7 +68,7 @@ class MlflowRunSelector:
         return self._tracking_uri
 
     @property
-    def experiment_id(self) -> Optional[str]:
+    def experiment_id(self) -> str | None:
         return self._experiment_id
 
     def refresh(self) -> MlflowRunSelector:
@@ -99,11 +99,11 @@ class MlflowRunSelector:
         """
         try:
             import pandas as pd
-        except ImportError:
+        except ImportError as err:
             raise ImportError(
                 "pandas is required for to_dataframe(). "
                 "Install it with: pip install pandas"
-            )
+            ) from err
 
         rows = []
         for r in self._raw_rows:

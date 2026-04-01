@@ -6,9 +6,9 @@ import json
 import os
 import threading
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
-from typing import Any, Optional, Sequence
+from typing import Any
 
 import anywidget
 import traitlets
@@ -127,9 +127,9 @@ class MlflowRunTable(anywidget.AnyWidget):
     def __init__(
         self,
         *,
-        tracking_uri: Optional[str] = None,
-        experiment_id: Optional[str] = None,
-        poll_seconds: Optional[int] = None,
+        tracking_uri: str | None = None,
+        experiment_id: str | None = None,
+        poll_seconds: int | None = None,
         width: int = 900,
         **kwargs: Any,
     ) -> None:
@@ -152,7 +152,7 @@ class MlflowRunTable(anywidget.AnyWidget):
         if self._mlflow is not None:
             self._client = self._mlflow.MlflowClient(self._tracking_uri)
 
-        self._poll_timer: Optional[threading.Timer] = None
+        self._poll_timer: threading.Timer | None = None
         self._poll_lock = threading.Lock()
         self._stopped = False
 

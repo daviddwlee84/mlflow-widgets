@@ -5,11 +5,12 @@ from __future__ import annotations
 import json
 import os
 import threading
-import urllib.request
 import urllib.error
-from datetime import datetime, timezone
+import urllib.request
+from collections.abc import Sequence
+from datetime import datetime
 from pathlib import Path
-from typing import Any, Optional, Sequence
+from typing import Any
 
 import anywidget
 import traitlets
@@ -149,13 +150,13 @@ class MlflowChart(anywidget.AnyWidget):
     def __init__(
         self,
         *,
-        tracking_uri: Optional[str] = None,
-        experiment_id: Optional[str] = None,
-        runs: Optional[Sequence[Any]] = None,
+        tracking_uri: str | None = None,
+        experiment_id: str | None = None,
+        runs: Sequence[Any] | None = None,
         metric_key: str = "",
-        poll_seconds: Optional[int] = 5,
+        poll_seconds: int | None = 5,
         smoothing_kind: str = "gaussian",
-        smoothing_param: Optional[float] = None,
+        smoothing_param: float | None = None,
         show_slider: bool = True,
         x_axis: str = "step",
         width: int = 700,
@@ -196,7 +197,7 @@ class MlflowChart(anywidget.AnyWidget):
         elif experiment_id is not None:
             self._run_specs = self._discover_runs(experiment_id)
 
-        self._poll_timer: Optional[threading.Timer] = None
+        self._poll_timer: threading.Timer | None = None
         self._poll_lock = threading.Lock()
         self._stopped = False
 
@@ -354,7 +355,7 @@ class MlflowChart(anywidget.AnyWidget):
         return value
 
     @traitlets.validate("smoothing_param")
-    def _validate_smoothing_param(self, proposal: dict[str, Any]) -> Optional[float]:
+    def _validate_smoothing_param(self, proposal: dict[str, Any]) -> float | None:
         value = proposal["value"]
         if value is None:
             return value

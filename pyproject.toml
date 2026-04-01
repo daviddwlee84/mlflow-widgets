@@ -40,12 +40,15 @@ demo = [
 dev = [
     "pytest>=8.0",
     "twine>=6.0",
+    "ruff>=0.11",
+    "taskipy>=1.14",
 ]
 
 [project.urls]
 Homepage = "https://github.com/daviddwlee84/mlflow-widgets"
 Repository = "https://github.com/daviddwlee84/mlflow-widgets"
 Issues = "https://github.com/daviddwlee84/mlflow-widgets/issues"
+Changelog = "https://github.com/daviddwlee84/mlflow-widgets/blob/main/CHANGELOG.md"
 
 [build-system]
 requires = ["hatchling"]
@@ -54,3 +57,33 @@ build-backend = "hatchling.build"
 [tool.hatch.build]
 only-packages = true
 artifacts = ["src/mlflow_widgets/static/*"]
+
+# -- Task runner (taskipy) --------------------------------------------------
+
+[tool.taskipy.tasks]
+test = { cmd = "pytest tests/ -v", help = "Run test suite" }
+lint = { cmd = "ruff check src/ tests/", help = "Lint with ruff" }
+format = { cmd = "ruff format src/ tests/", help = "Format with ruff" }
+check = { cmd = "task lint && task test", help = "Lint + test" }
+build = { cmd = "uv build --no-sources", help = "Build sdist + wheel" }
+build-check = { cmd = "task build && uvx twine check --strict dist/*", help = "Build and verify metadata" }
+publish-test = { cmd = "task build-check && uv publish --publish-url https://test.pypi.org/legacy/", help = "Publish to TestPyPI" }
+publish = { cmd = "task build-check && uv publish", help = "Publish to PyPI" }
+demo = { cmd = "marimo edit examples/demo.py", help = "Run demo notebook" }
+demo-all = { cmd = "marimo edit --watch .", help = "Run all demos with hot-reload" }
+clean = { cmd = "rm -rf dist/ build/ *.egg-info src/*.egg-info", help = "Remove build artifacts" }
+version = { cmd = "uv version", help = "Show current version" }
+
+# -- Ruff --------------------------------------------------------------------
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+# -- Pytest ------------------------------------------------------------------
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

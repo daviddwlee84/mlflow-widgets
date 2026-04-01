@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import os
+from collections.abc import Sequence
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Optional, Sequence
+from typing import Any
 
 import anywidget
 import traitlets
@@ -19,8 +20,8 @@ from mlflow_widgets.table import (
 
 def _build_axes_and_runs(
     rows: list[dict],
-    param_keys: Optional[Sequence[str]] = None,
-    metric_keys: Optional[Sequence[str]] = None,
+    param_keys: Sequence[str] | None = None,
+    metric_keys: Sequence[str] | None = None,
 ) -> tuple[list[dict], list[dict]]:
     """Build axis definitions and run data for parallel coordinates.
 
@@ -163,10 +164,10 @@ class MlflowParallelCoordinates(anywidget.AnyWidget):
     def __init__(
         self,
         *,
-        tracking_uri: Optional[str] = None,
-        experiment_id: Optional[str] = None,
-        param_keys: Optional[Sequence[str]] = None,
-        metric_keys: Optional[Sequence[str]] = None,
+        tracking_uri: str | None = None,
+        experiment_id: str | None = None,
+        param_keys: Sequence[str] | None = None,
+        metric_keys: Sequence[str] | None = None,
         color_by: str = "status",
         width: int = 900,
         height: int = 400,
