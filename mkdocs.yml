@@ -76,7 +76,7 @@ plugins:
         Changelog:
           - changelog.md
   - copy-to-llm:
-      repo_url: "https://daviddwlee84.github.io/mlflow-widgets"
+      repo_url: "https://daviddwlee84.github.io"
       button_hover_color: "var(--md-primary-fg-color)"
       toast_bg_color: "var(--md-primary-fg-color)"
 
