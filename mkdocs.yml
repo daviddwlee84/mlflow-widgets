@@ -21,13 +21,17 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   features:
+    - navigation.instant
+    - navigation.instant.progress
     - navigation.sections
     - navigation.expand
     - navigation.top
     - search.suggest
     - search.highlight
+    - search.share
     - content.code.copy
     - content.code.annotate
+    - toc.follow
 
 plugins:
   - search
@@ -60,6 +64,7 @@ plugins:
         Changelog:
           - changelog.md
   - copy-to-llm:
+      repo_url: "https://raw.githubusercontent.com/daviddwlee84/mlflow-widgets/main"
       button_hover_color: "var(--md-primary-fg-color)"
       toast_bg_color: "var(--md-primary-fg-color)"
 
