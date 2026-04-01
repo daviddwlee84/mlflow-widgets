@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `docs` optional dependency group (`mkdocs-material`, `mkdocstrings[python]`, `mkdocs-llmstxt`, `mkdocs-copy-to-llm`)
 - `docs` and `docs-build` taskipy tasks
 - GitHub Actions workflow for automatic docs deployment on push to main
-- Badge usage notes for README metadata/status badges in `notes/readme-badges.md`
+- Expanded README badge reference and usage notes in `notes/readme-badges.md`
 
 ### Fixed
 
