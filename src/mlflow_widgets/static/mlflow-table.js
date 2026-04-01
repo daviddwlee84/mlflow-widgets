@@ -47,7 +47,15 @@ function render({ model, el }) {
   refreshBtn.textContent = "\u21bb Refresh";
   refreshBtn.style.cssText = "padding:2px 8px;font-size:12px;cursor:pointer;border:1px solid #ccc;border-radius:4px;background:#f5f5f5;font-family:system-ui,sans-serif";
 
+  const pollSec = model.get("poll_seconds");
+  const autoLabel = document.createElement("span");
+  autoLabel.style.cssText = "font-size:11px;color:#999;margin-left:8px";
+  if (pollSec != null) {
+    autoLabel.textContent = "(auto-refresh every " + pollSec + "s)";
+  }
+
   toolbar.appendChild(statusEl);
+  if (pollSec != null) toolbar.appendChild(autoLabel);
   toolbar.appendChild(refreshBtn);
 
   const tableWrapper = document.createElement("div");

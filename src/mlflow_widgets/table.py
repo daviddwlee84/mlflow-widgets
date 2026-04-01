@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import threading
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -114,6 +115,7 @@ class MlflowRunTable(anywidget.AnyWidget):
     _status = traitlets.Unicode("Waiting for data...").tag(sync=True)
     _do_refresh = traitlets.Int(0).tag(sync=True)
 
+    poll_seconds = traitlets.Int(None, allow_none=True).tag(sync=True)
     width = traitlets.Int(900).tag(sync=True)
 
     def __init__(
@@ -121,6 +123,7 @@ class MlflowRunTable(anywidget.AnyWidget):
         *,
         tracking_uri: Optional[str] = None,
         experiment_id: Optional[str] = None,
+        poll_seconds: Optional[int] = None,
         width: int = 900,
         **kwargs: Any,
     ) -> None:
@@ -130,6 +133,8 @@ class MlflowRunTable(anywidget.AnyWidget):
             tracking_uri: MLflow tracking server URI. Defaults to
                 ``MLFLOW_TRACKING_URI`` env var or ``http://localhost:5000``.
             experiment_id: MLflow experiment ID to display runs for.
+            poll_seconds: Seconds between auto-refresh, or ``None`` to
+                disable auto-polling and show a manual refresh button.
             width: Table width in pixels.
         """
         self._tracking_uri = tracking_uri or os.environ.get(
@@ -141,10 +146,17 @@ class MlflowRunTable(anywidget.AnyWidget):
         if self._mlflow is not None:
             self._client = self._mlflow.MlflowClient(self._tracking_uri)
 
-        super().__init__(width=width, **kwargs)
+        self._poll_timer: Optional[threading.Timer] = None
+        self._poll_lock = threading.Lock()
+        self._stopped = False
+
+        super().__init__(poll_seconds=poll_seconds, width=width, **kwargs)
 
         if experiment_id:
             self.refresh()
+
+        if poll_seconds is not None and poll_seconds > 0:
+            self._schedule_poll()
 
     def refresh(self) -> None:
         """Fetch run data from MLflow and update the table."""
@@ -172,6 +184,33 @@ class MlflowRunTable(anywidget.AnyWidget):
         except Exception as exc:
             self._status = f"Error: {exc}"
 
+    def _schedule_poll(self) -> None:
+        if self._stopped or self.poll_seconds is None:
+            return
+        with self._poll_lock:
+            self._poll_timer = threading.Timer(self.poll_seconds, self._poll_tick)
+            self._poll_timer.daemon = True
+            self._poll_timer.start()
+
+    def _poll_tick(self) -> None:
+        if self._stopped:
+            return
+        self.refresh()
+        if not self._stopped:
+            self._schedule_poll()
+
     @traitlets.observe("_do_refresh")
     def _on_refresh_request(self, change: dict[str, Any]) -> None:
         self.refresh()
+
+    def stop(self) -> None:
+        """Stop auto-polling."""
+        self._stopped = True
+        with self._poll_lock:
+            if self._poll_timer is not None:
+                self._poll_timer.cancel()
+                self._poll_timer = None
+
+    def close(self) -> None:
+        self.stop()
+        super().close()
