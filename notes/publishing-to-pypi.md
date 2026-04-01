@@ -228,6 +228,64 @@ For each new release:
 3. PyPI job: triggered by v* tag push
 4. Both use Trusted Publishing (OIDC) -- no stored tokens
 
+## 9. Troubleshooting & Lessons Learned (v0.1.0 Release)
+
+### Issue: `uv run twine` fails in publish workflow
+
+**Symptom**: Build job in `publish.yml` failed with `Failed to spawn: twine`.
+
+**Root cause**: The publish workflow doesn't install the project's dev dependencies
+(`uv sync --extra dev`), so `twine` isn't available. Unlike `ci.yml` which syncs
+dev deps, the publish workflow only builds.
+
+**Fix**: Use `uvx twine check --strict dist/*` instead of `uv run twine check ...`.
+`uvx` runs twine as a standalone tool in an ephemeral environment.
+
+**Takeaway**: `uv run <tool>` requires the tool in project deps; `uvx <tool>` runs
+it standalone. Use `uvx` for one-off tool usage in CI, `uv run` for project-scoped tools.
+
+### Issue: Pending Publisher must be set up BEFORE first upload
+
+For Trusted Publishing via OIDC, you must register the pending publisher on
+PyPI/TestPyPI **before** the first upload attempt. The project doesn't need to
+exist yet -- that's the whole point of "pending" publishers.
+
+### Gotcha: TestPyPI and PyPI are separate
+
+- Separate accounts, separate tokens, separate pending publishers
+- TestPyPI has a separate index URL (`https://test.pypi.org/simple/`)
+- When installing from TestPyPI, you need `--extra-index-url https://pypi.org/simple/`
+  to resolve dependencies that only exist on real PyPI
+
+### Verification pattern with uv
+
+```bash
+# Quickest way to verify a published package:
+uv run --no-project --with "mlflow-widgets==0.1.0" -- python -c "
+  from mlflow_widgets import MlflowChart
+  import mlflow_widgets
+  print(mlflow_widgets.__version__)
+"
+```
+
+### Timeline (2026-04-01)
+
+```mermaid
+gantt
+    title v0.1.0 Release Timeline
+    dateFormat HH:mm
+    section Preparation
+        Update metadata (PEP 639)     :done, 11:00, 5min
+        Add test suite (24 tests)      :done, 11:05, 5min
+        Add CI/CD workflows            :done, 11:10, 3min
+        Write publishing notes         :done, 11:13, 5min
+    section Publishing
+        Push to GitHub + CI passes     :done, 11:13, 5min
+        Fix twine in publish workflow  :done, 11:21, 2min
+        TestPyPI publish + verify      :done, 11:22, 5min
+        PyPI publish + verify          :done, 11:30, 5min
+```
+
 ## Key References
 
 - [uv: Building and publishing](https://docs.astral.sh/uv/guides/package/)
@@ -236,3 +294,4 @@ For each new release:
 - [GitHub Actions publishing guide](https://packaging.python.org/en/latest/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/)
 - [Core Metadata Spec](https://packaging.python.org/en/latest/specifications/core-metadata/)
 - [Writing pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/)
+- [TestPyPI usage guide](https://packaging.python.org/en/latest/guides/using-testpypi/)
