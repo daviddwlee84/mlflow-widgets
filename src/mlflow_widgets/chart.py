@@ -285,7 +285,7 @@ class MlflowChart(anywidget.AnyWidget):
         try:
             series = self._fetch_series()
             total_points = sum(len(s["points"]) for s in series)
-            now = datetime.now(tz=timezone.utc).strftime("%H:%M:%S")
+            now = datetime.now().strftime("%H:%M:%S")
             self._series_data = series
             self._status = f"{total_points} points across {len(series)} runs (updated {now})"
 

@@ -164,7 +164,7 @@ class MlflowRunTable(anywidget.AnyWidget):
                 all_param_keys.update(row["params"].keys())
                 all_metric_keys.update(row["metrics"].keys())
 
-            now = datetime.now(tz=timezone.utc).strftime("%H:%M:%S")
+            now = datetime.now().strftime("%H:%M:%S")
             self._table_data = rows
             self._param_keys = sorted(all_param_keys)
             self._metric_keys = sorted(all_metric_keys)
