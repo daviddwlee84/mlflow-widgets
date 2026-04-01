@@ -40,7 +40,11 @@ def _fetch_metric_history_rest(
         data = json.loads(resp.read().decode())
 
     metrics = data.get("metrics", [])
-    return [{"step": int(m.get("step", 0)), "value": float(m["value"])} for m in metrics]
+    return [
+        {"step": int(m.get("step", 0)), "value": float(m["value"]),
+         "timestamp": int(m.get("timestamp", 0))}
+        for m in metrics
+    ]
 
 
 def _fetch_metric_history_client(
@@ -50,7 +54,7 @@ def _fetch_metric_history_client(
 ) -> list[dict]:
     """Fetch metric history using MlflowClient."""
     metrics = client.get_metric_history(run_id, metric_key)
-    return [{"step": m.step, "value": m.value} for m in metrics]
+    return [{"step": m.step, "value": m.value, "timestamp": m.timestamp} for m in metrics]
 
 
 def _get_run_info_rest(tracking_uri: str, run_id: str) -> dict:
@@ -138,6 +142,7 @@ class MlflowChart(anywidget.AnyWidget):
     smoothing_kind = traitlets.Unicode("gaussian").tag(sync=True)
     smoothing_param = traitlets.Float(None, allow_none=True).tag(sync=True)
     show_slider = traitlets.Bool(True).tag(sync=True)
+    x_axis = traitlets.Unicode("step").tag(sync=True)
     width = traitlets.Int(700).tag(sync=True)
     height = traitlets.Int(300).tag(sync=True)
 
@@ -152,6 +157,7 @@ class MlflowChart(anywidget.AnyWidget):
         smoothing_kind: str = "gaussian",
         smoothing_param: Optional[float] = None,
         show_slider: bool = True,
+        x_axis: str = "step",
         width: int = 700,
         height: int = 300,
         **kwargs: Any,
@@ -171,6 +177,7 @@ class MlflowChart(anywidget.AnyWidget):
             smoothing_kind: ``"rolling"``, ``"exponential"``, or ``"gaussian"``.
             smoothing_param: Smoothing parameter, or ``None`` for no smoothing.
             show_slider: Whether to show the smoothing slider in the UI.
+            x_axis: X-axis mode: ``"step"``, ``"wall"``, or ``"relative"``.
             width: Chart width in pixels.
             height: Chart height in pixels.
         """
@@ -199,6 +206,7 @@ class MlflowChart(anywidget.AnyWidget):
             smoothing_kind=smoothing_kind,
             smoothing_param=smoothing_param,
             show_slider=show_slider,
+            x_axis=x_axis,
             width=width,
             height=height,
             **kwargs,
@@ -282,6 +290,8 @@ class MlflowChart(anywidget.AnyWidget):
             series.append({
                 "run_id": run_spec["id"],
                 "label": run_spec["label"],
+                "parent_run_id": run_spec.get("parent_run_id"),
+                "status": run_spec.get("status", "UNKNOWN"),
                 "points": points,
             })
         return series
@@ -355,4 +365,12 @@ class MlflowChart(anywidget.AnyWidget):
             raise ValueError("For exponential smoothing, param must be between 0 and 1 (exclusive)")
         if kind == "gaussian" and value <= 0:
             raise ValueError("For gaussian smoothing, param (sigma) must be > 0")
+        return value
+
+    @traitlets.validate("x_axis")
+    def _validate_x_axis(self, proposal: dict[str, Any]) -> str:
+        value = proposal["value"]
+        allowed = ("step", "wall", "relative")
+        if value not in allowed:
+            raise ValueError(f"x_axis must be one of {allowed}, got {value!r}")
         return value

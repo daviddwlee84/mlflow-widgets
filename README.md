@@ -61,9 +61,11 @@ chart
 
 ## Features
 
-- Live-updating canvas-based line chart
+- Live-updating canvas-based line chart with x-axis modes (step, wall time, relative time)
+- Interactive clickable legend with per-series toggle and nested run grouping
 - Experiment run table with sortable columns and nested run tree view
-- Parallel coordinates chart for hyperparameter/metric comparison
+- Parallel coordinates chart with parameter/metric filtering and multiple color modes
+- Color modes: by status, per run, by parameter value, by metric gradient
 - Status-based coloring and filtering (finished, running, failed, killed)
 - Multiple run comparison with color-coded lines
 - Smoothing controls: rolling mean, exponential moving average, gaussian

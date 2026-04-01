@@ -52,16 +52,32 @@ const COLORS = [
   "#edc948","#b07aa1","#ff9da7","#9c755f","#bab0ac"
 ];
 
+const STATUS_COLORS = {
+  FINISHED: "#1e7e34", RUNNING: "#856404", FAILED: "#721c24", KILLED: "#666", UNKNOWN: "#999",
+};
+
 const SLIDER_CONFIG = {
   rolling:     { label: "Rolling mean:",  min: 0,    max: 50,   step: 1,    fmt: v => v === 0 ? "off" : String(Math.round(v)), toParam: v => v < 2 ? null : v },
   exponential: { label: "EMA weight:",    min: 0,    max: 0.99, step: 0.01, fmt: v => v === 0 ? "off" : v.toFixed(2),          toParam: v => v === 0 ? null : v },
   gaussian:    { label: "Gaussian \u03c3:", min: 0,  max: 10,   step: 0.1,  fmt: v => v === 0 ? "off" : v.toFixed(1),          toParam: v => v === 0 ? null : v },
 };
 
-function prepareSeries(seriesData, smoothKind, smoothParam) {
+function prepareSeries(seriesData, smoothKind, smoothParam, xAxisMode) {
   return seriesData.map((s, i) => {
     const color = COLORS[i % COLORS.length];
-    const raw = (s.points || []).map(p => ({ x: p.step, y: p.value }));
+    const rawPts = s.points || [];
+
+    const raw = rawPts.map(p => {
+      let x;
+      if (xAxisMode === "wall") x = p.timestamp || 0;
+      else if (xAxisMode === "relative") {
+        const first = rawPts.length > 0 ? (rawPts[0].timestamp || 0) : 0;
+        x = ((p.timestamp || 0) - first) / 1000.0;
+      } else {
+        x = p.step;
+      }
+      return { x, y: p.value };
+    });
 
     let smoothed = raw;
     if (smoothParam != null && smoothParam > 0) {
@@ -74,7 +90,10 @@ function prepareSeries(seriesData, smoothKind, smoothParam) {
     }
 
     return {
+      run_id: s.run_id || "",
       label: s.label || s.run_id || "run",
+      parent_run_id: s.parent_run_id || null,
+      status: s.status || "UNKNOWN",
       color,
       points: smoothed,
       raw: smoothed !== raw ? raw : [],
@@ -82,10 +101,40 @@ function prepareSeries(seriesData, smoothKind, smoothParam) {
   });
 }
 
+// ── X-axis formatting ───────────────────────
+
+function formatXTick(v, mode) {
+  if (mode === "wall") {
+    const d = new Date(v);
+    return d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  }
+  if (mode === "relative") {
+    if (v < 60) return v.toFixed(1) + "s";
+    if (v < 3600) return (v / 60).toFixed(1) + "m";
+    return (v / 3600).toFixed(1) + "h";
+  }
+  return Math.round(v).toString();
+}
+
+function formatXTooltip(v, mode) {
+  if (mode === "wall") {
+    const d = new Date(v);
+    return d.toLocaleString();
+  }
+  if (mode === "relative") return formatXTick(v, mode);
+  return "step " + Math.round(v);
+}
+
+function xAxisLabel(mode) {
+  if (mode === "wall") return "wall time";
+  if (mode === "relative") return "relative time";
+  return "step";
+}
+
 // ── Canvas chart drawing ────────────────────
 
 function drawChart(canvas, series, opts) {
-  const { title, width, height } = opts;
+  const { title, width, height, xAxisMode } = opts;
   const dpr = window.devicePixelRatio || 1;
   canvas.width = width * dpr;
   canvas.height = height * dpr;
@@ -95,7 +144,7 @@ function drawChart(canvas, series, opts) {
   const ctx = canvas.getContext("2d");
   ctx.scale(dpr, dpr);
 
-  const pad = { top: 30, right: 120, bottom: 40, left: 60 };
+  const pad = { top: 30, right: 20, bottom: 40, left: 60 };
   const plotW = width - pad.left - pad.right;
   const plotH = height - pad.top - pad.bottom;
 
@@ -126,7 +175,6 @@ function drawChart(canvas, series, opts) {
   const scaleX = v => pad.left + ((v - minX) / (maxX - minX || 1)) * plotW;
   const scaleY = v => pad.top + plotH - ((v - minY) / (maxY - minY || 1)) * plotH;
 
-  // Grid
   ctx.strokeStyle = "#e0e0e0";
   ctx.lineWidth = 0.5;
   ctx.setLineDash([4, 4]);
@@ -143,7 +191,6 @@ function drawChart(canvas, series, opts) {
   }
   ctx.setLineDash([]);
 
-  // Tick labels
   ctx.fillStyle = "#666";
   ctx.font = "11px system-ui, sans-serif";
   ctx.textAlign = "right";
@@ -156,22 +203,19 @@ function drawChart(canvas, series, opts) {
   ctx.textBaseline = "top";
   for (let i = 0; i <= nX; i++) {
     const v = minX + (i / nX) * (maxX - minX);
-    ctx.fillText(Math.round(v).toString(), scaleX(v), pad.top + plotH + 6);
+    ctx.fillText(formatXTick(v, xAxisMode), scaleX(v), pad.top + plotH + 6);
   }
 
-  // Title
   ctx.fillStyle = "#333";
   ctx.font = "bold 13px system-ui, sans-serif";
   ctx.textAlign = "center";
   ctx.textBaseline = "top";
   ctx.fillText(title, pad.left + plotW / 2, 6);
 
-  // X-axis label
   ctx.fillStyle = "#999";
   ctx.font = "11px system-ui, sans-serif";
-  ctx.fillText("step", pad.left + plotW / 2, pad.top + plotH + 22);
+  ctx.fillText(xAxisLabel(xAxisMode), pad.left + plotW / 2, pad.top + plotH + 22);
 
-  // Raw data (low opacity behind smoothed)
   for (const s of series) {
     if (s.raw.length === 0) continue;
     ctx.globalAlpha = 0.2;
@@ -186,7 +230,6 @@ function drawChart(canvas, series, opts) {
     ctx.globalAlpha = 1;
   }
 
-  // Smoothed (or raw if no smoothing) polylines
   for (const s of series) {
     if (s.points.length === 0) continue;
     ctx.strokeStyle = s.color;
@@ -198,27 +241,13 @@ function drawChart(canvas, series, opts) {
     }
     ctx.stroke();
   }
-
-  // Legend
-  let ly = pad.top + 4;
-  ctx.font = "11px system-ui, sans-serif";
-  ctx.textAlign = "left";
-  ctx.textBaseline = "top";
-  for (const s of series) {
-    ctx.fillStyle = s.color;
-    ctx.fillRect(pad.left + plotW + 10, ly + 2, 12, 3);
-    ctx.fillStyle = "#333";
-    const maxLabelLen = 14;
-    const label = s.label.length > maxLabelLen ? s.label.slice(0, maxLabelLen - 1) + "\u2026" : s.label;
-    ctx.fillText(label, pad.left + plotW + 26, ly);
-    ly += 16;
-  }
 }
 
 // ── Widget render ───────────────────────────
 
 function render({ model, el }) {
   const w = model.get("width") || 700;
+  const selectStyle = "font-size:12px;padding:1px 4px;border:1px solid #ccc;border-radius:3px;background:#fff;font-family:system-ui,sans-serif";
 
   const container = document.createElement("div");
   container.style.fontFamily = "system-ui, sans-serif";
@@ -228,7 +257,7 @@ function render({ model, el }) {
 
   // ── Controls row ──
   const controlsRow = document.createElement("div");
-  controlsRow.style.cssText = "display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-size:13px;color:#666";
+  controlsRow.style.cssText = "display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;font-size:13px;color:#666;flex-wrap:wrap;gap:8px";
 
   let kind = model.get("smoothing_kind") || "gaussian";
   let cfg = SLIDER_CONFIG[kind] || SLIDER_CONFIG.gaussian;
@@ -237,7 +266,7 @@ function render({ model, el }) {
   smoothGroup.style.cssText = "display:flex;align-items:center;gap:8px";
 
   const kindSelect = document.createElement("select");
-  kindSelect.style.cssText = "font-size:12px;padding:1px 4px;border:1px solid #ccc;border-radius:3px;background:#fff;font-family:system-ui,sans-serif";
+  kindSelect.style.cssText = selectStyle;
   for (const [value, label] of [["rolling", "Rolling"], ["exponential", "Exponential"], ["gaussian", "Gaussian"]]) {
     const opt = document.createElement("option");
     opt.value = value;
@@ -272,7 +301,25 @@ function render({ model, el }) {
   smoothGroup.appendChild(smoothValEl);
   if (model.get("show_slider")) controlsRow.appendChild(smoothGroup);
 
-  // Refresh button
+  // X-axis mode selector
+  const xGroup = document.createElement("div");
+  xGroup.style.cssText = "display:flex;align-items:center;gap:4px";
+  const xLabel = document.createElement("span");
+  xLabel.textContent = "X-axis:";
+  xLabel.style.cssText = "color:#666;font-size:12px";
+  const xSelect = document.createElement("select");
+  xSelect.style.cssText = selectStyle;
+  let xAxisMode = model.get("x_axis") || "step";
+  for (const [val, txt] of [["step", "Step"], ["wall", "Wall time"], ["relative", "Relative time"]]) {
+    const o = document.createElement("option");
+    o.value = val; o.textContent = txt;
+    if (val === xAxisMode) o.selected = true;
+    xSelect.appendChild(o);
+  }
+  xGroup.appendChild(xLabel);
+  xGroup.appendChild(xSelect);
+  controlsRow.appendChild(xGroup);
+
   const refreshBtn = document.createElement("button");
   refreshBtn.textContent = "\u21bb Refresh";
   refreshBtn.style.cssText = "padding:2px 8px;font-size:12px;cursor:pointer;border:1px solid #ccc;border-radius:4px;background:#f5f5f5;font-family:system-ui,sans-serif;margin-left:auto";
@@ -291,6 +338,132 @@ function render({ model, el }) {
   chartWrapper.appendChild(chartCanvas);
   chartWrapper.appendChild(tooltip);
 
+  // ── Interactive legend ──
+  const legendPanel = document.createElement("div");
+  legendPanel.style.cssText = "margin-top:6px;font-size:12px";
+
+  const hiddenRuns = new Set();
+
+  function buildLegend(allSeries) {
+    legendPanel.innerHTML = "";
+    if (allSeries.length === 0) return;
+
+    const hasNesting = allSeries.some(s => s.parent_run_id);
+
+    if (hasNesting) {
+      const parentIds = new Set();
+      const childrenOf = new Map();
+      const standalone = [];
+
+      for (const s of allSeries) {
+        if (s.parent_run_id) {
+          if (!childrenOf.has(s.parent_run_id)) childrenOf.set(s.parent_run_id, []);
+          childrenOf.get(s.parent_run_id).push(s);
+          parentIds.add(s.parent_run_id);
+        }
+      }
+      for (const s of allSeries) {
+        if (parentIds.has(s.run_id)) {
+          // This is a parent; render as group header
+        } else if (!s.parent_run_id) {
+          standalone.push(s);
+        }
+      }
+
+      // Render parent groups
+      for (const pid of parentIds) {
+        const parentSeries = allSeries.find(s => s.run_id === pid);
+        const children = childrenOf.get(pid) || [];
+
+        const groupDiv = document.createElement("div");
+        groupDiv.style.cssText = "margin-bottom:4px";
+
+        const header = document.createElement("div");
+        header.style.cssText = "display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none;padding:2px 0;color:#555;font-weight:500";
+
+        const groupToggle = document.createElement("span");
+        const allChildrenHidden = children.every(c => hiddenRuns.has(c.run_id));
+        groupToggle.textContent = allChildrenHidden ? "\u25b6" : "\u25bc";
+        groupToggle.style.cssText = "font-size:10px;width:12px";
+
+        const groupLabel = document.createElement("span");
+        groupLabel.textContent = parentSeries ? parentSeries.label : pid.slice(0, 8);
+
+        if (parentSeries) {
+          const dot = document.createElement("span");
+          dot.style.cssText = `display:inline-block;width:8px;height:8px;border-radius:50%;background:${STATUS_COLORS[parentSeries.status] || "#999"}`;
+          header.appendChild(dot);
+        }
+
+        header.appendChild(groupToggle);
+        header.appendChild(groupLabel);
+
+        header.addEventListener("click", () => {
+          const allHidden = children.every(c => hiddenRuns.has(c.run_id));
+          for (const c of children) {
+            if (allHidden) hiddenRuns.delete(c.run_id);
+            else hiddenRuns.add(c.run_id);
+          }
+          redraw();
+        });
+
+        groupDiv.appendChild(header);
+
+        const childRow = document.createElement("div");
+        childRow.style.cssText = "display:flex;flex-wrap:wrap;gap:8px;padding-left:20px";
+        for (const child of children) {
+          childRow.appendChild(makeLegendItem(child));
+        }
+        groupDiv.appendChild(childRow);
+        legendPanel.appendChild(groupDiv);
+      }
+
+      // Render standalone
+      if (standalone.length > 0) {
+        const row = document.createElement("div");
+        row.style.cssText = "display:flex;flex-wrap:wrap;gap:8px;margin-top:4px";
+        for (const s of standalone) row.appendChild(makeLegendItem(s));
+        legendPanel.appendChild(row);
+      }
+    } else {
+      const row = document.createElement("div");
+      row.style.cssText = "display:flex;flex-wrap:wrap;gap:8px";
+      for (const s of allSeries) row.appendChild(makeLegendItem(s));
+      legendPanel.appendChild(row);
+    }
+  }
+
+  function makeLegendItem(s) {
+    const item = document.createElement("div");
+    const isHidden = hiddenRuns.has(s.run_id);
+    item.style.cssText = `display:flex;align-items:center;gap:4px;cursor:pointer;user-select:none;padding:2px 6px;border-radius:3px;${isHidden ? "opacity:0.4;text-decoration:line-through;" : ""}`;
+
+    const swatch = document.createElement("span");
+    swatch.style.cssText = `display:inline-block;width:16px;height:3px;background:${s.color};border-radius:1px`;
+
+    const dot = document.createElement("span");
+    dot.style.cssText = `display:inline-block;width:7px;height:7px;border-radius:50%;background:${STATUS_COLORS[s.status] || "#999"}`;
+
+    const nameEl = document.createElement("span");
+    nameEl.textContent = s.label;
+    nameEl.style.color = "#333";
+
+    item.appendChild(swatch);
+    item.appendChild(dot);
+    item.appendChild(nameEl);
+
+    item.addEventListener("click", () => {
+      if (hiddenRuns.has(s.run_id)) hiddenRuns.delete(s.run_id);
+      else hiddenRuns.add(s.run_id);
+      redraw();
+    });
+
+    item.addEventListener("mouseenter", () => { if (!isHidden) item.style.background = "#f0f4ff"; });
+    item.addEventListener("mouseleave", () => { item.style.background = ""; });
+
+    return item;
+  }
+
   // Status line
   const statusEl = document.createElement("div");
   statusEl.style.cssText = "margin-top:4px;color:#666;font-size:12px";
@@ -298,9 +471,11 @@ function render({ model, el }) {
 
   container.appendChild(controlsRow);
   container.appendChild(chartWrapper);
+  container.appendChild(legendPanel);
   container.appendChild(statusEl);
   el.appendChild(container);
 
+  let lastAllSeries = [];
   let lastSeries = [];
 
   function getSliderParam() {
@@ -313,8 +488,10 @@ function render({ model, el }) {
     const key = model.get("metric_key") || "metric";
     const w = model.get("width") || 700;
     const h = model.get("height") || 300;
-    lastSeries = prepareSeries(seriesData, kind, getSliderParam());
-    drawChart(chartCanvas, lastSeries, { title: key, width: w, height: h });
+    lastAllSeries = prepareSeries(seriesData, kind, getSliderParam(), xAxisMode);
+    lastSeries = lastAllSeries.filter(s => !hiddenRuns.has(s.run_id));
+    drawChart(chartCanvas, lastSeries, { title: key, width: w, height: h, xAxisMode });
+    buildLegend(lastAllSeries);
     statusEl.textContent = model.get("_status") || "";
   }
 
@@ -338,12 +515,18 @@ function render({ model, el }) {
     redraw();
   });
 
+  xSelect.addEventListener("change", () => {
+    xAxisMode = xSelect.value;
+    model.set("x_axis", xAxisMode);
+    model.save_changes();
+    redraw();
+  });
+
   refreshBtn.addEventListener("click", () => {
     model.set("_do_refresh", (model.get("_do_refresh") || 0) + 1);
     model.save_changes();
   });
 
-  // Tooltip on hover
   chartCanvas.addEventListener("mousemove", (e) => {
     if (lastSeries.length === 0) { tooltip.style.display = "none"; return; }
     const rect = chartCanvas.getBoundingClientRect();
@@ -351,7 +534,7 @@ function render({ model, el }) {
     const my = e.clientY - rect.top;
     const w = model.get("width") || 700;
     const h = model.get("height") || 300;
-    const pad = { top: 30, right: 120, bottom: 40, left: 60 };
+    const pad = { top: 30, right: 20, bottom: 40, left: 60 };
 
     let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
     for (const s of lastSeries) {
@@ -381,21 +564,22 @@ function render({ model, el }) {
       tooltip.style.display = "block";
       tooltip.style.left = (sx(bestP.x) + 12) + "px";
       tooltip.style.top = (sy(bestP.y) - 10) + "px";
-      tooltip.textContent = bestS.label + " | step " + bestP.x + " | " + bestP.y.toFixed(4);
+      tooltip.textContent = bestS.label + " | " + formatXTooltip(bestP.x, xAxisMode) + " | " + bestP.y.toFixed(4);
     } else {
       tooltip.style.display = "none";
     }
   });
   chartCanvas.addEventListener("mouseleave", () => { tooltip.style.display = "none"; });
 
-  // React to data/status changes from Python
   model.on("change:_series_data", redraw);
-  model.on("change:_status", () => {
-    statusEl.textContent = model.get("_status") || "";
-  });
+  model.on("change:_status", () => { statusEl.textContent = model.get("_status") || ""; });
   model.on("change:metric_key", redraw);
+  model.on("change:x_axis", () => {
+    xAxisMode = model.get("x_axis") || "step";
+    xSelect.value = xAxisMode;
+    redraw();
+  });
 
-  // Initial draw
   redraw();
 }
 
