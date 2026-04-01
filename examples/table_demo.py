@@ -10,7 +10,7 @@
 
 import marimo
 
-__generated_with = "0.10.0"
+__generated_with = "0.22.0"
 app = marimo.App(width="medium")
 
 
@@ -43,9 +43,11 @@ def _(mo):
 
 
 @app.cell
-def _(TRACKING_URI, mo):
-    mo.md("## Generate Mock Data")
-    return ()
+def _(mo):
+    mo.md("""
+    ## Generate Mock Data
+    """)
+    return
 
 
 @app.cell
@@ -104,8 +106,10 @@ def _(TRACKING_URI):
 
 @app.cell
 def _(mo):
-    mo.md("## Run Table")
-    return ()
+    mo.md("""
+    ## Run Table
+    """)
+    return
 
 
 @app.cell
@@ -119,13 +123,15 @@ def _(TRACKING_URI, experiment_id, mo):
     )
 
     mo.ui.anywidget(run_table)
-    return (run_table,)
+    return
 
 
 @app.cell
 def _(mo):
-    mo.md("## Metric Charts")
-    return ()
+    mo.md("""
+    ## Metric Charts
+    """)
+    return
 
 
 @app.cell
@@ -143,7 +149,7 @@ def _(TRACKING_URI, experiment_id, mo):
     )
 
     mo.ui.anywidget(loss_chart)
-    return (loss_chart,)
+    return
 
 
 @app.cell
@@ -161,7 +167,7 @@ def _(TRACKING_URI, experiment_id, mo):
     )
 
     mo.ui.anywidget(acc_chart)
-    return (acc_chart,)
+    return
 
 
 if __name__ == "__main__":

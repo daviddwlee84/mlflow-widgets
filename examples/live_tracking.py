@@ -10,7 +10,7 @@
 
 import marimo
 
-__generated_with = "0.10.0"
+__generated_with = "0.22.0"
 app = marimo.App(width="medium")
 
 
@@ -48,6 +48,12 @@ def _(mo):
     start_btn = mo.ui.button(label="Start Training", kind="success")
     start_btn
     return (start_btn,)
+
+
+@app.cell
+def _(start_btn):
+    start_btn.value
+    return
 
 
 @app.cell
@@ -93,7 +99,7 @@ def _(TRACKING_URI, mo, start_btn):
         - **Experiment ID:** `{live_experiment_id}`
         """
     )
-    return live_experiment_id, live_run_id
+    return (live_run_id,)
 
 
 @app.cell
@@ -111,7 +117,7 @@ def _(TRACKING_URI, live_run_id, mo):
     )
 
     mo.ui.anywidget(live_chart)
-    return (live_chart,)
+    return
 
 
 @app.cell
@@ -129,7 +135,7 @@ def _(TRACKING_URI, live_run_id, mo):
     )
 
     mo.ui.anywidget(live_acc_chart)
-    return (live_acc_chart,)
+    return
 
 
 if __name__ == "__main__":
