@@ -129,3 +129,52 @@ marimo edit examples/demo.py
 # Run demos (recommend) + auto refresh when editted (by coding agent etc.)
 MLFLOW_TRACKING_URI=http://localhost:5000 marimo edit --watch .
 ```
+
+## Development
+
+### Setup
+
+```bash
+# Clone and install all extras (dev + demo + mlflow)
+git clone https://github.com/daviddwlee84/mlflow-widgets.git
+cd mlflow-widgets
+uv sync --all-extras
+```
+
+### Task Runner
+
+Common tasks are available via [taskipy](https://github.com/taskipy/taskipy). Run `uv run task --list` to see all tasks:
+
+| Task | Description |
+|------|-------------|
+| `uv run task test` | Run test suite |
+| `uv run task lint` | Lint with ruff |
+| `uv run task format` | Format with ruff |
+| `uv run task check` | Lint + test |
+| `uv run task build` | Build sdist + wheel |
+| `uv run task build-check` | Build and verify metadata |
+| `uv run task publish-test` | Publish to TestPyPI |
+| `uv run task publish` | Publish to PyPI |
+| `uv run task demo` | Run demo notebook |
+| `uv run task demo-all` | Run all demos with hot-reload |
+| `uv run task clean` | Remove build artifacts |
+| `uv run task version` | Show current version |
+
+### Release
+
+```bash
+# Bump version
+uv version --bump patch   # or minor / major
+
+# Build, test, publish
+uv run task check
+uv run task build-check
+
+# Tag and push (triggers CI publish to PyPI)
+git tag v<version>
+git push origin v<version>
+```
+
+## License
+
+[MIT](LICENSE)
