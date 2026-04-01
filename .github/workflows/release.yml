@@ -1,0 +1,158 @@
+name: Release
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      publish_testpypi:
+        description: "Publish the current ref to TestPyPI after checks pass"
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  checks:
+    name: Checks (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Install uv and set Python version
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+
+      - name: Sync project
+        run: uv sync --locked --dev
+
+      - name: Run test suite
+        run: uv run pytest
+
+      - name: Build distributions
+        run: uv build --no-sources
+
+      - name: Check distribution metadata
+        run: uv run twine check --strict dist/*
+
+      - name: Verify distribution contents
+        run: uv run python scripts/check_dist_contents.py
+
+      - name: Smoke test built wheel
+        run: uv run --isolated --no-project --with dist/*.whl tests/smoke_test.py
+
+      - name: Smoke test source distribution
+        run: uv run --isolated --no-project --with dist/*.tar.gz tests/smoke_test.py
+
+      - name: Prune uv cache
+        run: uv cache prune --ci
+
+  build-publish-artifact:
+    name: Build publish artifact
+    runs-on: ubuntu-latest
+    needs: checks
+    if: |
+      startsWith(github.ref, 'refs/tags/v') ||
+      (github.event_name == 'workflow_dispatch' && inputs.publish_testpypi)
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Install uv and set Python version
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: "3.13"
+          enable-cache: true
+
+      - name: Sync project
+        run: uv sync --locked --dev
+
+      - name: Build distributions
+        run: uv build --no-sources
+
+      - name: Verify distribution contents
+        run: uv run python scripts/check_dist_contents.py
+
+      - name: Smoke test built wheel
+        run: uv run --isolated --no-project --with dist/*.whl tests/smoke_test.py
+
+      - name: Smoke test source distribution
+        run: uv run --isolated --no-project --with dist/*.tar.gz tests/smoke_test.py
+
+      - name: Upload distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/*
+
+  publish-testpypi:
+    name: Publish to TestPyPI
+    runs-on: ubuntu-latest
+    needs: build-publish-artifact
+    if: |
+      (github.event_name == 'workflow_dispatch' && inputs.publish_testpypi) ||
+      (startsWith(github.ref, 'refs/tags/v') && contains(github.ref_name, 'rc'))
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/project/mlflow-widgets/
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Download built distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist
+
+      - name: Publish package distributions to TestPyPI
+        run: uv publish --index testpypi dist/*
+
+  publish-pypi:
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    needs: build-publish-artifact
+    if: |
+      startsWith(github.ref, 'refs/tags/v') &&
+      !contains(github.ref_name, 'rc')
+    environment:
+      name: pypi
+      url: https://pypi.org/project/mlflow-widgets/
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Download built distributions
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist
+
+      - name: Publish package distributions to PyPI
+        run: uv publish dist/*

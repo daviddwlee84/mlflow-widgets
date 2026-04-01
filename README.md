@@ -1,40 +1,35 @@
 # mlflow-widgets
 
-Anywidget-based notebook widgets for [MLflow](https://mlflow.org/) experiments.
+`mlflow-widgets` is an anywidget-based Python package for interactive
+[MLflow](https://mlflow.org/) experiment visualization in Jupyter, Marimo,
+and other notebook environments that support anywidget.
 
 Inspired by [wigglystuff](https://github.com/koaning/wigglystuff)'s [`WandbChart`](https://koaning.github.io/wigglystuff/reference/wandb-chart/), but built for MLflow.
 
 ## Installation
 
 ```bash
+# uv
+uv add mlflow-widgets
+
+# pip
 pip install mlflow-widgets
-# or with mlflow included:
+
+# Optional: use MlflowClient instead of the built-in REST fallback
 pip install mlflow-widgets[mlflow]
+
+# Optional: install dependencies for the example notebooks
+pip install mlflow-widgets[demo]
 ```
 
-### Install from GitHub (latest)
+The base package only depends on `anywidget` and `traitlets`. If `mlflow` is
+not installed, the widgets fall back to the MLflow REST API via `urllib`.
 
-```bash
-# Using uv
-uv add git+https://github.com/daviddwlee84/mlflow-widgets.git
-# or
-uv pip install git+https://github.com/daviddwlee84/mlflow-widgets.git
+## Included Widgets
 
-# Using pip
-pip install git+https://github.com/daviddwlee84/mlflow-widgets.git
-```
+### `MlflowChart`
 
-### Install Agent Skill
-
-```bash
-npx skils@latest add https://github.com/daviddwlee84/mlflow-widgets
-```
-
-## Widgets
-
-### MlflowChart
-
-Live-updating canvas-based line chart for MLflow metrics.
+Live-updating canvas line chart for MLflow metric histories.
 
 ```python
 from mlflow_widgets import MlflowChart
@@ -47,10 +42,10 @@ chart = MlflowChart(
 chart
 ```
 
-### MlflowRunTable
+### `MlflowRunTable`
 
-Interactive HTML table showing experiment runs with params, metrics, status, and duration.
-Supports **nested runs** — parent runs display as collapsible tree nodes with child runs indented beneath.
+Interactive run table with sortable columns, status badges, and nested run
+grouping.
 
 ```python
 from mlflow_widgets import MlflowRunTable
@@ -62,7 +57,22 @@ table = MlflowRunTable(
 table
 ```
 
-### MlflowParallelCoordinates
+### `MlflowRunSelector`
+
+Python helper that returns a pandas DataFrame for use with notebook-native
+table or selection components.
+
+```python
+from mlflow_widgets import MlflowRunSelector
+
+selector = MlflowRunSelector(
+    tracking_uri="http://localhost:5000",
+    experiment_id="1",
+)
+df = selector.to_dataframe()
+```
+
+### `MlflowParallelCoordinates`
 
 Parallel coordinates chart for comparing runs across hyperparameters and metrics.
 Each axis is a parameter or metric; each line is a run, colored by status.
@@ -79,19 +89,14 @@ chart
 
 ## Features
 
-- Live-updating canvas-based line chart with x-axis modes (step, wall time, relative time)
-- Interactive clickable legend with per-series toggle and nested run grouping
-- Experiment run table with sortable columns and nested run tree view
-- Parallel coordinates chart with parameter/metric filtering and multiple color modes
-- Color modes: by status, per run, by parameter value, by metric gradient
-- Status-based coloring and filtering (finished, running, failed, killed)
-- Multiple run comparison with color-coded lines
-- Smoothing controls: rolling mean, exponential moving average, gaussian
-- Hover tooltips with exact values
-- Auto-polling with configurable interval
-- Works in Jupyter, Marimo, and any notebook that supports anywidget
+- Live-updating line charts with step, wall time, and relative time x-axes
+- Sortable run tables with nested run tree display
+- Parallel coordinates for side-by-side parameter and metric comparison
+- Auto-polling with Python-side timers and manual refresh support
+- Traitlet-based data flow, so the browser never talks to MLflow directly
+- Works in Jupyter, Marimo, and notebook environments that support anywidget
 
-## Usage with Marimo
+## Marimo Example
 
 ```python
 import marimo as mo
@@ -106,26 +111,28 @@ widget = mo.ui.anywidget(chart)
 widget
 ```
 
-## Demos
+## Example Notebooks
 
-See `examples/` for Marimo notebook demos:
+See the example notebooks in the repository:
 
-- `demo.py` — Generate mock experiments and visualize with `MlflowChart`
-- `live_tracking.py` — Track an experiment on-the-fly with live chart updates
-- `table_demo.py` — Browse experiment runs with `MlflowRunTable`
-- `nested_demo.py` — Parent/child nested runs with tree-view table
-- `parallel_demo.py` — Parallel coordinates chart with status filtering
+- [`examples/demo.py`](https://github.com/daviddwlee84/mlflow-widgets/blob/main/examples/demo.py)
+- [`examples/live_tracking.py`](https://github.com/daviddwlee84/mlflow-widgets/blob/main/examples/live_tracking.py)
+- [`examples/table_demo.py`](https://github.com/daviddwlee84/mlflow-widgets/blob/main/examples/table_demo.py)
+- [`examples/nested_demo.py`](https://github.com/daviddwlee84/mlflow-widgets/blob/main/examples/nested_demo.py)
+- [`examples/parallel_demo.py`](https://github.com/daviddwlee84/mlflow-widgets/blob/main/examples/parallel_demo.py)
+- [`examples/combo_demo.py`](https://github.com/daviddwlee84/mlflow-widgets/blob/main/examples/combo_demo.py)
 
 ```bash
-# Install demo dependencies
-pip install mlflow-widgets[demo]
-
-# Start MLflow server
+# Start an MLflow tracking server
 mlflow server --port 5000 &
 
-# Run a demo
-marimo edit examples/demo.py
-
-# Run demos (recommend) + auto refresh when editted (by coding agent etc.)
-MLFLOW_TRACKING_URI=http://localhost:5000 marimo edit --watch .
+# Open a demo notebook
+MLFLOW_TRACKING_URI=http://localhost:5000 marimo edit examples/demo.py
 ```
+
+## Release Process
+
+The repository includes a uv-based GitHub Actions workflow for build checks,
+TestPyPI, and PyPI publishing via Trusted Publishing. See
+[`RELEASING.md`](https://github.com/daviddwlee84/mlflow-widgets/blob/main/RELEASING.md)
+for the release checklist.
