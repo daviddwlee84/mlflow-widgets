@@ -1,7 +1,7 @@
 [project]
-name = "mlflow-chart"
+name = "mlflow-widgets"
 version = "0.1.0"
-description = "An anywidget-based live metric chart for MLflow experiments, inspired by wigglystuff's WandbChart"
+description = "Anywidget-based notebook widgets for MLflow: live charts, run tables, and more"
 readme = "README.md"
 authors = [
     { name = "Da-Wei Lee", email = "daviddwlee84@gmail.com" }
@@ -35,4 +35,4 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build]
 only-packages = true
-artifacts = ["src/mlflow_chart/static/*"]
+artifacts = ["src/mlflow_widgets/static/*"]

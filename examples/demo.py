@@ -3,7 +3,7 @@
 # dependencies = [
 #     "marimo",
 #     "mlflow>=2.0",
-#     "mlflow-chart",
+#     "mlflow-widgets",
 #     "anywidget>=0.9.2",
 # ]
 # ///
@@ -22,8 +22,8 @@ def _():
         """
         # MLflow Chart Widget Demo
 
-        This notebook demonstrates `mlflow-chart`, an
-        [anywidget](https://anywidget.dev/)-based live metric chart for
+        This notebook demonstrates `mlflow-widgets`, an
+        [anywidget](https://anywidget.dev/)-based widget toolkit for
         [MLflow](https://mlflow.org/) experiments.
 
         It generates mock training runs, logs metrics to a local MLflow
@@ -116,7 +116,7 @@ def _(mo):
 
 @app.cell
 def _(TRACKING_URI, experiment_id, mo):
-    from mlflow_chart import MlflowChart
+    from mlflow_widgets import MlflowChart
 
     loss_chart = MlflowChart(
         tracking_uri=TRACKING_URI,
@@ -134,7 +134,7 @@ def _(TRACKING_URI, experiment_id, mo):
 
 @app.cell
 def _(TRACKING_URI, experiment_id, mo):
-    from mlflow_chart import MlflowChart as _MlflowChart
+    from mlflow_widgets import MlflowChart as _MlflowChart
 
     acc_chart = _MlflowChart(
         tracking_uri=TRACKING_URI,
@@ -162,7 +162,7 @@ def _(mo):
 
 @app.cell
 def _(TRACKING_URI, mo, run_ids):
-    from mlflow_chart import MlflowChart as _MC
+    from mlflow_widgets import MlflowChart as _MC
 
     single_chart = _MC(
         tracking_uri=TRACKING_URI,
