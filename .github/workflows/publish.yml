@@ -30,7 +30,7 @@ jobs:
         run: uv build --no-sources
 
       - name: Check distribution metadata
-        run: uv run twine check --strict dist/*
+        run: uvx twine check --strict dist/*
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
