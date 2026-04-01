@@ -98,6 +98,8 @@ def _(TRACKING_URI, mo, start_btn):
     mo.stop(not start_btn.value, mo.md("*Click **Start Training** above to begin.*"))
 
     mlflow.set_tracking_uri(TRACKING_URI)
+    # End any leftover active run from a previous button click
+    mlflow.end_run()
     experiment = mlflow.set_experiment("live-tracking-demo")
     live_experiment_id = experiment.experiment_id
 
