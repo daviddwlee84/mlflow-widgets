@@ -10,7 +10,7 @@
 
 import marimo
 
-__generated_with = "0.10.0"
+__generated_with = "0.22.0"
 app = marimo.App(width="medium")
 
 
@@ -44,17 +44,15 @@ def _(mo):
 
 
 @app.cell
-def _(TRACKING_URI, mo):
-    mo.md(
-        """
-        ## Step 1: Generate Mock Experiments
+def _(mo):
+    mo.md("""
+    ## Step 1: Generate Mock Experiments
 
-        We simulate 3 training runs with different learning rates.
-        Each run logs `loss` (exponential decay + noise) and `accuracy`
-        (sigmoid curve + noise) over 200 steps.
-        """
-    )
-    return ()
+    We simulate 3 training runs with different learning rates.
+    Each run logs `loss` (exponential decay + noise) and `accuracy`
+    (sigmoid curve + noise) over 200 steps.
+    """)
+    return
 
 
 @app.cell
@@ -101,21 +99,19 @@ def _(TRACKING_URI):
             run_ids.append(run.info.run_id)
 
     print(f"Created {len(run_ids)} runs in experiment '{EXPERIMENT_NAME}' (id={experiment_id})")
-    return configs, experiment, experiment_id, run_ids
+    return experiment_id, run_ids
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## Step 2: Visualize with MlflowChart
+    mo.md("""
+    ## Step 2: Visualize with MlflowChart
 
-        Now we create `MlflowChart` widgets to visualize the metrics.
-        The widget fetches data from the MLflow server and renders an
-        interactive canvas chart with smoothing controls.
-        """
-    )
-    return ()
+    Now we create `MlflowChart` widgets to visualize the metrics.
+    The widget fetches data from the MLflow server and renders an
+    interactive canvas chart with smoothing controls.
+    """)
+    return
 
 
 @app.cell
@@ -133,7 +129,7 @@ def _(TRACKING_URI, experiment_id, mo):
     )
 
     mo.ui.anywidget(loss_chart)
-    return (loss_chart,)
+    return
 
 
 @app.cell
@@ -151,19 +147,17 @@ def _(TRACKING_URI, experiment_id, mo):
     )
 
     mo.ui.anywidget(acc_chart)
-    return (acc_chart,)
+    return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        """
-        ## Step 3: Single Run View
+    mo.md("""
+    ## Step 3: Single Run View
 
-        You can also chart a single run by passing its run ID directly.
-        """
-    )
-    return ()
+    You can also chart a single run by passing its run ID directly.
+    """)
+    return
 
 
 @app.cell
@@ -181,7 +175,7 @@ def _(TRACKING_URI, mo, run_ids):
     )
 
     mo.ui.anywidget(single_chart)
-    return (single_chart,)
+    return
 
 
 if __name__ == "__main__":
