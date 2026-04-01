@@ -1,0 +1,33 @@
+---
+description: Project maintenance conventions — what files to update, CI/CD triggers, release flow
+alwaysApply: true
+---
+
+# Project Conventions
+
+## Files to maintain
+
+When making changes, keep these files in sync:
+
+- **`CHANGELOG.md`** — add entry under `[Unreleased]` for every user-facing change (Keep a Changelog format: Added/Changed/Fixed/Removed)
+- **`README.md`** — update if public API, installation steps, task runner commands, or dev workflow change
+- **`AGENTS.md`** — update if project structure, source layout, conventions, or CI/CD change
+- **`pyproject.toml`** — bump version before release; new widgets need export in `__init__.py` and entry in `__all__`
+
+## CI/CD triggers
+
+- `git push` to main or PR → `ci.yml` runs lint + test + build (no publish)
+- `git tag v* && git push origin v*` → `publish.yml` publishes to **PyPI**
+- Manual workflow_dispatch with target=testpypi → publishes to **TestPyPI**
+- Regular pushes never trigger publishing
+
+## Task runner
+
+Use `uv run task <name>` for common operations. Key tasks: `test`, `lint`, `format`, `check` (lint+test), `build`, `build-check`, `clean`. See `uv run task --list`.
+
+## Code style
+
+- `from __future__ import annotations` in all Python files
+- `X | None` not `Optional[X]`; `collections.abc.Sequence` not `typing.Sequence`
+- Ruff enforces: E, F, I (isort), UP (pyupgrade), B (bugbear), SIM
+- Run `uv run task format` before committing
