@@ -44,6 +44,24 @@ plugins:
             merge_init_into_class: true
             show_signature_annotations: true
             separate_signature: true
+  - llmstxt:
+      full_output: llms-full.txt
+      sections:
+        Guides:
+          - index.md
+          - installation.md
+          - getting-started.md
+        Widgets:
+          - widgets/*.md
+        Examples:
+          - examples.md
+        API Reference:
+          - reference/*.md
+        Changelog:
+          - changelog.md
+  - copy-to-llm:
+      button_hover_color: "var(--md-primary-fg-color)"
+      toast_bg_color: "var(--md-primary-fg-color)"
 
 markdown_extensions:
   - admonition

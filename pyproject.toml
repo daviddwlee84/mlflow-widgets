@@ -46,6 +46,8 @@ dev = [
 docs = [
     "mkdocs-material",
     "mkdocstrings[python]",
+    "mkdocs-llmstxt",
+    "mkdocs-copy-to-llm",
 ]
 
 [project.urls]

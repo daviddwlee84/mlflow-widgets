@@ -2122,9 +2122,23 @@ Parameters:
   "searchTerm": "actions/upload-pages-artifact v4 Node.js 24 latest release 2026"
 }
 ```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [actions/upload-pages-artifact](https://github.com/actions/upload-pages-artifact)\n2. [Releases · actions/upload-pages-artifact](https://github.com/actions/upload-pages-artifact/releases)\n3. [docs: bump &#96;actions/upload-pages-artifact&#96; from 3 to 4 · Pull Request #40005 · github/docs](https://github.com/github/docs/pull/40005)\n4. [Upload Artifact Node 24 support · Pull Request #719 · actions/upload-artifact](https://github.com/actions/upload-artifact/pull/719)\n5. [GitHub - actions/upload-pages-artifact: A composite action for packaging and uploading an artifact that can be deployed to GitHub Pages. · GitHub](https://git.durrantlab.pitt.edu/actions/upload-pages-artifact)\n\n# Summary\n\n## actions/upload-pages-artifact v4 Latest Release\n\nThe latest release of &#96;actions/upload-pages-artifact&#96; is **v4.0.0**, released on **August 14, 2025**.[1] \n\n### Key Changes in v4.0.0\n\nThe v4 release includes potentially breaking changes:[3]\n- **Hidden files (dotfiles) are no longer included in artifacts by default** - If you need to include dotfiles, you must create your own artifact according to the repository's artifact validation requirements\n- Pin &#96;actions/upload-artifact&#96; to SHA for improved security\n\n### Node.js 24 Support\n\nWhile the search results show that the related &#96;actions/upload-artifact&#96; action has been updated to support Node.js 24 runtime (merged December 2025),[4] the results do not explicitly confirm whether &#96;actions/upload-pages-artifact&#96; v4 specifically supports Node.js 24. The upload-pages-artifact repository uses a composite action format (primarily Shell-based)[1] rather than a direct Node.js action, so Node.js runtime specifications may differ from the upload-artifact action.",
+      "title": "Web search results for query: actions/upload-pages-artifact v4 Node.js 24 latest release 2026"
+    }
+  ],
+  "rejected": false
+}
+```
 User decision: **accepted**
 
-Status: **loading**
+Status: **completed**
 
 
 </details>
@@ -2132,5 +2146,901 @@ Status: **loading**
 
 <tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
 <summary>Tool use: **web_search**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Good -- `upload-pages-artifact` is a composite action (shell-based), so it doesn't have the Node.js issue. Only `deploy-pages` needs bumping. Let me update the workflow.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/.github/workflows/docs.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/.github/workflows/docs.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+That's all that's needed. `actions/deploy-pages@v5` (released 2026-03-25) ships with Node.js 24 support, which resolves the deprecation warning. The `upload-pages-artifact@v3` is a composite (shell-based) action so it doesn't have this issue.
+
+Push this change and the warning will be gone on the next run.
+
+---
+
+_**User**_
+
+我現在想要讓我們的 MkDocs 變得更 LLM-friendly
+https://github.com/pawamoy/mkdocs-llmstxt
+https://github.com/leonardocustodio/mkdocs-copy-to-llm
+上網搜尋一下相關方案 並且總結出best practice
+看看是不是安裝一些plugin來達成目標
+
+---
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<think><details><summary>Thought Process</summary>
+The user wants to make their MkDocs documentation more LLM-friendly. They've pointed to two specific plugins:
+1. `mkdocs-llmstxt` - generates llms.txt
+2. `mkdocs-copy-to-llm` - copy button for LLM context
+
+Let me research these and other related solutions to find the best practice.</details></think>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Let me research both plugins and look for other LLM-friendly MkDocs solutions.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://github.com/pawamoy/mkdocs-llmstxt"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "# pawamoy/mkdocs-llmstxt\n\nMkDocs plugin to generate an /llms.txt file (https://llmstxt.org/).\n\n⭐ 113 stars | 🍴 0 forks\n\n## Links\n\n- [Repository](https://github.com/pawamoy/mkdocs-llmstxt)\n- [Issues](https://github.com/pawamoy/mkdocs-llmstxt/issues)\n- [Pull Requests](https://github.com/pawamoy/mkdocs-llmstxt/pulls)",
+  "url": "https://github.com/pawamoy/mkdocs-llmstxt"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://github.com/leonardocustodio/mkdocs-copy-to-llm"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "# leonardocustodio/mkdocs-copy-to-llm\n\nA MkDocs plugin that adds a \"Copy to LLM\" button to your documentation, making it easy to copy code blocks and entire pages in formats optimized for Large Language Models (LLMs).\n\n⭐ 14 stars | 🍴 0 forks\n\n## Links\n\n- [Repository](https://github.com/leonardocustodio/mkdocs-copy-to-llm)\n- [Issues](https://github.com/leonardocustodio/mkdocs-copy-to-llm/issues)\n- [Pull Requests](https://github.com/leonardocustodio/mkdocs-copy-to-llm/pulls)",
+  "url": "https://github.com/leonardocustodio/mkdocs-copy-to-llm"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search">
+<details>
+<summary>Tool use: **web_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "searchTerm": "mkdocs LLM friendly plugins llms.txt 2026"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [mkdocs-llms-source v1.0.2](https://pypi.org/project/mkdocs-llms-source/)\n2. [mkdocs-llmstxt-md v0.2.0](https://pypi.org/project/mkdocs-llmstxt-md/)\n3. [Overview - mkdocs-llmstxt](https://pawamoy.github.io/mkdocs-llmstxt/)\n4. [pawamoy/mkdocs-llmstxt](https://github.com/pawamoy/mkdocs-llmstxt)\n5. [mkdocs-llmstxt v0.5.0](https://pypi.org/project/mkdocs-llmstxt/)\n\n# MkDocs LLM-Friendly Plugins for llms.txt\n\nThere are three main MkDocs plugins available for generating LLM-friendly documentation through llms.txt files:\n\n## mkdocs-llms-source\nA production-stable plugin (v1.0.2) that generates &#96;/llms.txt&#96; files following the [llmstxt.org specification][1]. It creates three outputs: an &#96;/llms.txt&#96; index, &#96;/llms-full.txt&#96; concatenated documentation, and per-page markdown files[1]. The plugin uses a source-first approach, working directly with original markdown rather than HTML conversion[1]. Configuration is minimal—it auto-derives section structure from your MkDocs &#96;nav&#96; configuration[1].\n\n## mkdocs-llmstxt-md\nA beta-status plugin (v0.2.0) offering direct markdown serving, llms.txt generation, and a copy-to-markdown button feature[2]. It also uses a source-first approach focused on raw markdown content[2]. Configuration includes options for sections, markdown URL serving, and copy button functionality[2].\n\n## mkdocs-llmstxt\nThe original plugin (v0.5.0) by pawamoy, currently in maintenance mode[4]. It generates &#96;/llms.txt&#96; files and supports full output generation[5]. This plugin converts HTML to markdown using BeautifulSoup and Markdownify, allowing it to include dynamically generated content[4]. It supports file globbing and offers configuration options like &#96;base_url&#96; override and custom preprocessing[3][5].\n\nAll three plugins follow the [llmstxt.org standard][3] for providing LLM-optimized documentation indexes.",
+      "title": "Web search results for query: mkdocs LLM friendly plugins llms.txt 2026"
+    }
+  ],
+  "rejected": false
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://pawamoy.github.io/mkdocs-llmstxt/"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "Overview - mkdocs-llmstxt\n\nSkip to content\n\n# mkdocs-llmstxt¤\n\nMkDocs plugin to generate an [/llms.txt file](https://llmstxt.org/).\n\n/llms.txt - A proposal to standardise on using an /llms.txt file to provide information to help LLMs use a website at inference time.\n\nSee our own dynamically generated [/llms.txt](https://pawamoy.github.io/mkdocs-llmstxt/llms.txt) as a demonstration.\n\n## Installation¤\n\n&#96;&#96;&#96;\npip install mkdocs-llmstxt\n\n&#96;&#96;&#96;\n\n## Usage¤\n\nEnable the plugin in&#96;mkdocs.yml&#96;:\n\nmkdocs.yml\n\n&#96;&#96;&#96;\nsite_name: My project\nsite_description: Description of my project.\nsite_url: https://myproject.com/  # Required for the llmstxt plugin to work.\n\nplugins:\n- llmstxt:\n    markdown_description: Long description of my project.\n    sections:\n      Usage documentation:\n      - file1.md: Description of file1\n      - file2.md  # Descriptions are optional.\n\n&#96;&#96;&#96;\n\nThe resulting&#96;/llms.txt&#96; file will be available at the root of your documentation. With the previous example, it will be accessible at [https://myproject.com/llms.txt](https://myproject.com/llms.txt) and will contain the following:\n\n&#96;&#96;&#96;\n# My project\n\n\u003e Description of my project.\n\nLong description of my project.\n\n## Usage documentation\n\n- [File1 title](https://myproject.com/file1.md): Description of file1\n- [File2 title](https://myproject.com/file2.md)\n\n&#96;&#96;&#96;\n\nEach source file included in&#96;sections&#96; will have its own Markdown file available at the specified URL in the&#96;/llms.txt&#96;. See Markdown generation for more details.\n\nFile globbing is supported:\n\nmkdocs.yml\n\n&#96;&#96;&#96;\nplugins:\n- llmstxt:\n    sections:\n      Usage documentation:\n      - index.md: Main documentation page\n      - usage/*.md\n\n&#96;&#96;&#96;\n\n## Override site_url¤\n\nUse&#96;base_url&#96; to point&#96;llms.txt&#96; to documentation in a specific directory. For example, when using [Read the Docs](https://github.com/readthedocs/), use&#96;base_url&#96; to indicate the path to the hosted docs built for a specific language or version.\n\nThe resulting&#96;llms.txt&#96; uses&#96;base_url&#96; when it is specified, instead of the canonical&#96;site_url&#96;.\n\nmkdocs.yml\n\n&#96;&#96;&#96;\nplugins:\n- llmstxt:\n    base_url: https://productname.hostname.io/en/0.1.34\n\n&#96;&#96;&#96;\n\n## Full output¤\n\nAlthough not explicitly written out in the [https://llmstxt.org/](https://llmstxt.org/) guidelines, it is common to output a&#96;llms-full.txt&#96; file with every page content expanded. This file can be generated by setting the&#96;full_output&#96; configuration value:\n\nmkdocs.yml\n\n&#96;&#96;&#96;\nplugins:\n- llmstxt:\n    full_output: llms-full.txt\n    sections:\n      Usage documentation:\n      - index.md\n      - usage/*.md\n\n&#96;&#96;&#96;\n\n## Markdown generation¤\n\nTo generate a Markdown page from a source file, the plugin will:\n\n- Cleanup the HTML output (with [BeautifulSoup](https://pypi.org/project/beautifulsoup4/))\n- Convert it back to Markdown (with [Markdownify](https://pypi.org/project/markdownify))\n\nDoing so is necessary to ensure that dynamically generated contents (API documentation, executed code blocks, snippets from other files, Jinja macros, etc.) are part of the generated text files.\n\nCredits to [Petyo Ivanov](https://github.com/petyosi) for the original idea ✨.\n\nYou can disable auto-cleaning of the HTML:\n\nmkdocs.yml\n\n&#96;&#96;&#96;\nplugins:\n- llmstxt:\n    autoclean: false\n\n&#96;&#96;&#96;\n\nYou can also pre-process the HTML before it is converted back to Markdown:\n\nmkdocs.yml\n\n&#96;&#96;&#96;\nplugins:\n- llmstxt:\n    preprocess: path/to/script.py\n\n&#96;&#96;&#96;\n\nThe specified&#96;script.py&#96; must expose a&#96;preprocess&#96; function that accepts the&#96;soup&#96; and&#96;output&#96; arguments:\n\n&#96;&#96;&#96;\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from bs4 import BeautifulSoup\n\ndef preprocess(soup: BeautifulSoup, output: str) -\u003e None:\n    ...  # modify the soup\n\n&#96;&#96;&#96;\n\nThe&#96;output&#96; argument lets you modify the soup depending on which file is being generated.\n\nHave a look at [our own cleaning function](https://pawamoy.github.io/mkdocs-llmstxt/reference/api/#mkdocs_llmstxt.autoclean) to get inspiration.\n\n## Sponsors¤\n\n \n\n \n\n## Feedback\n\n",
+  "url": "https://pawamoy.github.io/mkdocs-llmstxt/"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://pypi.org/project/mkdocs-llms-source/"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "# mkdocs-llms-source v1.1.0\n\nMkDocs plugin to generate /llms.txt files for LLM-friendly documentation\n\n- Author: Tim Child\n- License: MIT\n- Python: \u003e=3.10\n- Status: 5 - Production/Stable\n- Keywords: ai, documentation, llms, llmstxt, mkdocs\n- PyPI: https://pypi.org/project/mkdocs-llms-source/\n\n## Links\n\n- Documentation: https://TimChild.github.io/mkdocs-llms-source/\n- Homepage: https://github.com/TimChild/mkdocs-llms-source\n- Issues: https://github.com/TimChild/mkdocs-llms-source/issues\n- Repository: https://github.com/TimChild/mkdocs-llms-source\n\n## Extras\n\n- dev\n\n---\n\n## Readme\n\n# mkdocs-llms-source\n\n[![CI](https://github.com/TimChild/mkdocs-llms-source/actions/workflows/ci.yml/badge.svg)](https://github.com/TimChild/mkdocs-llms-source/actions/workflows/ci.yml)\n[![Docs](https://github.com/TimChild/mkdocs-llms-source/actions/workflows/docs.yml/badge.svg)](https://TimChild.github.io/mkdocs-llms-source/)\n[![PyPI](https://img.shields.io/pypi/v/mkdocs-llms-source)](https://pypi.org/project/mkdocs-llms-source/)\n[![Python](https://img.shields.io/pypi/pyversions/mkdocs-llms-source)](https://pypi.org/project/mkdocs-llms-source/)\n[![License](https://img.shields.io/github/license/TimChild/mkdocs-llms-source)](https://github.com/TimChild/mkdocs-llms-source/blob/main/LICENSE)\n\nMkDocs plugin to generate [&#96;/llms.txt&#96;](https://llmstxt.org/) files for LLM-friendly documentation.\n\n## What It Does\n\nGenerates three outputs from your MkDocs site:\n\n1. **&#96;/llms.txt&#96;** — A curated index following the [llmstxt.org spec](https://llmstxt.org/) with links to per-page markdown files\n2. **&#96;/llms-full.txt&#96;** — All documentation concatenated into a single file (for stuffing into LLM context windows)\n3. **Per-page &#96;.md&#96; files** — Raw markdown accessible at the same URL path as HTML pages\n\n## Install\n\n&#96;&#96;&#96;bash\nuv add mkdocs-llms-source\n&#96;&#96;&#96;\n\n## Usage\n\nAdd to your &#96;mkdocs.yml&#96;:\n\n&#96;&#96;&#96;yaml\nsite_name: My Project\nsite_url: https://docs.example.com\nsite_description: Documentation for My Project\n\nplugins:\n  - search\n  - llms-source\n&#96;&#96;&#96;\n\nBuild your site:\n\n&#96;&#96;&#96;bash\nmkdocs build\n&#96;&#96;&#96;\n\nThe plugin auto-derives the llms.txt section structure from your MkDocs &#96;nav&#96; — zero extra configuration needed.\n\n## Configuration\n\n&#96;&#96;&#96;yaml\nplugins:\n  - llms-source:\n      full_output: true           # Generate llms-full.txt (default: true)\n      markdown_urls: true         # Copy .md source files to output (default: true)\n      description: \"Override description for llms.txt header\"\n&#96;&#96;&#96;\n\n## How It Works\n\n**Source-first approach**: The plugin uses your original markdown source files directly — no HTML-to-Markdown conversion. This is simpler, more reliable, and preserves your intended formatting.\n\nThe llms.txt sections are automatically derived from your MkDocs &#96;nav&#96; configuration, so top-level nav items become H2 sections in the output.\n\n## Example Output\n\nGiven this nav:\n\n&#96;&#96;&#96;yaml\nnav:\n  - Home: index.md\n  - Guides:\n    - Getting Started: guides/setup.md\n&#96;&#96;&#96;\n\nThe generated &#96;/llms.txt&#96;:\n\n&#96;&#96;&#96;markdown\n# My Project\n\n\u003e Documentation for My Project\n\n## Home\n\n- [My Project](https://docs.example.com/index.md)\n\n## Guides\n\n- [Getting Started](https://docs.example.com/guides/setup.md)\n&#96;&#96;&#96;\n\n## License\n\nMIT\n\n## Dependencies\n\n| Package | Constraint |\n| --- | --- |\n| mkdocs | \u003e=1.5 |\n\n## Optional Dependencies\n\n| Package | Constraint |\n| --- | --- |\n| mkdocs-material | \u003e=9.0 |\n| pytest-cov | \u003e=4.0 |\n| pytest | \u003e=7.0 |\n| ruff | \u003e=0.4 |\n\n## Version History\n\n| Version | Date | Size | Type |\n| --- | --- | --- | --- |\n| 1.0.2 | 2026-03-23 | 6,583 | bdist_wheel |\n| 1.1.0 | 2026-03-23 | 6,944 | bdist_wheel |\n| 0.1.0 | 2026-03-22 | 6,442 | bdist_wheel |\n| 1.0.0 | 2026-03-22 | 6,487 | bdist_wheel |\n| 1.0.1 | 2026-03-22 | 6,498 | bdist_wheel |",
+  "url": "https://pypi.org/project/mkdocs-llms-source/"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search">
+<details>
+<summary>Tool use: **web_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "searchTerm": "mkdocs-copy-to-llm plugin features copy page markdown LLM"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [mkdocs-copy-to-llm v0.2.10](https://pypi.org/project/mkdocs-copy-to-llm/)\n2. [mkdocs-copy-to-llm v0.2.10](https://pypi.org/project/mkdocs-copy-to-llm/0.2.10/)\n3. [piwheels - mkdocs-copy-to-llm](https://piwheels.org/project/mkdocs-copy-to-llm)\n4. [Add a \"Copy as Markdown\" button for LLM use · Issue #8382 · squidfunk/mkdocs-material](https://github.com/squidfunk/mkdocs-material/issues/8382)\n5. [mkdocs-copy-to-llm v0.2.5](https://pypi.org/project/mkdocs-copy-to-llm/0.2.5/)\n\n# mkdocs-copy-to-llm Plugin Features\n\nThe **mkdocs-copy-to-llm** plugin is a MkDocs extension that adds \"Copy to LLM\" buttons to documentation pages.[1]\n\n## Key Features\n\n**Copy entire page** — The plugin adds a split button at the top of each page with multiple copy options:[1]\n- Copy page content as Markdown\n- Copy markdown link\n- Open in ChatGPT\n- Open in Claude\n- View raw markdown\n\n**Smart formatting** — Automatically formats content with proper context for LLM consumption[1]\n\n**Visual feedback** — Shows success indicators and toast notifications[1]\n\n**Mobile responsive** — Works seamlessly on all device sizes[1]\n\n## Installation \u0026 Configuration\n\nInstall via pip: &#96;pip install mkdocs-copy-to-llm&#96;[1]\n\nAdd to &#96;mkdocs.yml&#96;:[1]\n&#96;&#96;&#96;yaml\nplugins:\n  - copy-to-llm\n&#96;&#96;&#96;\n\nThe plugin supports color customization options including button colors, hover states, and toast notification styling. Colors can be specified as hex values, RGB values, CSS color names, or CSS variables.[1][5]\n\n## Status\n\nThe plugin is in Production/Stable status and requires Python \u003e=3.9. It was created by Leonardo Custodio, David Castro, and Karim Jedda, inspired by Docus and originally made for Polkadot Documentation.[1]",
+      "title": "Web search results for query: mkdocs-copy-to-llm plugin features copy page markdown LLM"
+    }
+  ],
+  "rejected": false
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://TimChild.github.io/mkdocs-llms-source/"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "mkdocs-llms-source\n\nSkip to content\n\nAI / LLM agents: For a machine-readable summary of this site, see [/llms.txt](https://timchild.github.io/mkdocs-llms-source/llms.txt) or [/llms-full.txt](https://timchild.github.io/mkdocs-llms-source/llms-full.txt).\n\n# mkdocs-llms-source¶\n\nMkDocs plugin to generate&#96;/llms.txt&#96; files for LLM-friendly documentation.\n\nLet AI set it up for you\n\nPaste this into your AI coding agent — it will add the plugin to an existing MkDocs site, or set up MkDocs from scratch:\n\n&#96;&#96;&#96;\nAdd the mkdocs-llms-source plugin to my project using the instructions at https://TimChild.github.io/mkdocs-llms-source/llms.txt\n\n&#96;&#96;&#96;\n\n## Overview¶\n\nmkdocs-llms-source generates [llms.txt](https://llmstxt.org/) files from your MkDocs documentation site so that AI tools can efficiently consume your docs without parsing HTML.\n\nThe plugin produces three outputs:\n\n1. &#96;/llms.txt&#96;— A curated index following the llmstxt.org spec with links to per-page markdown files\n2. &#96;/llms-full.txt&#96;— All documentation concatenated into a single file\n3. Per-page&#96;.md&#96; files — Raw markdown at the same URL path as HTML pages\n\nNew to MkDocs?\n\nIf your project doesn't have docs yet, check out the [Setup from Scratch](https://timchild.github.io/mkdocs-llms-source/setup-from-scratch/) guide — it walks you through creating a full MkDocs site with LLM-friendly output and automatic GitHub Pages deployment.\n\n## Quick Start¶\n\nInstall the plugin:\n\n&#96;&#96;&#96;\npip install mkdocs-llms-source\n\n&#96;&#96;&#96;\n\nAdd it to your&#96;mkdocs.yml&#96;:\n\n&#96;&#96;&#96;\nplugins:\n  - search\n  - llms-source\n\n&#96;&#96;&#96;\n\nBuild your site:\n\n&#96;&#96;&#96;\nmkdocs build\n\n&#96;&#96;&#96;\n\nThat's it! Your site will now include&#96;/llms.txt&#96;,&#96;/llms-full.txt&#96;, and per-page&#96;.md&#96; files.\n\n## Configuration¶\n\nSee the [configuration reference](https://timchild.github.io/mkdocs-llms-source/configuration/) for all options.",
+  "url": "https://TimChild.github.io/mkdocs-llms-source/"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://pypi.org/project/mkdocs-llmstxt/"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "# mkdocs-llmstxt v0.5.0\n\nMkDocs plugin to generate an /llms.txt file.\n\n- Email: =?utf-8?q?Timoth=C3=A9e_Mazzucotelli?= \n- License: ISC\n- Python: \u003e=3.10\n- Status: 4 - Beta\n- PyPI: https://pypi.org/project/mkdocs-llmstxt/\n\n## Downloads\n\n| Period | Count |\n| --- | --- |\n| Last day | 13,428 |\n| Last week | 91,046 |\n| Last month | 322,220 |\n\n## Links\n\n- Changelog: https://pawamoy.github.io/mkdocs-llmstxt/changelog\n- Discussions: https://github.com/pawamoy/mkdocs-llmstxt/discussions\n- Documentation: https://pawamoy.github.io/mkdocs-llmstxt\n- Funding: https://github.com/sponsors/pawamoy\n- Gitter: https://gitter.im/mkdocs-llmstxt/community\n- Homepage: https://pawamoy.github.io/mkdocs-llmstxt\n- Issues: https://github.com/pawamoy/mkdocs-llmstxt/issues\n- Repository: https://github.com/pawamoy/mkdocs-llmstxt\n\n---\n\n## Readme\n\n# mkdocs-llmstxt\n\n[![ci](https://github.com/pawamoy/mkdocs-llmstxt/workflows/ci/badge.svg)](https://github.com/pawamoy/mkdocs-llmstxt/actions?query=workflow%3Aci)\n[![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://pawamoy.github.io/mkdocs-llmstxt/)\n[![pypi version](https://img.shields.io/pypi/v/mkdocs-llmstxt.svg)](https://pypi.org/project/mkdocs-llmstxt/)\n[![gitter](https://img.shields.io/badge/matrix-chat-4DB798.svg?style=flat)](https://app.gitter.im/#/room/#mkdocs-llmstxt:gitter.im)\n\nMkDocs plugin to generate an [/llms.txt file](https://llmstxt.org/).\n\n\u003e /llms.txt - A proposal to standardise on using an /llms.txt file to provide information to help LLMs use a website at inference time.\n\nSee our own dynamically generated [/llms.txt](https://pawamoy.github.io/mkdocs-llmstxt/llms.txt) as a demonstration.\n\n## Installation\n\n&#96;&#96;&#96;bash\npip install mkdocs-llmstxt\n&#96;&#96;&#96;\n\n## Usage\n\nEnable the plugin in &#96;mkdocs.yml&#96;:\n\n&#96;&#96;&#96;yaml title=\"mkdocs.yml\"\nsite_name: My project\nsite_description: Description of my project.\nsite_url: https://myproject.com/  # Required for the llmstxt plugin to work.\n\nplugins:\n- llmstxt:\n    markdown_description: Long description of my project.\n    sections:\n      Usage documentation:\n      - file1.md: Description of file1\n      - file2.md  # Descriptions are optional.\n&#96;&#96;&#96;\n\nThe resulting &#96;/llms.txt&#96; file will be available at the root of your documentation. With the previous example, it will be accessible at https://myproject.com/llms.txt and will contain the following:\n\n&#96;&#96;&#96;markdown\n# My project\n\n\u003e Description of my project.\n\nLong description of my project.\n\n## Usage documentation\n\n- [File1 title](https://myproject.com/file1.md): Description of file1\n- [File2 title](https://myproject.com/file2.md)\n&#96;&#96;&#96;\n\nEach source file included in &#96;sections&#96; will have its own Markdown file available at the specified URL in the &#96;/llms.txt&#96;. See [Markdown generation](#markdown-generation) for more details.\n\nFile globbing is supported:\n\n&#96;&#96;&#96;yaml title=\"mkdocs.yml\"\nplugins:\n- llmstxt:\n    sections:\n      Usage documentation:\n      - index.md: Main documentation page\n      - usage/*.md\n&#96;&#96;&#96;\n\n## Override &#96;site_url&#96;\n\nUse &#96;base_url&#96; to point &#96;llms.txt&#96; to documentation in a specific directory. For example, when using [Read the Docs](https://github.com/readthedocs/), use &#96;base_url&#96; to indicate the path to the hosted docs built for a specific language or version.\n\nThe resulting &#96;llms.txt&#96; uses &#96;base_url&#96; when it is specified, instead of the canonical &#96;site_url&#96;.\n\n&#96;&#96;&#96;yaml title=\"mkdocs.yml\"\nplugins:\n- llmstxt:\n    base_url: https://productname.hostname.io/en/0.1.34\n&#96;&#96;&#96;\n\n## Full output\n\nAlthough not explicitly written out in the https://llmstxt.org/ guidelines, it is common to output a &#96;llms-full.txt&#96; file with every page content expanded. This file can be generated by setting the &#96;full_output&#96; configuration value:\n\n&#96;&#96;&#96;yaml title=\"mkdocs.yml\"\nplugins:\n- llmstxt:\n    full_output: llms-full.txt\n    sections:\n      Usage documentation:\n      - index.md\n      - usage/*.md\n&#96;&#96;&#96;\n\n## Markdown generation\n\nTo generate a Markdown page from a source file, the plugin will:\n\n- Cleanup the HTML output (with [BeautifulSoup](https://pypi.org/project/beautifulsoup4/))\n- Convert it back to Markdown (with [Markdownify](https://pypi.org/project/markdownify))\n\nDoing so is necessary to ensure that dynamically generated contents (API documentation, executed code blocks, snippets from other files, Jinja macros, etc.) are part of the generated text files.\n\nCredits to [Petyo Ivanov](https://github.com/petyosi) for the original idea ✨.\n\nYou can disable auto-cleaning of the HTML:\n\n&#96;&#96;&#96;yaml title=\"mkdocs.yml\"\nplugins:\n- llmstxt:\n    autoclean: false\n&#96;&#96;&#96;\n\nYou can also pre-process the HTML before it is converted back to Markdown:\n\n&#96;&#96;&#96;yaml title=\"mkdocs.yml\"\nplugins:\n- llmstxt:\n    preprocess: path/to/script.py\n&#96;&#96;&#96;\n\nThe specified &#96;script.py&#96; must expose a &#96;preprocess&#96; function that accepts the &#96;soup&#96; and &#96;output&#96; arguments:\n\n&#96;&#96;&#96;python\nfrom typing import TYPE_CHECKING\n\nif TYPE_CHECKING:\n    from bs4 import BeautifulSoup\n\ndef preprocess(soup: BeautifulSoup, output: str) -\u003e None:\n    ...  # modify the soup\n&#96;&#96;&#96;\n\nThe &#96;output&#96; argument lets you modify the soup *depending on which file is being generated*.\n\nHave a look at [our own cleaning function](https://pawamoy.github.io/mkdocs-llmstxt/reference/api/#mkdocs_llmstxt.autoclean) to get inspiration.\n\n## Sponsors\n\n \n \n\n## Dependencies\n\n| Package | Constraint |\n| --- | --- |\n| beautifulsoup4 | \u003e=4.12 |\n| markdownify | \u003e=0.14 |\n| mdformat | \u003e=0.7.21 |\n| mdformat-tables | \u003e=1.0 |\n\n## Version History\n\n| Version | Date | Size | Type |\n| --- | --- | --- | --- |\n| 0.5.0 | 2025-11-20 | 12,040 | bdist_wheel |\n| 0.4.0 | 2025-10-03 | 11,463 | bdist_wheel |\n| 0.3.2 | 2025-09-19 | 11,241 | bdist_wheel |\n| 0.3.1 | 2025-08-05 | 11,175 | bdist_wheel |\n| 0.3.0 | 2025-07-14 | 11,290 | bdist_wheel |\n| 0.2.0 | 2025-04-08 | 23,244 | bdist_wheel |\n| 0.1.0 | 2025-01-14 | 21,774 | bdist_wheel |",
+  "url": "https://pypi.org/project/mkdocs-llmstxt/"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search">
+<details>
+<summary>Tool use: **web_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "searchTerm": "llmstxt.org specification standard what is llms.txt"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [The /llms.txt file – llms-txt](https://www.llmstxt.org/)\n2. [llms.txt Specification — Version 1.1.1](https://www.ai-visibility.org.uk/specifications/llms-txt/)\n3. [What is llms.txt? The AI-Readable File Standard](https://llmstxt.studio/docs/what-is-llmstxt)\n4. [How to Create an llms.txt File: Step-by-Step Guide (2026)](https://llmstxt.studio/guides/how-to-create-llmstxt)\n5. [AnswerDotAI/llms-txt](https://github.com/answerdotai/llms-txt)\n\n# What is llms.txt?\n\n**llms.txt** is an open standard specification for a markdown file that websites place at their root directory (&#96;/llms.txt&#96;) to help AI assistants understand their content structure and purpose.[1][3] It's often described as \"robots.txt for AI\" because instead of telling search engines what to crawl, it tells large language models (LLMs) how to understand and reference a site.[3]\n\n## The Problem It Solves\n\nLarge language models face a critical limitation: context windows are too small to handle most websites in their entirety, and converting complex HTML pages into LLM-friendly plain text is difficult and imprecise.[1][5] The llms.txt file provides AI systems with a structured summary that helps them determine what content is most important, understand site structure, find relevant documentation, and avoid hallucinations about your content.[3]\n\n## File Specification\n\nThe llms.txt file must be:[2][4]\n- Located at &#96;https://example.com/llms.txt&#96;\n- Written in Markdown format (CommonMark compatible)\n- Encoded in UTF-8\n- Served with &#96;text/plain&#96; content type\n- Publicly accessible without authentication\n- Under 50KB recommended maximum size\n\n## File Structure\n\nA typical llms.txt file contains:[3][4]\n- An H1 heading with the business/project name (required)\n- A blockquote with a brief description (required)\n- H2 sections organizing links by topic (required)\n- Annotated links to key pages with optional descriptions\n- An optional \"Optional\" section for lower-priority content\n\nThe specification was created by Jeremy Howard, co-founder of fast.ai, and is documented at [llmstxt.org](https://llmstxt.org/).[4]",
+      "title": "Web search results for query: llmstxt.org specification standard what is llms.txt"
+    }
+  ],
+  "rejected": false
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<think><details><summary>Thought Process</summary>
+Now let me also check the mkdocs-llmstxt maintenance mode claim from the evaluation, and look at whether mkdocs-llmstxt has been actively maintained recently.
+
+Looking at the data:
+- `mkdocs-llmstxt` v0.5.0 (2025-11-20) by pawamoy - 322K monthly downloads, Beta status, HTML→Markdown approach. The evaluation doc said it's in "maintenance mode" but it has 113 stars and good download numbers. It does HTML→MD conversion which is important for API docs generated by mkdocstrings.
+
+
+- `mkdocs-llms-source` is a newer production-ready option that works directly from source markdown files and auto-derives structure from the navigation, while `mkdocs-copy-to-llm` adds convenient copy-to-LLM buttons with direct integration to ChatGPT and Claude. The key difference is that mkdocs-llmstxt's HTML-to-markdown conversion captures dynamically generated content like API documentation, whereas the source-first approach requires manual configuration.
+
+For our project specifically, mkdocs-llmstxt is the better choice because we rely heavily on mkdocstrings to generate API docs dynamically—the source-first approach would leave those directives unexpanded, which defeats the purpose of including them for LLMs to understand. I'm checking whether mkdocs-llmstxt is actually in maintenance mode or if it's still actively developed, since that could affect our recommendation.</details></think>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search">
+<details>
+<summary>Tool use: **web_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "searchTerm": "pawamoy mkdocs-llmstxt maintenance mode status 2026"
+}
+```
+Result:
+
+```json
+{
+  "isFinal": true,
+  "references": [
+    {
+      "chunk": "Links:\n1. [pawamoy/mkdocs-llmstxt](https://github.com/pawamoy/mkdocs-llmstxt)\n2. [Overview - mkdocs-llmstxt](https://pawamoy.github.io/mkdocs-llmstxt/)\n3. [Releases · pawamoy/mkdocs-llmstxt](https://github.com/pawamoy/mkdocs-llmstxt/releases)\n4. [CHANGELOG.md at main · pawamoy/mkdocs-llmstxt](https://github.com/pawamoy/mkdocs-llmstxt/blob/main/CHANGELOG.md)\n5. [pawamoy/mkdocs-llmstxt · Discussions · GitHub](https://github.com/pawamoy/mkdocs-llmstxt/discussions)\n\n# pawamoy mkdocs-llmstxt Maintenance Mode Status (2026)\n\nThe mkdocs-llmstxt project is **in maintenance mode** as of 2026.[1] The project maintainer, pawamoy, has announced that they are dedicating their time to a different project called Zensical and are open to a responsible transfer of maintainership.[1]\n\n**Current Project Activity:**\n- Last code push: March 31, 2026[1]\n- Latest release: Version 0.5.0 (November 20, 2025)[1]\n- Open issues: 0[1]\n- The project continues to receive updates despite being in maintenance mode\n\nThe project remains functional with recent bug fixes and feature additions, but active development has been deprioritized in favor of the maintainer's new focus.",
+      "title": "Web search results for query: pawamoy mkdocs-llmstxt maintenance mode status 2026"
+    }
+  ],
+  "rejected": false
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_search"><details>
+<summary>Tool use: **web_search**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch">
+<details>
+<summary>Tool use: **web_fetch**</summary>
+
+
+Parameters:
+
+```json
+{
+  "url": "https://pypi.org/project/mkdocs-copy-to-llm/"
+}
+```
+Result:
+
+```json
+{
+  "markdown": "# mkdocs-copy-to-llm v0.2.10\n\nMkDocs plugin to add 'Copy to LLM' buttons to documentation\n\n- Email: Leonardo Custodio, David Castro, Karim Jedda \n- License: MIT\n- Python: \u003e=3.9\n- Status: 5 - Production/Stable\n- Keywords: mkdocs, plugin, documentation, llm, copy, ai, chatgpt, claude\n- PyPI: https://pypi.org/project/mkdocs-copy-to-llm/\n\n## Downloads\n\n| Period | Count |\n| --- | --- |\n| Last day | 31 |\n| Last week | 205 |\n| Last month | 1,799 |\n\n## Links\n\n- Bug Tracker: https://github.com/leonardocustodio/mkdocs-copy-to-llm/issues\n- Changelog: https://github.com/leonardocustodio/mkdocs-copy-to-llm/releases\n- Documentation: https://github.com/leonardocustodio/mkdocs-copy-to-llm#readme\n- Homepage: https://github.com/leonardocustodio/mkdocs-copy-to-llm\n- Repository: https://github.com/leonardocustodio/mkdocs-copy-to-llm\n\n## Extras\n\n- minify\n- dev\n\n---\n\n## Readme\n\n# MkDocs Copy to LLM Plugin\n\n[![Tests](https://github.com/leonardocustodio/mkdocs-copy-to-llm/actions/workflows/tests.yml/badge.svg)](https://github.com/leonardocustodio/mkdocs-copy-to-llm/actions/workflows/tests.yml)\n[![codecov](https://codecov.io/gh/leonardocustodio/mkdocs-copy-to-llm/branch/main/graph/badge.svg)](https://codecov.io/gh/leonardocustodio/mkdocs-copy-to-llm)\n[![PyPI version](https://badge.fury.io/py/mkdocs-copy-to-llm.svg)](https://badge.fury.io/py/mkdocs-copy-to-llm)\n[![PyPI Downloads](https://static.pepy.tech/personalized-badge/mkdocs-copy-to-llm?period=total\u0026units=INTERNATIONAL_SYSTEM\u0026left_color=GREY\u0026right_color=GREEN\u0026left_text=downloads)](https://pepy.tech/projects/mkdocs-copy-to-llm)\n[![Python versions](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](https://pypi.org/project/mkdocs-copy-to-llm/)\n\nA MkDocs plugin that adds \"Copy to LLM\" buttons to your documentation, making it easy to copy code blocks and entire pages in formats optimized for Large Language Models (LLMs).\n\nThis package was inspired by [Docus](https://github.com/nuxtlabs/docus) by NuxtLabs and made for [Polkadot Documentation](https://docs.polkadot.com).\n\n## Features\n\n- **Copy entire page** — Adds a split button at the top of each page with multiple copy options:\n\n- Copy page content as Markdown\n - Copy markdown link\n - Open in ChatGPT\n - Open in Claude\n - View raw markdown\n\n- **Smart formatting** — Automatically formats content with proper context for LLM consumption\n- **Visual feedback** — Shows success indicators and toast notifications\n- **Mobile responsive** — Works seamlessly on all device sizes\n\n## Installation\n\nInstall the plugin using pip:\n\n&#96;&#96;&#96;bash\npip install mkdocs-copy-to-llm\n&#96;&#96;&#96;\n\n### Optional Dependencies\n\nFor asset minification in production builds:\n\n&#96;&#96;&#96;bash\npip install mkdocs-copy-to-llm[minify]\n# or separately:\npip install jsmin csscompressor\n&#96;&#96;&#96;\n\n## Configuration\n\nAdd the plugin to your &#96;mkdocs.yml&#96;:\n\n&#96;&#96;&#96;yaml\nplugins:\n  - copy-to-llm\n&#96;&#96;&#96;\n\nThat's it! The plugin will automatically add copy buttons to all your pages and code blocks.\n\n### Configuration Options (Optional)\n\n#### Color Customization\n\nYou can customize the colors to match your theme:\n\n&#96;&#96;&#96;yaml\nplugins:\n  - copy-to-llm:\n      button_bg_color: \"#ffffff\"        # Button background color\n      button_text_color: \"#000000\"     # Button text color\n      button_hover_color: \"#0969da\"     # Button hover color\n      toast_bg_color: \"#0969da\"         # Toast notification background\n      toast_text_color: \"#ffffff\"       # Toast notification text color\n&#96;&#96;&#96;\n\nColors can be specified as:\n\n- Hex values: &#96;#0969da&#96; or &#96;#09d&#96;\n- RGB values: &#96;rgb(9, 105, 218)&#96; or &#96;rgba(9, 105, 218, 0.5)&#96;\n- CSS color names: &#96;blue&#96;, &#96;red&#96;, &#96;darkslategray&#96;, etc.\n- CSS variables: &#96;var(--md-primary-fg-color)&#96;\n\nThe plugin validates all color values and will show an error if an invalid format is provided.\n\nExample configurations for popular themes:\n\n**Material for MkDocs:**\n\n&#96;&#96;&#96;yaml\nplugins:\n  - copy-to-llm:\n      button_hover_color: \"var(--md-primary-fg-color)\"\n      toast_bg_color: \"var(--md-primary-fg-color)\"\n&#96;&#96;&#96;\n\n**MkDocs Default Theme:**\n\n&#96;&#96;&#96;yaml\nplugins:\n  - copy-to-llm:\n      button_bg_color: \"#f5f5f5\"\n      button_hover_color: \"#3f51b5\"\n      toast_bg_color: \"#3f51b5\"\n&#96;&#96;&#96;\n\n#### Repository URL Configuration\n\nFor the \"Copy Markdown link\" and \"Open in ChatGPT/Claude\" features to work correctly, you can specify your repository's raw content URL:\n\n&#96;&#96;&#96;yaml\nplugins:\n  - copy-to-llm:\n      repo_url: \"https://raw.githubusercontent.com/owner/repo/branch\"\n&#96;&#96;&#96;\n\nIf not configured, the plugin will try to:\n\n1. Detect the repository URL from edit links in your theme\n2. Use repository links found on the page\n3. Fall back to constructing URLs based on the current path\n\n**Note**: The URL should point to the raw content base URL without the trailing slash. For GitHub repositories, this is typically &#96;https://raw.githubusercontent.com/owner/repo/branch&#96;.\n\n#### Asset Minification\n\nThe plugin can automatically minify JavaScript and CSS files in production builds when the optional dependencies are installed:\n\n&#96;&#96;&#96;bash\n# Install minification dependencies (optional)\npip install jsmin csscompressor\n&#96;&#96;&#96;\n\n&#96;&#96;&#96;yaml\nplugins:\n  - copy-to-llm:\n      minify: true  # Default is true\n&#96;&#96;&#96;\n\nMinification is automatically disabled when running &#96;mkdocs serve&#96; for easier debugging. If the minification libraries are not installed, the plugin will work normally but without minification.\n\n#### Analytics Integration\n\nTrack copy events to understand how users interact with your documentation:\n\n&#96;&#96;&#96;yaml\nplugins:\n  - copy-to-llm:\n      analytics: true  # Default is false\n&#96;&#96;&#96;\n\nWhen enabled, the plugin will send copy events to your analytics platform (if configured):\n\n- **Event name**: &#96;copy_to_llm&#96;\n- **Event category**: &#96;engagement&#96;\n- **Event label**: &#96;code_block&#96;, &#96;page_content&#96;, &#96;markdown_content&#96;, or &#96;markdown_link&#96;\n- **Event value**: Length of copied content\n\nSupported analytics platforms:\n\n- Google Analytics (gtag.js)\n\n**Important**: Analytics tracking is opt-in and **disabled by default**. The plugin will only track events when:\n\n1. The &#96;analytics&#96; option is explicitly set to &#96;true&#96; in your configuration\n2. An analytics platform is already configured on your site\n\nThis ensures user privacy is respected and no tracking occurs without explicit consent.\n\n## How It Works\n\nThe plugin automatically:\n\n1. Injects the necessary JavaScript and CSS files\n2. Adds a split button to the main page title\n3. Handles all copy operations with proper formatting\n\n## Customization\n\nThe plugin uses CSS variables from your MkDocs theme. It integrates seamlessly with the Material theme for MkDocs.\n\n## Development\n\n### Setup\n\n&#96;&#96;&#96;bash\n# Clone the repository\ngit clone https://github.com/leonardocustodio/mkdocs-copy-to-llm.git\ncd mkdocs-copy-to-llm\n\n# Install development dependencies\nmake install-dev\n&#96;&#96;&#96;\n\n### Available Commands\n\n&#96;&#96;&#96;bash\nmake help          # Show all available commands\nmake test          # Run tests with coverage\nmake lint          # Run linting checks\nmake format        # Format code with Ruff\n&#96;&#96;&#96;\n\n### Pre-commit Hooks\n\nThe project uses pre-commit hooks to ensure code quality:\n\n&#96;&#96;&#96;bash\npre-commit install  # Install hooks (done automatically by make install-dev)\npre-commit run --all-files  # Run all hooks manually\n&#96;&#96;&#96;\n\n## Accessibility\n\nThe plugin is designed with accessibility in mind:\n\n- All buttons have proper ARIA labels\n- Full keyboard navigation support\n- Screen reader friendly\n- Focus management for dropdown menus\n- Escape key closes dropdowns\n\n## License\n\nMIT\n\n## Dependencies\n\n| Package | Constraint |\n| --- | --- |\n| mkdocs | \u003e=1.2 |\n\n## Optional Dependencies\n\n| Package | Constraint |\n| --- | --- |\n| jsmin | \u003e=3.0.0 |\n| csscompressor | \u003e=0.9.5 |\n| pytest | \u003e=7.0 |\n| pytest-cov | \u003e=4.0 |\n| pytest-mock | \u003e=3.0 |\n| mypy | \u003e=1.0 |\n| ruff | \u003e=0.1.0 |\n| build | \u003e=0.10.0 |\n| twine | \u003e=4.0.0 |\n| mkdocs-material | \u003e=9.0 |\n| types-setuptools | |\n| jsmin | \u003e=3.0.0 |\n| csscompressor | \u003e=0.9.5 |\n| pre-commit | \u003e=3.0.0 |\n\n## Version History\n\n| Version | Date | Size | Type |\n| --- | --- | --- | --- |\n| 0.2.10 | 2026-03-10 | 23,670 | bdist_wheel |\n| 0.2.9 | 2026-02-27 | 23,171 | bdist_wheel |\n| 0.2.8 | 2025-12-31 | 23,128 | bdist_wheel |\n| 0.2.7 | 2025-11-25 | 22,760 | bdist_wheel |\n| 0.2.6 | 2025-08-30 | 21,883 | bdist_wheel |\n| 0.2.5 | 2025-08-26 | 25,222 | bdist_wheel |\n| 0.2.2 | 2025-08-15 | 25,331 | bdist_wheel |\n| 0.2.4 | 2025-08-15 | 25,201 | bdist_wheel |\n| 0.2.0 | 2025-07-25 | 24,437 | bdist_wheel |\n| 0.2.1 | 2025-07-25 | 24,541 | bdist_wheel |\n| 0.1.0 | 2025-07-24 | 15,526 | bdist_wheel |",
+  "url": "https://pypi.org/project/mkdocs-copy-to-llm/"
+}
+```
+User decision: **accepted**
+
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="web_fetch"><details>
+<summary>Tool use: **web_fetch**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<think><details><summary>Thought Process</summary>
+Now I have a comprehensive understanding. Let me also check if there's a `mkdocs-llmstxt-md` that was mentioned in search results, to complete the picture.
+
+Now let me summarize the findings and create a plan:
+
+## Key Analysis
+
+### The critical issue: mkdocstrings generates content dynamically
+
+Our project uses `mkdocstrings` to generate API reference from docstrings. The reference/*.md files contain directives like `::: mlflow_widgets.MlflowChart`, which are **only expanded at build time**. This means:
+
+
+- **Source-first plugins** would just copy the raw `.md` files with those unexpanded directives intact — LLMs would see the directive syntax rather than the actual generated API documentation
+- **HTML→Markdown plugins** take the final rendered HTML output and convert it back to Markdown, which captures all the dynamically generated API docs that mkdocstrings produces
+
+This is the key difference that determines which approach will work for our use case.
+
+### Plugin comparison for our project
+
+Generating markdown table...
+
+Based on the comparison, I'm recommending `mkdocs-llmstxt` as the primary tool since it's the only one that properly handles mkdocstrings-generated content by converting the rendered HTML back to Markdown, and its 322K monthly downloads indicate it's stable despite being in maintenance mode. I'd pair it with `mkdocs-copy-to-llm` as a complementary UI feature that lets users copy content directly from rendered pages.</details></think>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Now I have a thorough picture. Let me read our current `mkdocs.yml` to know the exact current state before creating the plan.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/mkdocs.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Good. Now let me create the plan with all findings.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="create_plan">
+<details>
+<summary>Tool use: **create_plan**</summary>
+
+
+Parameters:
+
+```json
+{
+  "name": "LLM-friendly MkDocs plugins",
+  "overview": "Add mkdocs-llmstxt and mkdocs-copy-to-llm plugins to generate /llms.txt, /llms-full.txt, per-page .md files, and \"Copy to LLM\" UI buttons on every docs page.",
+  "plan": "# LLM-Friendly MkDocs Plugins\n\n## Research summary\n\nEvaluated four MkDocs LLM plugins. The decisive factor for this project is that **our API reference pages use mkdocstrings directives** (e.g. &#96;::: mlflow_widgets.MlflowChart&#96;) which are only expanded at build time. Plugins that copy raw &#96;.md&#96; source would output the unexpanded directives, not the actual API docs.\n\n### Plugin comparison\n\n- **mkdocs-llmstxt** (pawamoy, v0.5.0, 322K downloads/mo) -- HTML-to-Markdown approach via BeautifulSoup + Markdownify. Generates &#96;/llms.txt&#96;, &#96;/llms-full.txt&#96;, and per-page &#96;.md&#96; files. **Captures mkdocstrings-generated API docs** because it works on rendered HTML. In maintenance mode but stable and widely used.\n\n- **mkdocs-llms-source** (TimChild, v1.1.0, new) -- Source-first approach, copies raw &#96;.md&#96; files. Auto-derives sections from nav. **NOT suitable for this project**: our &#96;reference/*.md&#96; files contain &#96;::: mlflow_widgets.X&#96; directives that would appear as-is instead of expanded API docs.\n\n- **mkdocs-copy-to-llm** (leonardocustodio, v0.2.10) -- Adds a \"Copy to LLM\" split button to every page with options: copy as Markdown, copy link, open in ChatGPT, open in Claude, view raw markdown. Complementary UI enhancement, works on rendered content.\n\n- **mkdocs-llmstxt-md** (v0.2.0, beta) -- Similar hybrid approach but less mature. Skip.\n\n### Decision\n\nInstall **both**:\n\n1. **&#96;mkdocs-llmstxt&#96;** -- machine-facing: generates &#96;/llms.txt&#96; + &#96;/llms-full.txt&#96; + per-page &#96;.md&#96; files at build time\n2. **&#96;mkdocs-copy-to-llm&#96;** -- human-facing: adds UI buttons for copying content to LLM chats\n\nThey serve different purposes and do not conflict.\n\n## Changes\n\n### 1. [pyproject.toml](pyproject.toml) -- add dependencies\n\nAdd both plugins to the &#96;docs&#96; extras:\n\n&#96;&#96;&#96;toml\ndocs = [\n    \"mkdocs-material\",\n    \"mkdocstrings[python]\",\n    \"mkdocs-llmstxt\",\n    \"mkdocs-copy-to-llm\",\n]\n&#96;&#96;&#96;\n\n### 2. [mkdocs.yml](mkdocs.yml) -- enable plugins\n\nAdd &#96;llmstxt&#96; and &#96;copy-to-llm&#96; to the plugins list. The &#96;llmstxt&#96; plugin requires &#96;sections&#96; config mapping our docs pages, and &#96;full_output&#96; for the concatenated file. Use file globbing to cover all pages:\n\n&#96;&#96;&#96;yaml\nplugins:\n  - search\n  - mkdocstrings: ...\n  - llmstxt:\n      full_output: llms-full.txt\n      sections:\n        Guides:\n          - index.md\n          - installation.md\n          - getting-started.md\n        Widgets:\n          - widgets/*.md\n        Examples:\n          - examples.md\n        API Reference:\n          - reference/*.md\n        Changelog:\n          - changelog.md\n  - copy-to-llm:\n      button_hover_color: \"var(--md-primary-fg-color)\"\n      toast_bg_color: \"var(--md-primary-fg-color)\"\n&#96;&#96;&#96;\n\n### 3. Verify build + output\n\n- &#96;uv sync --extra docs \u0026\u0026 uv run mkdocs build --strict&#96;\n- Confirm &#96;site/llms.txt&#96;, &#96;site/llms-full.txt&#96;, and per-page &#96;.md&#96; files exist\n- Confirm the API reference &#96;.md&#96; files contain expanded class signatures (not raw &#96;::: &#96; directives)\n- Confirm \"Copy to LLM\" button appears on pages\n\n### 4. Update metadata files\n\n- [CHANGELOG.md](CHANGELOG.md) -- add entry under &#96;[Unreleased]&#96;\n- [AGENTS.md](AGENTS.md) -- mention LLM-friendly output in docs section\n- [notes/docs-stack-evaluation.md](notes/docs-stack-evaluation.md) -- could add a \"Phase 2 done\" note (optional)\n",
+  "todos": [
+    {
+      "content": "Add mkdocs-llmstxt and mkdocs-copy-to-llm to pyproject.toml docs extras",
+      "id": "deps",
+      "status": "pending"
+    },
+    {
+      "content": "Enable llmstxt (with sections + full_output) and copy-to-llm plugins in mkdocs.yml",
+      "id": "mkdocs-config",
+      "status": "pending"
+    },
+    {
+      "content": "Run mkdocs build --strict, verify llms.txt / llms-full.txt / per-page .md / Copy button all work",
+      "id": "verify-build",
+      "status": "pending"
+    },
+    {
+      "content": "Update CHANGELOG.md, AGENTS.md with LLM-friendly docs info",
+      "id": "update-meta",
+      "status": "pending"
+    }
+  ]
+}
+```
+Additional data:
+
+```json
+{
+  "hasOpenedEditor": true,
+  "planUri": "file:///Users/daviddwlee84/.cursor/plans/llm-friendly_mkdocs_plugins_e3b80108.plan.md",
+  "reviewData": {
+    "isShowingInput": false,
+    "selectedOption": "none",
+    "status": "Requested"
+  }
+}
+```
+Result:
+
+```json
+{
+  "rejected": {}
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="create_plan"><details>
+<summary>Tool use: **create_plan**</summary>
+
+</details></tool-use>
+
+---
+
+_**User**_
+
+Implement the plan as specified, it is attached for your reference. Do NOT edit the plan file itself.
+
+To-do's from the plan have already been created. Do not create them again. Mark them as in_progress as you work, starting with the first one. Don't stop until you have completed all the to-dos.
+
+---
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add mkdocs-llmstxt and mkdocs-copy-to-llm to pyproject.toml docs extras",
+      "id": "deps",
+      "status": "in_progress"
+    },
+    {
+      "content": "Enable llmstxt (with sections + full_output) and copy-to-llm plugins in mkdocs.yml",
+      "id": "mkdocs-config",
+      "status": "pending"
+    },
+    {
+      "content": "Run mkdocs build --strict, verify llms.txt / llms-full.txt / per-page .md / Copy button all work",
+      "id": "verify-build",
+      "status": "pending"
+    },
+    {
+      "content": "Update CHANGELOG.md, AGENTS.md with LLM-friendly docs info",
+      "id": "update-meta",
+      "status": "pending"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add mkdocs-llmstxt and mkdocs-copy-to-llm to pyproject.toml docs extras",
+      "id": "deps",
+      "status": "pending"
+    },
+    {
+      "content": "Enable llmstxt (with sections + full_output) and copy-to-llm plugins in mkdocs.yml",
+      "id": "mkdocs-config",
+      "status": "pending"
+    },
+    {
+      "content": "Run mkdocs build --strict, verify llms.txt / llms-full.txt / per-page .md / Copy button all work",
+      "id": "verify-build",
+      "status": "pending"
+    },
+    {
+      "content": "Update CHANGELOG.md, AGENTS.md with LLM-friendly docs info",
+      "id": "update-meta",
+      "status": "pending"
+    }
+  ],
+  "success": true
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/pyproject.toml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/pyproject.toml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add mkdocs-llmstxt and mkdocs-copy-to-llm to pyproject.toml docs extras",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Enable llmstxt (with sections + full_output) and copy-to-llm plugins in mkdocs.yml",
+      "id": "mkdocs-config",
+      "status": "in_progress"
+    },
+    {
+      "content": "Run mkdocs build --strict, verify llms.txt / llms-full.txt / per-page .md / Copy button all work",
+      "id": "verify-build",
+      "status": "pending"
+    },
+    {
+      "content": "Update CHANGELOG.md, AGENTS.md with LLM-friendly docs info",
+      "id": "update-meta",
+      "status": "pending"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add mkdocs-llmstxt and mkdocs-copy-to-llm to pyproject.toml docs extras",
+      "id": "deps",
+      "status": "in_progress"
+    },
+    {
+      "content": "Enable llmstxt (with sections + full_output) and copy-to-llm plugins in mkdocs.yml",
+      "id": "mkdocs-config",
+      "status": "pending"
+    },
+    {
+      "content": "Run mkdocs build --strict, verify llms.txt / llms-full.txt / per-page .md / Copy button all work",
+      "id": "verify-build",
+      "status": "pending"
+    },
+    {
+      "content": "Update CHANGELOG.md, AGENTS.md with LLM-friendly docs info",
+      "id": "update-meta",
+      "status": "pending"
+    }
+  ],
+  "success": true,
+  "wasMerge": true
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/mkdocs.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/mkdocs.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add mkdocs-llmstxt and mkdocs-copy-to-llm to pyproject.toml docs extras",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Enable llmstxt (with sections + full_output) and copy-to-llm plugins in mkdocs.yml",
+      "id": "mkdocs-config",
+      "status": "completed"
+    },
+    {
+      "content": "Run mkdocs build --strict, verify llms.txt / llms-full.txt / per-page .md / Copy button all work",
+      "id": "verify-build",
+      "status": "in_progress"
+    },
+    {
+      "content": "Update CHANGELOG.md, AGENTS.md with LLM-friendly docs info",
+      "id": "update-meta",
+      "status": "pending"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add mkdocs-llmstxt and mkdocs-copy-to-llm to pyproject.toml docs extras",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Enable llmstxt (with sections + full_output) and copy-to-llm plugins in mkdocs.yml",
+      "id": "mkdocs-config",
+      "status": "in_progress"
+    },
+    {
+      "content": "Run mkdocs build --strict, verify llms.txt / llms-full.txt / per-page .md / Copy button all work",
+      "id": "verify-build",
+      "status": "pending"
+    },
+    {
+      "content": "Update CHANGELOG.md, AGENTS.md with LLM-friendly docs info",
+      "id": "update-meta",
+      "status": "pending"
+    }
+  ],
+  "success": true,
+  "wasMerge": true
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
 
 </details></tool-use>

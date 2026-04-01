@@ -10,7 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Documentation site with MkDocs Material + mkdocstrings, deployed to GitHub Pages
-- `docs` optional dependency group (`mkdocs-material`, `mkdocstrings[python]`)
+- LLM-friendly docs output: `/llms.txt`, `/llms-full.txt`, and per-page `.md` files via `mkdocs-llmstxt`
+- "Copy to LLM" buttons on every docs page (copy as Markdown, open in ChatGPT/Claude) via `mkdocs-copy-to-llm`
+- `docs` optional dependency group (`mkdocs-material`, `mkdocstrings[python]`, `mkdocs-llmstxt`, `mkdocs-copy-to-llm`)
 - `docs` and `docs-build` taskipy tasks
 - GitHub Actions workflow for automatic docs deployment on push to main
 

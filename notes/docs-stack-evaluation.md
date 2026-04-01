@@ -269,11 +269,11 @@ Rspress 很有意思，但我不建議拿它當這個 repo 的主 docs stack。
 - 補 GitHub Pages workflow
 - 調整 nav、search、social preview、repo links
 
-### Phase 3
+### Phase 3 ✅ Done (2026-04-01)
 
-- 用小型 post-build script 生成 `llms.txt`
-- 視需求再補 `llms-full.txt`
-- 若未來 AI-native 比重明顯上升，再重新評估是否要升級到 `Sphinx + sphinx-llm`
+使用 `mkdocs-llmstxt` plugin（而非自訂 post-build script）生成 `/llms.txt`、`/llms-full.txt`、以及每頁 `.md` 檔。
+選擇 `mkdocs-llmstxt` 而非 `mkdocs-llms-source` 是因為 API reference 頁面使用 mkdocstrings 動態生成，source-first 方案只會拿到原始的 `::: ` 指令而非展開的 API 文件。
+另外加上 `mkdocs-copy-to-llm` 提供 UI 按鈕（Copy to LLM / Open in ChatGPT / Open in Claude）。
 
 ## 最終建議
 
