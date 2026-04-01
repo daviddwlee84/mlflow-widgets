@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Documentation site with MkDocs Material + mkdocstrings, deployed to GitHub Pages
+- `docs` optional dependency group (`mkdocs-material`, `mkdocstrings[python]`)
+- `docs` and `docs-build` taskipy tasks
+- GitHub Actions workflow for automatic docs deployment on push to main
+
+### Fixed
+
+- Incorrect import in `MlflowChart` docstring example (`mlflow_chart` -> `mlflow_widgets`)
+
 ## [0.1.0] - 2026-04-01
 
 First public release on [PyPI](https://pypi.org/project/mlflow-widgets/).

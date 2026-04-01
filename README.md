@@ -1,5 +1,7 @@
 # mlflow-widgets
 
+[![Docs](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://daviddwlee84.github.io/mlflow-widgets/)
+
 Anywidget-based notebook widgets for [MLflow](https://mlflow.org/) experiments.
 
 Inspired by [wigglystuff](https://github.com/koaning/wigglystuff)'s [`WandbChart`](https://koaning.github.io/wigglystuff/reference/wandb-chart/), but built for MLflow.
@@ -159,6 +161,8 @@ Common tasks are available via [taskipy](https://github.com/taskipy/taskipy). Ru
 | `uv run task demo-all` | Run all demos with hot-reload |
 | `uv run task clean` | Remove build artifacts |
 | `uv run task version` | Show current version |
+| `uv run task docs` | Serve docs locally |
+| `uv run task docs-build` | Build docs |
 
 ### Release
 

@@ -117,7 +117,7 @@ class MlflowChart(anywidget.AnyWidget):
     Examples:
         ```python
         import mlflow
-        from mlflow_chart import MlflowChart
+        from mlflow_widgets import MlflowChart
 
         with mlflow.start_run() as run:
             for step in range(100):

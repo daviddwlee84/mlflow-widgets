@@ -43,12 +43,17 @@ dev = [
     "ruff>=0.11",
     "taskipy>=1.14",
 ]
+docs = [
+    "mkdocs-material",
+    "mkdocstrings[python]",
+]
 
 [project.urls]
 Homepage = "https://github.com/daviddwlee84/mlflow-widgets"
 Repository = "https://github.com/daviddwlee84/mlflow-widgets"
 Issues = "https://github.com/daviddwlee84/mlflow-widgets/issues"
 Changelog = "https://github.com/daviddwlee84/mlflow-widgets/blob/main/CHANGELOG.md"
+Documentation = "https://daviddwlee84.github.io/mlflow-widgets/"
 
 [build-system]
 requires = ["hatchling"]
@@ -71,8 +76,10 @@ publish-test = { cmd = "task build-check && uv publish --publish-url https://tes
 publish = { cmd = "task build-check && uv publish", help = "Publish to PyPI" }
 demo = { cmd = "marimo edit examples/demo.py", help = "Run demo notebook" }
 demo-all = { cmd = "marimo edit --watch .", help = "Run all demos with hot-reload" }
-clean = { cmd = "rm -rf dist/ build/ *.egg-info src/*.egg-info", help = "Remove build artifacts" }
+clean = { cmd = "rm -rf dist/ build/ *.egg-info src/*.egg-info site/", help = "Remove build artifacts" }
 version = { cmd = "uv version", help = "Show current version" }
+docs = { cmd = "mkdocs serve", help = "Serve docs locally" }
+docs-build = { cmd = "mkdocs build --strict", help = "Build docs" }
 
 # -- Ruff --------------------------------------------------------------------
 

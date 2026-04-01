@@ -36,6 +36,15 @@ examples/
   nested_demo.py           # Marimo: parent/child nested runs
   parallel_demo.py         # Marimo: parallel coordinates chart
   combo_demo.py            # Marimo: selector -> mo.ui.table -> MlflowChart flow
+docs/                      # MkDocs documentation source
+  index.md                 # Home page
+  installation.md          # Installation guide
+  getting-started.md       # Quick start guide
+  widgets/                 # Widget guide pages
+  reference/               # API reference (mkdocstrings auto-generated)
+  examples.md              # Demo notebook overview
+  changelog.md             # Includes CHANGELOG.md via snippet
+mkdocs.yml                 # MkDocs configuration
 notes/                     # Developer learning notes and cheatsheets
   publishing-to-pypi.md    # PyPI publishing workflow, Trusted Publishing, PEP 639
   ci-cd-trigger-cheatsheet.md  # What triggers CI vs publish
@@ -65,6 +74,8 @@ uv run task build-check   # Build + twine check
 uv run task demo          # Run demo notebook
 uv run task demo-all      # Run all demos with hot-reload
 uv run task clean         # Remove build artifacts
+uv run task docs          # Serve docs locally (mkdocs serve)
+uv run task docs-build    # Build docs (mkdocs build --strict)
 
 # Run a demo (requires mlflow server running)
 mlflow server --port 5000 &
@@ -113,7 +124,11 @@ Runs on Python 3.10, 3.11, 3.12, 3.13 matrix:
 
 Both use **Trusted Publishing (OIDC)** — no stored API tokens. See `notes/ci-cd-trigger-cheatsheet.md` for details.
 
-**Regular `git push` to main does NOT trigger publishing** — only CI tests.
+### docs.yml — documentation deployment
+
+Triggers on push to `main` (or manual `workflow_dispatch`). Builds MkDocs and deploys to GitHub Pages using `actions/deploy-pages`.
+
+**Regular `git push` to main does NOT trigger publishing** — only CI tests and docs deployment.
 
 ## Release process
 
@@ -143,4 +158,5 @@ git tag v0.x.y && git push origin v0.x.y   # triggers publish.yml → PyPI
 5. Export from `__init__.py` and add to `__all__`
 6. Add tests in `tests/`
 7. Add a Marimo demo in `examples/`
-8. Update `CHANGELOG.md`, `README.md`, and this file
+8. Add a docs page in `docs/widgets/` and API reference page in `docs/reference/`
+9. Update `CHANGELOG.md`, `README.md`, and this file
