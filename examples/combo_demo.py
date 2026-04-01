@@ -11,7 +11,7 @@
 
 import marimo
 
-__generated_with = "0.10.0"
+__generated_with = "0.22.0"
 app = marimo.App(width="medium")
 
 
@@ -92,9 +92,11 @@ def _(TRACKING_URI):
 
 
 @app.cell
-def _(TRACKING_URI, experiment_id, mo):
-    mo.md("## Select Runs")
-    return ()
+def _(mo):
+    mo.md("""
+    ## Select Runs
+    """)
+    return
 
 
 @app.cell
@@ -109,7 +111,7 @@ def _(TRACKING_URI, experiment_id, mo):
 
     run_table = mo.ui.table(runs_df, selection="multi", label="Select runs to chart")
     run_table
-    return runs_df, run_table, selector
+    return (run_table,)
 
 
 @app.cell
@@ -129,8 +131,10 @@ def _(mo, run_table):
 
 @app.cell
 def _(mo):
-    mo.md("## Loss")
-    return ()
+    mo.md("""
+    ## Loss
+    """)
+    return
 
 
 @app.cell
@@ -148,13 +152,15 @@ def _(TRACKING_URI, mo, selected_ids):
     )
 
     mo.ui.anywidget(loss_chart)
-    return (loss_chart,)
+    return
 
 
 @app.cell
 def _(mo):
-    mo.md("## Accuracy")
-    return ()
+    mo.md("""
+    ## Accuracy
+    """)
+    return
 
 
 @app.cell
@@ -172,7 +178,7 @@ def _(TRACKING_URI, mo, selected_ids):
     )
 
     mo.ui.anywidget(acc_chart)
-    return (acc_chart,)
+    return
 
 
 if __name__ == "__main__":
