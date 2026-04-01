@@ -5,7 +5,6 @@
 #     "mlflow>=2.0",
 #     "mlflow-chart",
 #     "anywidget>=0.9.2",
-#     "numpy",
 # ]
 # ///
 
@@ -36,6 +35,16 @@ def _():
 
 @app.cell
 def _(mo):
+    import os
+
+    TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI", "http://localhost:5000")
+
+    mo.md(f"Using MLflow tracking URI: `{TRACKING_URI}`")
+    return (TRACKING_URI,)
+
+
+@app.cell
+def _(TRACKING_URI, mo):
     mo.md(
         """
         ## Step 1: Generate Mock Experiments
@@ -49,7 +58,7 @@ def _(mo):
 
 
 @app.cell
-def _():
+def _(TRACKING_URI):
     import math
     import random
 
@@ -58,7 +67,7 @@ def _():
     EXPERIMENT_NAME = "mlflow-chart-demo"
     NUM_STEPS = 200
 
-    mlflow.set_tracking_uri("http://localhost:5000")
+    mlflow.set_tracking_uri(TRACKING_URI)
 
     experiment = mlflow.set_experiment(EXPERIMENT_NAME)
     experiment_id = experiment.experiment_id
@@ -110,11 +119,11 @@ def _(mo):
 
 
 @app.cell
-def _(experiment_id, mo):
+def _(TRACKING_URI, experiment_id, mo):
     from mlflow_chart import MlflowChart
 
     loss_chart = MlflowChart(
-        tracking_uri="http://localhost:5000",
+        tracking_uri=TRACKING_URI,
         experiment_id=experiment_id,
         metric_key="loss",
         poll_seconds=None,
@@ -128,11 +137,11 @@ def _(experiment_id, mo):
 
 
 @app.cell
-def _(experiment_id, mo):
+def _(TRACKING_URI, experiment_id, mo):
     from mlflow_chart import MlflowChart as _MlflowChart
 
     acc_chart = _MlflowChart(
-        tracking_uri="http://localhost:5000",
+        tracking_uri=TRACKING_URI,
         experiment_id=experiment_id,
         metric_key="accuracy",
         poll_seconds=None,
@@ -158,11 +167,11 @@ def _(mo):
 
 
 @app.cell
-def _(mo, run_ids):
+def _(TRACKING_URI, mo, run_ids):
     from mlflow_chart import MlflowChart as _MC
 
     single_chart = _MC(
-        tracking_uri="http://localhost:5000",
+        tracking_uri=TRACKING_URI,
         runs=[run_ids[0]],
         metric_key="loss",
         poll_seconds=None,
