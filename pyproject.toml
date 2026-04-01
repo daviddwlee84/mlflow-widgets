@@ -25,7 +25,7 @@ classifiers = [
 ]
 dependencies = [
     "anywidget>=0.9.2",
-    "traitlets",
+    "traitlets>=5.14",
 ]
 
 [project.optional-dependencies]
@@ -44,10 +44,10 @@ dev = [
     "taskipy>=1.14",
 ]
 docs = [
-    "mkdocs-material",
-    "mkdocstrings[python]",
-    "mkdocs-llmstxt",
-    "mkdocs-copy-to-llm",
+    "mkdocs-material>=9.0",
+    "mkdocstrings[python]>=1.0",
+    "mkdocs-llmstxt>=0.5",
+    "mkdocs-copy-to-llm>=0.2",
 ]
 
 [project.urls]
