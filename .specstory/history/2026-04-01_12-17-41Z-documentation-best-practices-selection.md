@@ -468,7 +468,20 @@ _**Agent (claude-4.6-opus-high-thinking)**_
 
 <details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/pyproject.toml</summary>
 
-Status: **loading**
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/pyproject.toml</summary>
 
 </details>
 
@@ -478,3 +491,1439 @@ Status: **loading**
 <summary>Tool use: **edit_file_v2**</summary>
 
 </details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/pyproject.toml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add docs dependencies to pyproject.toml (mkdocs-material, mkdocstrings[python]) and taskipy tasks (docs, docs-build)",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Create mkdocs.yml with Material theme, mkdocstrings plugin, nav structure, repo links",
+      "id": "mkdocs-yml",
+      "status": "in_progress"
+    },
+    {
+      "content": "Create docs/ directory with all markdown pages: index, installation, getting-started, widgets/*, examples, reference/*, changelog",
+      "id": "docs-content",
+      "status": "pending"
+    },
+    {
+      "content": "Fix MlflowChart docstring copy-paste error (mlflow_chart -\u003e mlflow_widgets)",
+      "id": "fix-docstring",
+      "status": "pending"
+    },
+    {
+      "content": "Create .github/workflows/docs.yml for GitHub Pages deployment on push to main",
+      "id": "gh-workflow",
+      "status": "pending"
+    },
+    {
+      "content": "Update README.md (docs link/badge), CHANGELOG.md (unreleased entry), AGENTS.md (source layout + tasks)",
+      "id": "update-meta",
+      "status": "pending"
+    },
+    {
+      "content": "Run mkdocs build --strict and mkdocs serve to verify everything works",
+      "id": "verify",
+      "status": "pending"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add docs dependencies to pyproject.toml (mkdocs-material, mkdocstrings[python]) and taskipy tasks (docs, docs-build)",
+      "id": "deps",
+      "status": "in_progress"
+    },
+    {
+      "content": "Create mkdocs.yml with Material theme, mkdocstrings plugin, nav structure, repo links",
+      "id": "mkdocs-yml",
+      "status": "pending"
+    },
+    {
+      "content": "Create docs/ directory with all markdown pages: index, installation, getting-started, widgets/*, examples, reference/*, changelog",
+      "id": "docs-content",
+      "status": "pending"
+    },
+    {
+      "content": "Fix MlflowChart docstring copy-paste error (mlflow_chart -\u003e mlflow_widgets)",
+      "id": "fix-docstring",
+      "status": "pending"
+    },
+    {
+      "content": "Create .github/workflows/docs.yml for GitHub Pages deployment on push to main",
+      "id": "gh-workflow",
+      "status": "pending"
+    },
+    {
+      "content": "Update README.md (docs link/badge), CHANGELOG.md (unreleased entry), AGENTS.md (source layout + tasks)",
+      "id": "update-meta",
+      "status": "pending"
+    },
+    {
+      "content": "Run mkdocs build --strict and mkdocs serve to verify everything works",
+      "id": "verify",
+      "status": "pending"
+    }
+  ],
+  "success": true,
+  "wasMerge": true
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Now let me create the `mkdocs.yml` and all docs content files in parallel.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/mkdocs.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/index.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/installation.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/getting-started.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/widgets/chart.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/widgets/table.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/widgets/parallel.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/widgets/selector.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/examples.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/reference/index.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/reference/chart.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/reference/table.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/reference/parallel.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/reference/selector.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/changelog.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add docs dependencies to pyproject.toml (mkdocs-material, mkdocstrings[python]) and taskipy tasks (docs, docs-build)",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Create mkdocs.yml with Material theme, mkdocstrings plugin, nav structure, repo links",
+      "id": "mkdocs-yml",
+      "status": "completed"
+    },
+    {
+      "content": "Create docs/ directory with all markdown pages: index, installation, getting-started, widgets/*, examples, reference/*, changelog",
+      "id": "docs-content",
+      "status": "completed"
+    },
+    {
+      "content": "Fix MlflowChart docstring copy-paste error (mlflow_chart -\u003e mlflow_widgets)",
+      "id": "fix-docstring",
+      "status": "in_progress"
+    },
+    {
+      "content": "Create .github/workflows/docs.yml for GitHub Pages deployment on push to main",
+      "id": "gh-workflow",
+      "status": "pending"
+    },
+    {
+      "content": "Update README.md (docs link/badge), CHANGELOG.md (unreleased entry), AGENTS.md (source layout + tasks)",
+      "id": "update-meta",
+      "status": "pending"
+    },
+    {
+      "content": "Run mkdocs build --strict and mkdocs serve to verify everything works",
+      "id": "verify",
+      "status": "pending"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add docs dependencies to pyproject.toml (mkdocs-material, mkdocstrings[python]) and taskipy tasks (docs, docs-build)",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Create mkdocs.yml with Material theme, mkdocstrings plugin, nav structure, repo links",
+      "id": "mkdocs-yml",
+      "status": "in_progress"
+    },
+    {
+      "content": "Create docs/ directory with all markdown pages: index, installation, getting-started, widgets/*, examples, reference/*, changelog",
+      "id": "docs-content",
+      "status": "pending"
+    },
+    {
+      "content": "Fix MlflowChart docstring copy-paste error (mlflow_chart -\u003e mlflow_widgets)",
+      "id": "fix-docstring",
+      "status": "pending"
+    },
+    {
+      "content": "Create .github/workflows/docs.yml for GitHub Pages deployment on push to main",
+      "id": "gh-workflow",
+      "status": "pending"
+    },
+    {
+      "content": "Update README.md (docs link/badge), CHANGELOG.md (unreleased entry), AGENTS.md (source layout + tasks)",
+      "id": "update-meta",
+      "status": "pending"
+    },
+    {
+      "content": "Run mkdocs build --strict and mkdocs serve to verify everything works",
+      "id": "verify",
+      "status": "pending"
+    }
+  ],
+  "success": true,
+  "wasMerge": true
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Now fix the docstring and create the GitHub workflow.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/src/mlflow_widgets/chart.py</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/.github/workflows/docs.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add docs dependencies to pyproject.toml (mkdocs-material, mkdocstrings[python]) and taskipy tasks (docs, docs-build)",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Create mkdocs.yml with Material theme, mkdocstrings plugin, nav structure, repo links",
+      "id": "mkdocs-yml",
+      "status": "completed"
+    },
+    {
+      "content": "Create docs/ directory with all markdown pages: index, installation, getting-started, widgets/*, examples, reference/*, changelog",
+      "id": "docs-content",
+      "status": "completed"
+    },
+    {
+      "content": "Fix MlflowChart docstring copy-paste error (mlflow_chart -\u003e mlflow_widgets)",
+      "id": "fix-docstring",
+      "status": "completed"
+    },
+    {
+      "content": "Create .github/workflows/docs.yml for GitHub Pages deployment on push to main",
+      "id": "gh-workflow",
+      "status": "completed"
+    },
+    {
+      "content": "Update README.md (docs link/badge), CHANGELOG.md (unreleased entry), AGENTS.md (source layout + tasks)",
+      "id": "update-meta",
+      "status": "in_progress"
+    },
+    {
+      "content": "Run mkdocs build --strict and mkdocs serve to verify everything works",
+      "id": "verify",
+      "status": "pending"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add docs dependencies to pyproject.toml (mkdocs-material, mkdocstrings[python]) and taskipy tasks (docs, docs-build)",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Create mkdocs.yml with Material theme, mkdocstrings plugin, nav structure, repo links",
+      "id": "mkdocs-yml",
+      "status": "completed"
+    },
+    {
+      "content": "Create docs/ directory with all markdown pages: index, installation, getting-started, widgets/*, examples, reference/*, changelog",
+      "id": "docs-content",
+      "status": "completed"
+    },
+    {
+      "content": "Fix MlflowChart docstring copy-paste error (mlflow_chart -\u003e mlflow_widgets)",
+      "id": "fix-docstring",
+      "status": "in_progress"
+    },
+    {
+      "content": "Create .github/workflows/docs.yml for GitHub Pages deployment on push to main",
+      "id": "gh-workflow",
+      "status": "pending"
+    },
+    {
+      "content": "Update README.md (docs link/badge), CHANGELOG.md (unreleased entry), AGENTS.md (source layout + tasks)",
+      "id": "update-meta",
+      "status": "pending"
+    },
+    {
+      "content": "Run mkdocs build --strict and mkdocs serve to verify everything works",
+      "id": "verify",
+      "status": "pending"
+    }
+  ],
+  "success": true,
+  "wasMerge": true
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Now update README.md, CHANGELOG.md, and AGENTS.md.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/README.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/CHANGELOG.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/AGENTS.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/CHANGELOG.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/AGENTS.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/AGENTS.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/AGENTS.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/AGENTS.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add docs dependencies to pyproject.toml (mkdocs-material, mkdocstrings[python]) and taskipy tasks (docs, docs-build)",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Create mkdocs.yml with Material theme, mkdocstrings plugin, nav structure, repo links",
+      "id": "mkdocs-yml",
+      "status": "completed"
+    },
+    {
+      "content": "Create docs/ directory with all markdown pages: index, installation, getting-started, widgets/*, examples, reference/*, changelog",
+      "id": "docs-content",
+      "status": "completed"
+    },
+    {
+      "content": "Fix MlflowChart docstring copy-paste error (mlflow_chart -\u003e mlflow_widgets)",
+      "id": "fix-docstring",
+      "status": "completed"
+    },
+    {
+      "content": "Create .github/workflows/docs.yml for GitHub Pages deployment on push to main",
+      "id": "gh-workflow",
+      "status": "completed"
+    },
+    {
+      "content": "Update README.md (docs link/badge), CHANGELOG.md (unreleased entry), AGENTS.md (source layout + tasks)",
+      "id": "update-meta",
+      "status": "completed"
+    },
+    {
+      "content": "Run mkdocs build --strict and mkdocs serve to verify everything works",
+      "id": "verify",
+      "status": "in_progress"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add docs dependencies to pyproject.toml (mkdocs-material, mkdocstrings[python]) and taskipy tasks (docs, docs-build)",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Create mkdocs.yml with Material theme, mkdocstrings plugin, nav structure, repo links",
+      "id": "mkdocs-yml",
+      "status": "completed"
+    },
+    {
+      "content": "Create docs/ directory with all markdown pages: index, installation, getting-started, widgets/*, examples, reference/*, changelog",
+      "id": "docs-content",
+      "status": "completed"
+    },
+    {
+      "content": "Fix MlflowChart docstring copy-paste error (mlflow_chart -\u003e mlflow_widgets)",
+      "id": "fix-docstring",
+      "status": "completed"
+    },
+    {
+      "content": "Create .github/workflows/docs.yml for GitHub Pages deployment on push to main",
+      "id": "gh-workflow",
+      "status": "completed"
+    },
+    {
+      "content": "Update README.md (docs link/badge), CHANGELOG.md (unreleased entry), AGENTS.md (source layout + tasks)",
+      "id": "update-meta",
+      "status": "in_progress"
+    },
+    {
+      "content": "Run mkdocs build --strict and mkdocs serve to verify everything works",
+      "id": "verify",
+      "status": "pending"
+    }
+  ],
+  "success": true,
+  "wasMerge": true
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Now let me install the docs dependencies and run the build.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && uv sync --extra docs --extra dev 2>&1</summary>
+
+```bash
+cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && uv sync --extra docs --extra dev 2>&1
+```
+
+```
+Resolved 168 packages in 7.70s
+   Building mlflow-widgets @ file:///Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff
+Downloading babel (9.7MiB)
+Downloading mkdocs-material (8.9MiB)
+Downloading mkdocs (3.7MiB)
+      Built mlflow-widgets @ file:///Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff
+ Downloaded mkdocs
+ Downloaded mkdocs-material
+ Downloaded babel
+Prepared 17 packages in 10.82s
+Uninstalled 75 packages in 1.32s
+Installed 18 packages in 180ms
+ - alembic==1.18.4
+ - annotated-doc==0.0.4
+ - annotated-types==0.7.0
+ - anyio==4.13.0
+ + babel==2.18.0
+ + backrefs==6.2
+ - blinker==1.9.0
+ - cachetools==7.0.5
+ - cffi==2.0.0
+ - cloudpickle==3.1.2
+ - contourpy==1.3.3
+ - cryptography==46.0.6
+ - cycler==0.12.1
+ - databricks-sdk==0.102.0
+ - docker==7.1.0
+ - fastapi==0.135.2
+ - flask==3.1.3
+ - flask-cors==6.0.2
+ - fonttools==4.62.1
+ + ghp-import==2.1.0
+ - gitdb==4.0.12
+ - gitpython==3.1.46
+ - google-auth==2.49.1
+ - graphene==3.4.3
+ - graphql-core==3.2.8
+ - graphql-relay==3.2.0
+ + griffelib==2.0.2
+ - gunicorn==25.3.0
+ - h11==0.16.0
+ - huey==2.6.0
+ - importlib-metadata==8.7.1
+ - itsdangerous==2.2.0
+ - joblib==1.5.3
+ - kiwisolver==1.5.0
+ - loro==1.10.3
+ - mako==1.3.10
+ - marimo==0.22.0
+ - matplotlib==3.10.8
+ + mergedeep==1.3.4
+ + mkdocs==1.6.1
+ + mkdocs-autorefs==1.4.4
+ + mkdocs-get-deps==0.2.2
+ + mkdocs-material==9.7.6
+ + mkdocs-material-extensions==1.3.1
+ + mkdocstrings==1.0.3
+ + mkdocstrings-python==2.0.3
+ - mlflow==3.10.1
+ - mlflow-skinny==3.10.1
+ - mlflow-tracing==3.10.1
+ ~ mlflow-widgets==0.1.0 (from file:///Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff)
+ - msgspec==0.20.0
+ - narwhals==2.18.1
+ - numpy==2.4.4
+ - opentelemetry-api==1.40.0
+ - opentelemetry-proto==1.40.0
+ - opentelemetry-sdk==1.40.0
+ - opentelemetry-semantic-conventions==0.61b0
+ + paginate==0.5.7
+ - pandas==2.3.3
+ + pathspec==1.0.4
+ - pillow==12.1.1
+ + platformdirs==4.9.4
+ - prettytable==3.17.0
+ - protobuf==6.33.6
+ - pyarrow==23.0.1
+ - pyasn1==0.6.3
+ - pyasn1-modules==0.4.2
+ - pycparser==3.0
+ - pydantic==2.12.5
+ - pydantic-core==2.41.5
+ - pyparsing==3.3.2
+ - python-dotenv==1.2.2
+ - python-socks==2.8.1
+ - pytz==2026.1.post1
+ + pyyaml-env-tag==1.1
+ - pyzmq==27.1.0
+ - scikit-learn==1.8.0
+ - scipy==1.17.1
+ - skops==0.13.0
+ - smmap==5.0.3
+ - sqlalchemy==2.0.48
+ - sqlparse==0.5.5
+ - starlette==1.0.0
+ - threadpoolctl==3.6.0
+ - tomlkit==0.14.0
+ - typing-inspection==0.4.2
+ - tzdata==2025.3
+ - uvicorn==0.42.0
+ + watchdog==6.0.0
+ - websockets==16.0
+ - werkzeug==3.1.7
+ - zipp==3.23.0
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Good, dependencies installed. Now let me build the docs.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && uv run mkdocs build --strict 2>&1</summary>
+
+```bash
+cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && uv run mkdocs build --strict 2>&1
+```
+
+```
+
+[31m │  ⚠  Warning from the Material for MkDocs team[0m
+[31m │[0m
+[31m │[0m  MkDocs 2.0, the underlying framework of Material for MkDocs,
+[31m │[0m  will introduce backward-incompatible changes, including:
+[31m │[0m
+[31m │  × [0mAll plugins will stop working – the plugin system has been removed
+[31m │  × [0mAll theme overrides will break – the theming system has been rewritten
+[31m │  × [0mNo migration path exists – existing projects cannot be upgraded
+[31m │  × [0mClosed contribution model – community members can't report bugs
+[31m │  × [0mCurrently unlicensed – unsuitable for production use
+[31m │[0m
+[31m │[0m  Our full analysis:
+[31m │[0m
+[31m │[0m  [4mhttps://squidfunk.github.io/mkdocs-material/blog/2026/02/18/mkdocs-2.0/[0m
+[0m
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/site
+INFO    -  Documentation built in 0.60 seconds
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<think><details><summary>Thought Process</summary>
+The build succeeded with exit code 0. There were no errors or warnings from the build itself (only an informational notice from Material for MkDocs about MkDocs 2.0 future changes, which is fine).
+
+Let me verify the site directory contents and then do a quick serve test.</details></think>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Build succeeded with zero warnings/errors. Let me verify the output structure and check the generated site.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && find site -name "*.html" | sort</summary>
+
+```bash
+cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && find site -name "*.html" | sort
+```
+
+```
+site/404.html
+site/changelog/index.html
+site/examples/index.html
+site/getting-started/index.html
+site/index.html
+site/installation/index.html
+site/reference/chart/index.html
+site/reference/index.html
+site/reference/parallel/index.html
+site/reference/selector/index.html
+site/reference/table/index.html
+site/widgets/chart/index.html
+site/widgets/parallel/index.html
+site/widgets/selector/index.html
+site/widgets/table/index.html
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+All 15 HTML pages generated correctly. Let me also verify the API reference pages actually contain the auto-generated content from docstrings.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && rg 'tracking_uri' site/reference/chart/index.html | head -5</summary>
+
+```bash
+cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && rg 'tracking_uri' site/reference/chart/index.html | head -5
+```
+
+```
+&lt;a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"&gt;&lt;/a&gt;    &lt;span class="n"&gt;tracking_uri&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"&gt;&lt;/a&gt;        &lt;span class="n"&gt;tracking_uri&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;http://localhost:5000&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;code&gt;tracking_uri&lt;/code&gt;
+&lt;a id="__codelineno-0-153" name="__codelineno-0-153"&gt;&lt;/a&gt;    &lt;span class="n"&gt;tracking_uri&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a id="__codelineno-0-169" name="__codelineno-0-169"&gt;&lt;/a&gt;&lt;span class="sd"&gt;        tracking_uri: MLflow tracking server URI. Defaults to&lt;/span&gt;
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+The API reference pages contain the auto-generated parameter documentation from docstrings. Let me also verify the changelog snippet inclusion works and do a quick search index check.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && rg 'MlflowChart' site/search/search_index.json | head -3</summary>
+
+```bash
+cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && rg 'MlflowChart' site/search/search_index.json | head -3
+```
+
+```
+{"config":{"lang":["en"],"separator":"[\\s\\-]+","pipeline":["stopWordFilter"],"fields":{"title":{"boost":1000.0},"text":{"boost":1.0},"tags":{"boost":1000000.0}}},"docs":[{"location":"","title":"mlflow-widgets","text":"&lt;p&gt;Anywidget-based notebook widgets for MLflow experiment visualization.&lt;/p&gt; &lt;p&gt;Inspired by wigglystuff's &lt;code&gt;WandbChart&lt;/code&gt;, but built for MLflow.&lt;/p&gt;"},{"location":"#overview","title":"Overview","text":"&lt;p&gt;mlflow-widgets provides interactive, live-updating widgets that work in Jupyter, Marimo, and any notebook environment that supports anywidget.&lt;/p&gt; Widget Description MlflowChart Live-updating canvas line chart for MLflow metrics MlflowRunTable Sortable HTML table of experiment runs with nested run tree MlflowParallelCoordinates Parallel coordinates chart for hyperparameter comparison MlflowRunSelector Pure Python helper returning pandas DataFrames for run selection"},{"location":"#key-features","title":"Key features","text":"&lt;ul&gt; &lt;li&gt;Live-updating canvas-based line chart with multiple x-axis modes (step, wall time, relative time)&lt;/li&gt; &lt;li&gt;Interactive clickable legend with per-series toggle and nested run grouping&lt;/li&gt; &lt;li&gt;Experiment run table with sortable columns and nested run tree view&lt;/li&gt; &lt;li&gt;Parallel coordinates chart with parameter/metric filtering and multiple color modes&lt;/li&gt; &lt;li&gt;Smoothing controls: rolling mean, exponential moving average, gaussian&lt;/li&gt; &lt;li&gt;Hover tooltips with exact values&lt;/li&gt; &lt;li&gt;Auto-polling with configurable interval&lt;/li&gt; &lt;li&gt;Works in Jupyter, Marimo, and any notebook that supports anywidget&lt;/li&gt; &lt;/ul&gt;"},{"location":"#quick-example","title":"Quick example","text":"&lt;pre&gt;&lt;code&gt;from mlflow_widgets import MlflowChart\n\nchart = MlflowChart(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n    metric_key=\"loss\",\n)\nchart\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"#links","title":"Links","text":"&lt;ul&gt; &lt;li&gt;PyPI&lt;/li&gt; &lt;li&gt;GitHub&lt;/li&gt; &lt;li&gt;Changelog&lt;/li&gt; &lt;/ul&gt;"},{"location":"changelog/","title":"Changelog","text":"&lt;p&gt;All notable changes to this project will be documented in this file.&lt;/p&gt; &lt;p&gt;The format is based on Keep a Changelog, and this project adheres to Semantic Versioning.&lt;/p&gt;"},{"location":"changelog/#unreleased","title":"Unreleased","text":""},{"location":"changelog/#added","title":"Added","text":"&lt;ul&gt; &lt;li&gt;Documentation site with MkDocs Material + mkdocstrings, deployed to GitHub Pages&lt;/li&gt; &lt;li&gt;&lt;code&gt;docs&lt;/code&gt; optional dependency group (&lt;code&gt;mkdocs-material&lt;/code&gt;, &lt;code&gt;mkdocstrings[python]&lt;/code&gt;)&lt;/li&gt; &lt;li&gt;&lt;code&gt;docs&lt;/code&gt; and &lt;code&gt;docs-build&lt;/code&gt; taskipy tasks&lt;/li&gt; &lt;li&gt;GitHub Actions workflow for automatic docs deployment on push to main&lt;/li&gt; &lt;/ul&gt;"},{"location":"changelog/#fixed","title":"Fixed","text":"&lt;ul&gt; &lt;li&gt;Incorrect import in &lt;code&gt;MlflowChart&lt;/code&gt; docstring example (&lt;code&gt;mlflow_chart&lt;/code&gt; -&amp;gt; &lt;code&gt;mlflow_widgets&lt;/code&gt;)&lt;/li&gt; &lt;/ul&gt;"},{"location":"changelog/#010-2026-04-01","title":"0.1.0 - 2026-04-01","text":"&lt;p&gt;First public release on PyPI.&lt;/p&gt;"},{"location":"changelog/#added_1","title":"Added","text":"&lt;ul&gt; &lt;li&gt;MlflowChart -- live-updating canvas-based line chart for MLflow metrics&lt;/li&gt; &lt;li&gt;Multiple run comparison with color-coded lines&lt;/li&gt; &lt;li&gt;X-axis modes: step, wall time, relative time&lt;/li&gt; &lt;li&gt;Smoothing: rolling mean, exponential moving average, gaussian&lt;/li&gt; &lt;li&gt;Interactive clickable legend with per-series toggle&lt;/li&gt; &lt;li&gt;Hover tooltips with exact values&lt;/li&gt; &lt;li&gt;Auto-polling with configurable interval&lt;/li&gt; &lt;li&gt;MlflowRunTable -- sortable HTML table showing experiment runs&lt;/li&gt; &lt;li&gt;Columns: run name, status, start time, duration, params, metrics&lt;/li&gt; &lt;li&gt;Nested run tree view (parent/child collapsible groups)&lt;/li&gt; &lt;li&gt;Status badges with color coding&lt;/li&gt; &lt;li&gt;Auto-polling support&lt;/li&gt; &lt;li&gt;MlflowParallelCoordinates -- parallel coordinates chart for hyperparameter comparison&lt;/li&gt; &lt;li&gt;Each axis is a parameter or metric; each polyline is a run&lt;/li&gt; &lt;li&gt;Color modes: by status, per run, by parameter value, by metric gradient&lt;/li&gt; &lt;li&gt;Status filtering checkboxes&lt;/li&gt; &lt;li&gt;Parameter/metric key filtering&lt;/li&gt; &lt;li&gt;MlflowRunSelector -- pure Python helper returning pandas DataFrames&lt;/li&gt; &lt;li&gt;Works with &lt;code&gt;marimo.ui.table&lt;/code&gt; for interactive run selection&lt;/li&gt; &lt;li&gt;&lt;code&gt;get_run_ids()&lt;/code&gt; static method extracts IDs from DataFrame or list&lt;/li&gt; &lt;li&gt;Hybrid architecture: Python fetches data (MlflowClient or REST fallback), JS renders&lt;/li&gt; &lt;li&gt;Works in Jupyter, Marimo, and any notebook supporting anywidget&lt;/li&gt; &lt;li&gt;&lt;code&gt;py.typed&lt;/code&gt; marker for type checker support&lt;/li&gt; &lt;li&gt;6 Marimo demo notebooks in &lt;code&gt;examples/&lt;/code&gt;&lt;/li&gt; &lt;li&gt;CI with GitHub Actions (Python 3.10-3.13 matrix)&lt;/li&gt; &lt;li&gt;Automated publishing via Trusted Publishing (OIDC)&lt;/li&gt; &lt;/ul&gt;"},{"location":"examples/","title":"Examples","text":"&lt;p&gt;mlflow-widgets ships with several Marimo notebook demos in the &lt;code&gt;examples/&lt;/code&gt; directory. Each file is a self-contained Marimo notebook with inline dependency metadata.&lt;/p&gt;"},{"location":"examples/#running-the-demos","title":"Running the demos","text":"&lt;pre&gt;&lt;code&gt;# Install demo dependencies\npip install mlflow-widgets[demo]\n\n# Start an MLflow server\nmlflow server --port 5000 &amp;amp;\n\n# Run a specific demo\nMLFLOW_TRACKING_URI=http://localhost:5000 marimo edit examples/demo.py\n\n# Run all demos with hot-reload\nMLFLOW_TRACKING_URI=http://localhost:5000 marimo edit --watch .\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"examples/#available-demos","title":"Available demos","text":""},{"location":"examples/#demopy-mock-experiments-chart","title":"demo.py -- Mock experiments + chart","text":"&lt;p&gt;Generates mock training runs with random metrics, then visualizes them with &lt;code&gt;MlflowChart&lt;/code&gt;. A good starting point to see the chart in action.&lt;/p&gt;"},{"location":"examples/#live_trackingpy-live-tracking","title":"live_tracking.py -- Live tracking","text":"&lt;p&gt;Tracks an experiment on-the-fly and shows live chart updates as metrics are logged. Demonstrates the auto-polling feature.&lt;/p&gt;"},{"location":"examples/#table_demopy-run-table","title":"table_demo.py -- Run table","text":"&lt;p&gt;Displays all runs in an experiment using &lt;code&gt;MlflowRunTable&lt;/code&gt; with sortable columns, status badges, and parameter/metric columns.&lt;/p&gt;"},{"location":"examples/#nested_demopy-nested-runs","title":"nested_demo.py -- Nested runs","text":"&lt;p&gt;Creates parent/child nested runs and displays them in &lt;code&gt;MlflowRunTable&lt;/code&gt;'s tree view with collapsible groups.&lt;/p&gt;"},{"location":"examples/#parallel_demopy-parallel-coordinates","title":"parallel_demo.py -- Parallel coordinates","text":"&lt;p&gt;Shows a parallel coordinates chart with status filtering. Each axis represents a hyperparameter or metric.&lt;/p&gt;"},{"location":"examples/#combo_demopy-selector-table-chart","title":"combo_demo.py -- Selector + table + chart","text":"&lt;p&gt;End-to-end workflow: &lt;code&gt;MlflowRunSelector&lt;/code&gt; produces a DataFrame, &lt;code&gt;mo.ui.table&lt;/code&gt; enables checkbox selection, and &lt;code&gt;MlflowChart&lt;/code&gt; visualizes the selected runs. Demonstrates how the components compose together.&lt;/p&gt;"},{"location":"getting-started/","title":"Getting Started","text":"&lt;p&gt;This guide walks you through setting up MLflow and creating your first widget.&lt;/p&gt;"},{"location":"getting-started/#prerequisites","title":"Prerequisites","text":"&lt;ol&gt; &lt;li&gt; &lt;p&gt;Install mlflow-widgets with MLflow:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;pip install mlflow-widgets[mlflow]\n&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; &lt;li&gt; &lt;p&gt;Start an MLflow tracking server:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;mlflow server --port 5000\n&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; &lt;/ol&gt;"},{"location":"getting-started/#create-some-runs","title":"Create some runs","text":"&lt;p&gt;Log a few training runs so there's data to visualize:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;import mlflow\n\nmlflow.set_tracking_uri(\"http://localhost:5000\")\nmlflow.set_experiment(\"my-experiment\")\n\nfor trial in range(3):\n    with mlflow.start_run(run_name=f\"trial-{trial}\"):\n        mlflow.log_param(\"lr\", 0.01 * (trial + 1))\n        for step in range(50):\n            mlflow.log_metric(\"loss\", 1.0 / (step + 1 + trial), step=step)\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"getting-started/#visualize-with-mlflowchart","title":"Visualize with MlflowChart","text":"&lt;pre&gt;&lt;code&gt;from mlflow_widgets import MlflowChart\n\nchart = MlflowChart(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n    metric_key=\"loss\",\n)\nchart\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;The chart will auto-poll every 5 seconds by default. Pass &lt;code&gt;poll_seconds=None&lt;/code&gt; to disable auto-polling and show a manual refresh button instead.&lt;/p&gt;"},{"location":"getting-started/#browse-runs-with-mlflowruntable","title":"Browse runs with MlflowRunTable","text":"&lt;pre&gt;&lt;code&gt;from mlflow_widgets import MlflowRunTable\n\ntable = MlflowRunTable(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n)\ntable\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"getting-started/#usage-with-marimo","title":"Usage with Marimo","text":"&lt;p&gt;Wrap any widget with &lt;code&gt;mo.ui.anywidget()&lt;/code&gt; to use it in a Marimo notebook:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;import marimo as mo\nfrom mlflow_widgets import MlflowChart\n\nchart = MlflowChart(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n    metric_key=\"loss\",\n)\nwidget = mo.ui.anywidget(chart)\nwidget\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"getting-started/#next-steps","title":"Next steps","text":"&lt;ul&gt; &lt;li&gt;Learn about each widget in the Widgets section&lt;/li&gt; &lt;li&gt;Browse the Examples for complete Marimo notebook demos&lt;/li&gt; &lt;li&gt;See the full API Reference for all parameters and methods&lt;/li&gt; &lt;/ul&gt;"},{"location":"installation/","title":"Installation","text":""},{"location":"installation/#from-pypi","title":"From PyPI","text":"pipuv &lt;pre&gt;&lt;code&gt;pip install mlflow-widgets\n&lt;/code&gt;&lt;/pre&gt; &lt;pre&gt;&lt;code&gt;uv add mlflow-widgets\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"installation/#with-mlflow-included","title":"With MLflow included","text":"&lt;p&gt;If you don't already have MLflow installed:&lt;/p&gt; pipuv &lt;pre&gt;&lt;code&gt;pip install mlflow-widgets[mlflow]\n&lt;/code&gt;&lt;/pre&gt; &lt;pre&gt;&lt;code&gt;uv add mlflow-widgets[mlflow]\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"installation/#from-github-latest","title":"From GitHub (latest)","text":"&lt;p&gt;Install the latest development version directly from the repository:&lt;/p&gt; pipuv &lt;pre&gt;&lt;code&gt;pip install git+https://github.com/daviddwlee84/mlflow-widgets.git\n&lt;/code&gt;&lt;/pre&gt; &lt;pre&gt;&lt;code&gt;uv add git+https://github.com/daviddwlee84/mlflow-widgets.git\n# or\nuv pip install git+https://github.com/daviddwlee84/mlflow-widgets.git\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"installation/#requirements","title":"Requirements","text":"&lt;ul&gt; &lt;li&gt;Python &amp;gt;= 3.10&lt;/li&gt; &lt;li&gt;Dependencies: &lt;code&gt;anywidget &amp;gt;= 0.9.2&lt;/code&gt;, &lt;code&gt;traitlets&lt;/code&gt;&lt;/li&gt; &lt;li&gt;Optional: &lt;code&gt;mlflow &amp;gt;= 2.0&lt;/code&gt; (for data fetching; falls back to REST API via &lt;code&gt;urllib&lt;/code&gt; if not installed)&lt;/li&gt; &lt;/ul&gt;"},{"location":"installation/#extras","title":"Extras","text":"Extra Packages Use case &lt;code&gt;mlflow&lt;/code&gt; &lt;code&gt;mlflow&amp;gt;=2.0&lt;/code&gt;, &lt;code&gt;python-socks[asyncio]&lt;/code&gt; Full MLflow client support &lt;code&gt;demo&lt;/code&gt; &lt;code&gt;marimo&amp;gt;=0.10.0&lt;/code&gt;, &lt;code&gt;mlflow&amp;gt;=2.0&lt;/code&gt; Running example notebooks &lt;code&gt;dev&lt;/code&gt; &lt;code&gt;pytest&lt;/code&gt;, &lt;code&gt;ruff&lt;/code&gt;, &lt;code&gt;twine&lt;/code&gt;, &lt;code&gt;taskipy&lt;/code&gt; Development and testing &lt;code&gt;docs&lt;/code&gt; &lt;code&gt;mkdocs-material&lt;/code&gt;, &lt;code&gt;mkdocstrings[python]&lt;/code&gt; Building documentation"},{"location":"reference/","title":"API Reference","text":"&lt;p&gt;Full API documentation for all public classes in mlflow-widgets. Generated automatically from source code docstrings.&lt;/p&gt;"},{"location":"reference/#widgets","title":"Widgets","text":"&lt;p&gt;These classes inherit from &lt;code&gt;anywidget.AnyWidget&lt;/code&gt; and render interactive UI in notebooks:&lt;/p&gt; Class Description &lt;code&gt;MlflowChart&lt;/code&gt; Live-updating canvas line chart for MLflow metrics &lt;code&gt;MlflowRunTable&lt;/code&gt; Sortable HTML table of experiment runs &lt;code&gt;MlflowParallelCoordinates&lt;/code&gt; Parallel coordinates chart for hyperparameter comparison"},{"location":"reference/#helpers","title":"Helpers","text":"Class Description &lt;code&gt;MlflowRunSelector&lt;/code&gt; Pure Python helper returning pandas DataFrames for run selection"},{"location":"reference/#architecture","title":"Architecture","text":"&lt;p&gt;All widgets follow the same data flow pattern:&lt;/p&gt; &lt;ol&gt; &lt;li&gt;Python fetches data from MLflow (via &lt;code&gt;MlflowClient&lt;/code&gt; or REST API fallback with &lt;code&gt;urllib&lt;/code&gt;)&lt;/li&gt; &lt;li&gt;Data is passed to JavaScript through traitlets (synced traits tagged with &lt;code&gt;sync=True&lt;/code&gt;)&lt;/li&gt; &lt;li&gt;JavaScript handles rendering using vanilla DOM and Canvas APIs&lt;/li&gt; &lt;/ol&gt; &lt;p&gt;The &lt;code&gt;_do_refresh&lt;/code&gt; integer traitlet is used for manual refresh signals (JS increments, Python observes). Auto-polling uses &lt;code&gt;threading.Timer&lt;/code&gt; in Python.&lt;/p&gt;"},{"location":"reference/chart/","title":"MlflowChart","text":""},{"location":"reference/chart/#mlflow_widgets.MlflowChart","title":"MlflowChart","text":"&lt;pre&gt;&lt;code&gt;MlflowChart(\n    *,\n    tracking_uri: str | None = None,\n    experiment_id: str | None = None,\n    runs: Sequence[Any] | None = None,\n    metric_key: str = \"\",\n    poll_seconds: int | None = 5,\n    smoothing_kind: str = \"gaussian\",\n    smoothing_param: float | None = None,\n    show_slider: bool = True,\n    x_axis: str = \"step\",\n    width: int = 700,\n    height: int = 300,\n    **kwargs: Any,\n)\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;               Bases: &lt;code&gt;AnyWidget&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Live line chart that polls MLflow for metric data.&lt;/p&gt; &lt;p&gt;Renders a Canvas-based chart that can auto-update while runs are active. Supports multiple runs for side-by-side comparison and optional rolling smoothing (rolling mean, exponential moving average, or gaussian).&lt;/p&gt; &lt;p&gt;Examples:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;import mlflow\nfrom mlflow_widgets import MlflowChart\n\nwith mlflow.start_run() as run:\n    for step in range(100):\n        mlflow.log_metric(\"loss\", 1.0 / (step + 1), step=step)\n\n    chart = MlflowChart(\n        tracking_uri=\"http://localhost:5000\",\n        runs=[run],\n        metric_key=\"loss\",\n    )\n    chart\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Create a MlflowChart widget.&lt;/p&gt; &lt;p&gt;Parameters:&lt;/p&gt; Name Type Description Default &lt;code&gt;tracking_uri&lt;/code&gt; &lt;code&gt;str | None&lt;/code&gt; &lt;p&gt;MLflow tracking server URI. Defaults to &lt;code&gt;MLFLOW_TRACKING_URI&lt;/code&gt; env var or &lt;code&gt;http://localhost:5000&lt;/code&gt;.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;experiment_id&lt;/code&gt; &lt;code&gt;str | None&lt;/code&gt; &lt;p&gt;MLflow experiment ID. If provided and &lt;code&gt;runs&lt;/code&gt; is not given, all runs in this experiment are charted.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;runs&lt;/code&gt; &lt;code&gt;Sequence[Any] | None&lt;/code&gt; &lt;p&gt;A list of MLflow Run objects, run-ID strings, or dicts with &lt;code&gt;id&lt;/code&gt; and &lt;code&gt;label&lt;/code&gt; keys.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;metric_key&lt;/code&gt; &lt;code&gt;str&lt;/code&gt; &lt;p&gt;The metric key to chart (e.g. &lt;code&gt;\"loss\"&lt;/code&gt;).&lt;/p&gt; &lt;code&gt;''&lt;/code&gt; &lt;code&gt;poll_seconds&lt;/code&gt; &lt;code&gt;int | None&lt;/code&gt; &lt;p&gt;Seconds between polling updates, or &lt;code&gt;None&lt;/code&gt; to disable auto-polling and show a manual refresh button instead.&lt;/p&gt; &lt;code&gt;5&lt;/code&gt; &lt;code&gt;smoothing_kind&lt;/code&gt; &lt;code&gt;str&lt;/code&gt; &lt;p&gt;&lt;code&gt;\"rolling\"&lt;/code&gt;, &lt;code&gt;\"exponential\"&lt;/code&gt;, or &lt;code&gt;\"gaussian\"&lt;/code&gt;.&lt;/p&gt; &lt;code&gt;'gaussian'&lt;/code&gt; &lt;code&gt;smoothing_param&lt;/code&gt; &lt;code&gt;float | None&lt;/code&gt; &lt;p&gt;Smoothing parameter, or &lt;code&gt;None&lt;/code&gt; for no smoothing.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;show_slider&lt;/code&gt; &lt;code&gt;bool&lt;/code&gt; &lt;p&gt;Whether to show the smoothing slider in the UI.&lt;/p&gt; &lt;code&gt;True&lt;/code&gt; &lt;code&gt;x_axis&lt;/code&gt; &lt;code&gt;str&lt;/code&gt; &lt;p&gt;X-axis mode: &lt;code&gt;\"step\"&lt;/code&gt;, &lt;code&gt;\"wall\"&lt;/code&gt;, or &lt;code&gt;\"relative\"&lt;/code&gt;.&lt;/p&gt; &lt;code&gt;'step'&lt;/code&gt; &lt;code&gt;width&lt;/code&gt; &lt;code&gt;int&lt;/code&gt; &lt;p&gt;Chart width in pixels.&lt;/p&gt; &lt;code&gt;700&lt;/code&gt; &lt;code&gt;height&lt;/code&gt; &lt;code&gt;int&lt;/code&gt; &lt;p&gt;Chart height in pixels.&lt;/p&gt; &lt;code&gt;300&lt;/code&gt; Source code in &lt;code&gt;src/mlflow_widgets/chart.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def __init__(\n    self,\n    *,\n    tracking_uri: str | None = None,\n    experiment_id: str | None = None,\n    runs: Sequence[Any] | None = None,\n    metric_key: str = \"\",\n    poll_seconds: int | None = 5,\n    smoothing_kind: str = \"gaussian\",\n    smoothing_param: float | None = None,\n    show_slider: bool = True,\n    x_axis: str = \"step\",\n    width: int = 700,\n    height: int = 300,\n    **kwargs: Any,\n) -&amp;gt; None:\n    \"\"\"Create a MlflowChart widget.\n\n    Args:\n        tracking_uri: MLflow tracking server URI. Defaults to\n            &#96;&#96;MLFLOW_TRACKING_URI&#96;&#96; env var or &#96;&#96;http://localhost:5000&#96;&#96;.\n        experiment_id: MLflow experiment ID. If provided and &#96;&#96;runs&#96;&#96; is\n            not given, all runs in this experiment are charted.\n        runs: A list of MLflow Run objects, run-ID strings, or dicts\n            with &#96;&#96;id&#96;&#96; and &#96;&#96;label&#96;&#96; keys.\n        metric_key: The metric key to chart (e.g. &#96;&#96;\"loss\"&#96;&#96;).\n        poll_seconds: Seconds between polling updates, or &#96;&#96;None&#96;&#96; to\n            disable auto-polling and show a manual refresh button instead.\n        smoothing_kind: &#96;&#96;\"rolling\"&#96;&#96;, &#96;&#96;\"exponential\"&#96;&#96;, or &#96;&#96;\"gaussian\"&#96;&#96;.\n        smoothing_param: Smoothing parameter, or &#96;&#96;None&#96;&#96; for no smoothing.\n        show_slider: Whether to show the smoothing slider in the UI.\n        x_axis: X-axis mode: &#96;&#96;\"step\"&#96;&#96;, &#96;&#96;\"wall\"&#96;&#96;, or &#96;&#96;\"relative\"&#96;&#96;.\n        width: Chart width in pixels.\n        height: Chart height in pixels.\n    \"\"\"\n    self._tracking_uri = tracking_uri or os.environ.get(\n        \"MLFLOW_TRACKING_URI\", \"http://localhost:5000\"\n    )\n    self._experiment_id = experiment_id\n    self._mlflow = _try_import_mlflow()\n    self._client = None\n    if self._mlflow is not None:\n        self._client = self._mlflow.MlflowClient(self._tracking_uri)\n\n    self._run_specs: list[dict] = []\n    if runs is not None:\n        self._run_specs = self._normalize_runs(runs)\n    elif experiment_id is not None:\n        self._run_specs = self._discover_runs(experiment_id)\n\n    self._poll_timer: threading.Timer | None = None\n    self._poll_lock = threading.Lock()\n    self._stopped = False\n\n    super().__init__(\n        metric_key=metric_key,\n        poll_seconds=poll_seconds,\n        smoothing_kind=smoothing_kind,\n        smoothing_param=smoothing_param,\n        show_slider=show_slider,\n        x_axis=x_axis,\n        width=width,\n        height=height,\n        **kwargs,\n    )\n\n    if self._run_specs and metric_key:\n        self.refresh()\n\n    if poll_seconds is not None and poll_seconds &amp;gt; 0:\n        self._schedule_poll()\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/chart/#mlflow_widgets.MlflowChart.refresh","title":"refresh","text":"&lt;pre&gt;&lt;code&gt;refresh() -&amp;gt; None\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Manually refresh metric data from MLflow.&lt;/p&gt; Source code in &lt;code&gt;src/mlflow_widgets/chart.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def refresh(self) -&amp;gt; None:\n    \"\"\"Manually refresh metric data from MLflow.\"\"\"\n    try:\n        series = self._fetch_series()\n        total_points = sum(len(s[\"points\"]) for s in series)\n        now = datetime.now().strftime(\"%H:%M:%S\")\n        self._series_data = series\n        self._status = f\"{total_points} points across {len(series)} runs (updated {now})\"\n\n        still_running = any(\n            r.get(\"status\") in (\"RUNNING\", None) for r in self._run_specs\n        )\n        if not still_running and self._poll_timer is not None:\n            self._status += \" \u2014 all runs finished\"\n            self.stop()\n    except Exception as exc:\n        self._status = f\"Error: {exc}\"\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/chart/#mlflow_widgets.MlflowChart.stop","title":"stop","text":"&lt;pre&gt;&lt;code&gt;stop() -&amp;gt; None\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Stop auto-polling.&lt;/p&gt; Source code in &lt;code&gt;src/mlflow_widgets/chart.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def stop(self) -&amp;gt; None:\n    \"\"\"Stop auto-polling.\"\"\"\n    self._stopped = True\n    with self._poll_lock:\n        if self._poll_timer is not None:\n            self._poll_timer.cancel()\n            self._poll_timer = None\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/chart/#mlflow_widgets.MlflowChart.close","title":"close","text":"&lt;pre&gt;&lt;code&gt;close() -&amp;gt; None\n&lt;/code&gt;&lt;/pre&gt; Source code in &lt;code&gt;src/mlflow_widgets/chart.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def close(self) -&amp;gt; None:\n    self.stop()\n    super().close()\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/parallel/","title":"MlflowParallelCoordinates","text":""},{"location":"reference/parallel/#mlflow_widgets.MlflowParallelCoordinates","title":"MlflowParallelCoordinates","text":"&lt;pre&gt;&lt;code&gt;MlflowParallelCoordinates(\n    *,\n    tracking_uri: str | None = None,\n    experiment_id: str | None = None,\n    param_keys: Sequence[str] | None = None,\n    metric_keys: Sequence[str] | None = None,\n    color_by: str = \"status\",\n    width: int = 900,\n    height: int = 400,\n    **kwargs: Any,\n)\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;               Bases: &lt;code&gt;AnyWidget&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Parallel coordinates chart for comparing runs across params/metrics.&lt;/p&gt; &lt;p&gt;Each vertical axis is a parameter or metric. Each polyline is a run, colored by status. Status filter checkboxes let you show/hide run groups.&lt;/p&gt; &lt;p&gt;Examples:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;from mlflow_widgets import MlflowParallelCoordinates\n\nchart = MlflowParallelCoordinates(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n)\nchart\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Create a MlflowParallelCoordinates widget.&lt;/p&gt; &lt;p&gt;Parameters:&lt;/p&gt; Name Type Description Default &lt;code&gt;tracking_uri&lt;/code&gt; &lt;code&gt;str | None&lt;/code&gt; &lt;p&gt;MLflow tracking server URI.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;experiment_id&lt;/code&gt; &lt;code&gt;str | None&lt;/code&gt; &lt;p&gt;Experiment to fetch runs from.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;param_keys&lt;/code&gt; &lt;code&gt;Sequence[str] | None&lt;/code&gt; &lt;p&gt;Which parameters to show as axes (auto-discovers if None).&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;metric_keys&lt;/code&gt; &lt;code&gt;Sequence[str] | None&lt;/code&gt; &lt;p&gt;Which metrics to show as axes (auto-discovers if None).&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;color_by&lt;/code&gt; &lt;code&gt;str&lt;/code&gt; &lt;p&gt;Color lines by &lt;code&gt;\"status\"&lt;/code&gt; or a metric name.&lt;/p&gt; &lt;code&gt;'status'&lt;/code&gt; &lt;code&gt;width&lt;/code&gt; &lt;code&gt;int&lt;/code&gt; &lt;p&gt;Widget width in pixels.&lt;/p&gt; &lt;code&gt;900&lt;/code&gt; &lt;code&gt;height&lt;/code&gt; &lt;code&gt;int&lt;/code&gt; &lt;p&gt;Widget height in pixels.&lt;/p&gt; &lt;code&gt;400&lt;/code&gt; Source code in &lt;code&gt;src/mlflow_widgets/parallel.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def __init__(\n    self,\n    *,\n    tracking_uri: str | None = None,\n    experiment_id: str | None = None,\n    param_keys: Sequence[str] | None = None,\n    metric_keys: Sequence[str] | None = None,\n    color_by: str = \"status\",\n    width: int = 900,\n    height: int = 400,\n    **kwargs: Any,\n) -&amp;gt; None:\n    \"\"\"Create a MlflowParallelCoordinates widget.\n\n    Args:\n        tracking_uri: MLflow tracking server URI.\n        experiment_id: Experiment to fetch runs from.\n        param_keys: Which parameters to show as axes (auto-discovers if None).\n        metric_keys: Which metrics to show as axes (auto-discovers if None).\n        color_by: Color lines by &#96;&#96;\"status\"&#96;&#96; or a metric name.\n        width: Widget width in pixels.\n        height: Widget height in pixels.\n    \"\"\"\n    self._tracking_uri = tracking_uri or os.environ.get(\n        \"MLFLOW_TRACKING_URI\", \"http://localhost:5000\"\n    )\n    self._experiment_id = experiment_id\n    self._param_keys = param_keys\n    self._metric_keys = metric_keys\n    self._mlflow = _try_import_mlflow()\n    self._client = None\n    if self._mlflow is not None:\n        self._client = self._mlflow.MlflowClient(self._tracking_uri)\n\n    super().__init__(color_by=color_by, width=width, height=height, **kwargs)\n\n    if experiment_id:\n        self.refresh()\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/parallel/#mlflow_widgets.MlflowParallelCoordinates.refresh","title":"refresh","text":"&lt;pre&gt;&lt;code&gt;refresh() -&amp;gt; None\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Fetch run data and rebuild axes/run data.&lt;/p&gt; Source code in &lt;code&gt;src/mlflow_widgets/parallel.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def refresh(self) -&amp;gt; None:\n    \"\"\"Fetch run data and rebuild axes/run data.\"\"\"\n    if not self._experiment_id:\n        self._status = \"No experiment_id set\"\n        return\n\n    try:\n        if self._client is not None:\n            rows = _search_runs_detailed_client(self._client, self._experiment_id)\n        else:\n            rows = _search_runs_detailed_rest(\n                self._tracking_uri, self._experiment_id\n            )\n\n        axes, runs_data = _build_axes_and_runs(\n            rows, self._param_keys, self._metric_keys\n        )\n\n        now = datetime.now().strftime(\"%H:%M:%S\")\n        self._axes_data = axes\n        self._runs_data = runs_data\n        self._status = f\"{len(runs_data)} runs, {len(axes)} axes (updated {now})\"\n    except Exception as exc:\n        self._status = f\"Error: {exc}\"\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/parallel/#mlflow_widgets.MlflowParallelCoordinates.close","title":"close","text":"&lt;pre&gt;&lt;code&gt;close() -&amp;gt; None\n&lt;/code&gt;&lt;/pre&gt; Source code in &lt;code&gt;src/mlflow_widgets/parallel.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def close(self) -&amp;gt; None:\n    super().close()\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/selector/","title":"MlflowRunSelector","text":""},{"location":"reference/selector/#mlflow_widgets.MlflowRunSelector","title":"MlflowRunSelector","text":"&lt;pre&gt;&lt;code&gt;MlflowRunSelector(\n    *,\n    tracking_uri: str | None = None,\n    experiment_id: str | None = None,\n)\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Fetch MLflow experiment runs and present them as a pandas DataFrame.&lt;/p&gt; &lt;p&gt;Designed to work with &lt;code&gt;marimo.ui.table(df, selection=\"multi\")&lt;/code&gt; so users can select runs via checkboxes, then pass the selected run IDs to &lt;code&gt;MlflowChart&lt;/code&gt; for visualization.&lt;/p&gt; &lt;p&gt;Examples:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;import marimo as mo\nfrom mlflow_widgets import MlflowRunSelector, MlflowChart\n\nselector = MlflowRunSelector(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n)\ntable = mo.ui.table(selector.to_dataframe(), selection=\"multi\")\n\n# In another cell:\nselected_ids = MlflowRunSelector.get_run_ids(table.value)\nchart = MlflowChart(runs=selected_ids, metric_key=\"loss\")\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Create a MlflowRunSelector.&lt;/p&gt; &lt;p&gt;Parameters:&lt;/p&gt; Name Type Description Default &lt;code&gt;tracking_uri&lt;/code&gt; &lt;code&gt;str | None&lt;/code&gt; &lt;p&gt;MLflow tracking server URI. Defaults to &lt;code&gt;MLFLOW_TRACKING_URI&lt;/code&gt; env var or &lt;code&gt;http://localhost:5000&lt;/code&gt;.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;experiment_id&lt;/code&gt; &lt;code&gt;str | None&lt;/code&gt; &lt;p&gt;MLflow experiment ID to fetch runs from.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; Source code in &lt;code&gt;src/mlflow_widgets/selector.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def __init__(\n    self,\n    *,\n    tracking_uri: str | None = None,\n    experiment_id: str | None = None,\n) -&amp;gt; None:\n    \"\"\"Create a MlflowRunSelector.\n\n    Args:\n        tracking_uri: MLflow tracking server URI. Defaults to\n            &#96;&#96;MLFLOW_TRACKING_URI&#96;&#96; env var or &#96;&#96;http://localhost:5000&#96;&#96;.\n        experiment_id: MLflow experiment ID to fetch runs from.\n    \"\"\"\n    self._tracking_uri = tracking_uri or os.environ.get(\n        \"MLFLOW_TRACKING_URI\", \"http://localhost:5000\"\n    )\n    self._experiment_id = experiment_id\n    self._mlflow = _try_import_mlflow()\n    self._client = None\n    if self._mlflow is not None:\n        self._client = self._mlflow.MlflowClient(self._tracking_uri)\n\n    self._raw_rows: list[dict] = []\n    if experiment_id:\n        self.refresh()\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/selector/#mlflow_widgets.MlflowRunSelector.tracking_uri","title":"tracking_uri  &lt;code&gt;property&lt;/code&gt;","text":"&lt;pre&gt;&lt;code&gt;tracking_uri: str\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/selector/#mlflow_widgets.MlflowRunSelector.experiment_id","title":"experiment_id  &lt;code&gt;property&lt;/code&gt;","text":"&lt;pre&gt;&lt;code&gt;experiment_id: str | None\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/selector/#mlflow_widgets.MlflowRunSelector.refresh","title":"refresh","text":"&lt;pre&gt;&lt;code&gt;refresh() -&amp;gt; MlflowRunSelector\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Re-fetch runs from MLflow. Returns self for chaining.&lt;/p&gt; Source code in &lt;code&gt;src/mlflow_widgets/selector.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def refresh(self) -&amp;gt; MlflowRunSelector:\n    \"\"\"Re-fetch runs from MLflow. Returns self for chaining.\"\"\"\n    if not self._experiment_id:\n        self._raw_rows = []\n        return self\n\n    if self._client is not None:\n        self._raw_rows = _search_runs_detailed_client(\n            self._client, self._experiment_id\n        )\n    else:\n        self._raw_rows = _search_runs_detailed_rest(\n            self._tracking_uri, self._experiment_id\n        )\n    return self\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/selector/#mlflow_widgets.MlflowRunSelector.to_dataframe","title":"to_dataframe","text":"&lt;pre&gt;&lt;code&gt;to_dataframe() -&amp;gt; Any\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Return runs as a pandas DataFrame.&lt;/p&gt; &lt;p&gt;Columns: run_id, run_name, status, start_time, duration_s, plus &lt;code&gt;param.&amp;lt;key&amp;gt;&lt;/code&gt; for each parameter and &lt;code&gt;metric.&amp;lt;key&amp;gt;&lt;/code&gt; for each final metric value.&lt;/p&gt; &lt;p&gt;Raises:&lt;/p&gt; Type Description &lt;code&gt;ImportError&lt;/code&gt; &lt;p&gt;If pandas is not installed.&lt;/p&gt; Source code in &lt;code&gt;src/mlflow_widgets/selector.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def to_dataframe(self) -&amp;gt; Any:\n    \"\"\"Return runs as a pandas DataFrame.\n\n    Columns: run_id, run_name, status, start_time, duration_s,\n    plus &#96;&#96;param.&amp;lt;key&amp;gt;&#96;&#96; for each parameter and &#96;&#96;metric.&amp;lt;key&amp;gt;&#96;&#96;\n    for each final metric value.\n\n    Raises:\n        ImportError: If pandas is not installed.\n    \"\"\"\n    try:\n        import pandas as pd\n    except ImportError as err:\n        raise ImportError(\n            \"pandas is required for to_dataframe(). \"\n            \"Install it with: pip install pandas\"\n        ) from err\n\n    rows = []\n    for r in self._raw_rows:\n        row: dict[str, Any] = {\n            \"run_id\": r[\"run_id\"],\n            \"run_name\": r[\"run_name\"],\n            \"status\": r[\"status\"],\n            \"parent_run_id\": r.get(\"parent_run_id\"),\n            \"start_time\": (\n                datetime.fromtimestamp(r[\"start_time\"] / 1000.0).strftime(\n                    \"%Y-%m-%d %H:%M:%S\"\n                )\n                if r[\"start_time\"]\n                else None\n            ),\n            \"duration_s\": round(r[\"duration_s\"], 1) if r[\"duration_s\"] else None,\n        }\n        for k, v in r.get(\"params\", {}).items():\n            row[f\"param.{k}\"] = v\n        for k, v in r.get(\"metrics\", {}).items():\n            row[f\"metric.{k}\"] = v\n        rows.append(row)\n\n    return pd.DataFrame(rows)\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/selector/#mlflow_widgets.MlflowRunSelector.get_run_ids","title":"get_run_ids  &lt;code&gt;staticmethod&lt;/code&gt;","text":"&lt;pre&gt;&lt;code&gt;get_run_ids(selection: Any) -&amp;gt; list[str]\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Extract run_id list from a DataFrame, list of dicts, or similar.&lt;/p&gt; &lt;p&gt;Works with &lt;code&gt;mo.ui.table(...).value&lt;/code&gt; which returns a list of dicts or a DataFrame depending on the input format.&lt;/p&gt; &lt;p&gt;Parameters:&lt;/p&gt; Name Type Description Default &lt;code&gt;selection&lt;/code&gt; &lt;code&gt;Any&lt;/code&gt; &lt;p&gt;The &lt;code&gt;.value&lt;/code&gt; from a &lt;code&gt;mo.ui.table&lt;/code&gt;, typically a list of row dicts or a pandas DataFrame.&lt;/p&gt; required &lt;p&gt;Returns:&lt;/p&gt; Type Description &lt;code&gt;list[str]&lt;/code&gt; &lt;p&gt;List of run_id strings.&lt;/p&gt; Source code in &lt;code&gt;src/mlflow_widgets/selector.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;@staticmethod\ndef get_run_ids(\n    selection: Any,\n) -&amp;gt; list[str]:\n    \"\"\"Extract run_id list from a DataFrame, list of dicts, or similar.\n\n    Works with &#96;&#96;mo.ui.table(...).value&#96;&#96; which returns a list of dicts\n    or a DataFrame depending on the input format.\n\n    Args:\n        selection: The &#96;&#96;.value&#96;&#96; from a &#96;&#96;mo.ui.table&#96;&#96;, typically a\n            list of row dicts or a pandas DataFrame.\n\n    Returns:\n        List of run_id strings.\n    \"\"\"\n    if hasattr(selection, \"to_dict\"):\n        # pandas DataFrame\n        if \"run_id\" in selection.columns:\n            return selection[\"run_id\"].tolist()\n        return []\n\n    if isinstance(selection, list):\n        return [\n            r[\"run_id\"] for r in selection if isinstance(r, dict) and \"run_id\" in r\n        ]\n\n    return []\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/table/","title":"MlflowRunTable","text":""},{"location":"reference/table/#mlflow_widgets.MlflowRunTable","title":"MlflowRunTable","text":"&lt;pre&gt;&lt;code&gt;MlflowRunTable(\n    *,\n    tracking_uri: str | None = None,\n    experiment_id: str | None = None,\n    poll_seconds: int | None = None,\n    width: int = 900,\n    **kwargs: Any,\n)\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;               Bases: &lt;code&gt;AnyWidget&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Interactive table showing MLflow experiment runs.&lt;/p&gt; &lt;p&gt;Displays run name, status, start time, duration, parameters, and final metric values in a sortable HTML table.&lt;/p&gt; &lt;p&gt;Examples:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;from mlflow_widgets import MlflowRunTable\n\ntable = MlflowRunTable(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n)\ntable\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Create a MlflowRunTable widget.&lt;/p&gt; &lt;p&gt;Parameters:&lt;/p&gt; Name Type Description Default &lt;code&gt;tracking_uri&lt;/code&gt; &lt;code&gt;str | None&lt;/code&gt; &lt;p&gt;MLflow tracking server URI. Defaults to &lt;code&gt;MLFLOW_TRACKING_URI&lt;/code&gt; env var or &lt;code&gt;http://localhost:5000&lt;/code&gt;.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;experiment_id&lt;/code&gt; &lt;code&gt;str | None&lt;/code&gt; &lt;p&gt;MLflow experiment ID to display runs for.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;poll_seconds&lt;/code&gt; &lt;code&gt;int | None&lt;/code&gt; &lt;p&gt;Seconds between auto-refresh, or &lt;code&gt;None&lt;/code&gt; to disable auto-polling and show a manual refresh button.&lt;/p&gt; &lt;code&gt;None&lt;/code&gt; &lt;code&gt;width&lt;/code&gt; &lt;code&gt;int&lt;/code&gt; &lt;p&gt;Table width in pixels.&lt;/p&gt; &lt;code&gt;900&lt;/code&gt; Source code in &lt;code&gt;src/mlflow_widgets/table.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def __init__(\n    self,\n    *,\n    tracking_uri: str | None = None,\n    experiment_id: str | None = None,\n    poll_seconds: int | None = None,\n    width: int = 900,\n    **kwargs: Any,\n) -&amp;gt; None:\n    \"\"\"Create a MlflowRunTable widget.\n\n    Args:\n        tracking_uri: MLflow tracking server URI. Defaults to\n            &#96;&#96;MLFLOW_TRACKING_URI&#96;&#96; env var or &#96;&#96;http://localhost:5000&#96;&#96;.\n        experiment_id: MLflow experiment ID to display runs for.\n        poll_seconds: Seconds between auto-refresh, or &#96;&#96;None&#96;&#96; to\n            disable auto-polling and show a manual refresh button.\n        width: Table width in pixels.\n    \"\"\"\n    self._tracking_uri = tracking_uri or os.environ.get(\n        \"MLFLOW_TRACKING_URI\", \"http://localhost:5000\"\n    )\n    self._experiment_id = experiment_id\n    self._mlflow = _try_import_mlflow()\n    self._client = None\n    if self._mlflow is not None:\n        self._client = self._mlflow.MlflowClient(self._tracking_uri)\n\n    self._poll_timer: threading.Timer | None = None\n    self._poll_lock = threading.Lock()\n    self._stopped = False\n\n    super().__init__(poll_seconds=poll_seconds, width=width, **kwargs)\n\n    if experiment_id:\n        self.refresh()\n\n    if poll_seconds is not None and poll_seconds &amp;gt; 0:\n        self._schedule_poll()\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/table/#mlflow_widgets.MlflowRunTable.refresh","title":"refresh","text":"&lt;pre&gt;&lt;code&gt;refresh() -&amp;gt; None\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Fetch run data from MLflow and update the table.&lt;/p&gt; Source code in &lt;code&gt;src/mlflow_widgets/table.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def refresh(self) -&amp;gt; None:\n    \"\"\"Fetch run data from MLflow and update the table.\"\"\"\n    if not self._experiment_id:\n        self._status = \"No experiment_id set\"\n        return\n\n    try:\n        if self._client is not None:\n            rows = _search_runs_detailed_client(self._client, self._experiment_id)\n        else:\n            rows = _search_runs_detailed_rest(self._tracking_uri, self._experiment_id)\n\n        all_param_keys: set[str] = set()\n        all_metric_keys: set[str] = set()\n        for row in rows:\n            all_param_keys.update(row[\"params\"].keys())\n            all_metric_keys.update(row[\"metrics\"].keys())\n\n        now = datetime.now().strftime(\"%H:%M:%S\")\n        self._table_data = rows\n        self._param_keys = sorted(all_param_keys)\n        self._metric_keys = sorted(all_metric_keys)\n        self._status = f\"{len(rows)} runs (updated {now})\"\n    except Exception as exc:\n        self._status = f\"Error: {exc}\"\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/table/#mlflow_widgets.MlflowRunTable.stop","title":"stop","text":"&lt;pre&gt;&lt;code&gt;stop() -&amp;gt; None\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Stop auto-polling.&lt;/p&gt; Source code in &lt;code&gt;src/mlflow_widgets/table.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def stop(self) -&amp;gt; None:\n    \"\"\"Stop auto-polling.\"\"\"\n    self._stopped = True\n    with self._poll_lock:\n        if self._poll_timer is not None:\n            self._poll_timer.cancel()\n            self._poll_timer = None\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"reference/table/#mlflow_widgets.MlflowRunTable.close","title":"close","text":"&lt;pre&gt;&lt;code&gt;close() -&amp;gt; None\n&lt;/code&gt;&lt;/pre&gt; Source code in &lt;code&gt;src/mlflow_widgets/table.py&lt;/code&gt; &lt;pre&gt;&lt;code&gt;def close(self) -&amp;gt; None:\n    self.stop()\n    super().close()\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"widgets/chart/","title":"MlflowChart","text":"&lt;p&gt;Live-updating canvas-based line chart for MLflow metrics. Supports multiple runs for side-by-side comparison with smoothing, tooltips, and an interactive legend.&lt;/p&gt;"},{"location":"widgets/chart/#basic-usage","title":"Basic usage","text":"&lt;pre&gt;&lt;code&gt;from mlflow_widgets import MlflowChart\n\nchart = MlflowChart(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n    metric_key=\"loss\",\n)\nchart\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"widgets/chart/#from-specific-runs","title":"From specific runs","text":"&lt;p&gt;Pass run objects, run ID strings, or dicts with &lt;code&gt;id&lt;/code&gt; and &lt;code&gt;label&lt;/code&gt; keys:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;chart = MlflowChart(\n    tracking_uri=\"http://localhost:5000\",\n    runs=[\"run_id_1\", \"run_id_2\"],\n    metric_key=\"loss\",\n)\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Or with MLflow Run objects:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;import mlflow\n\nwith mlflow.start_run() as run:\n    mlflow.log_metric(\"loss\", 0.5)\n    chart = MlflowChart(runs=[run], metric_key=\"loss\")\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"widgets/chart/#x-axis-modes","title":"X-axis modes","text":"&lt;p&gt;Control what the x-axis represents:&lt;/p&gt; Mode Description &lt;code&gt;\"step\"&lt;/code&gt; MLflow step number (default) &lt;code&gt;\"wall\"&lt;/code&gt; Wall clock time &lt;code&gt;\"relative\"&lt;/code&gt; Time relative to the first logged point &lt;pre&gt;&lt;code&gt;chart = MlflowChart(\n    experiment_id=\"1\",\n    metric_key=\"loss\",\n    x_axis=\"relative\",\n)\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"widgets/chart/#smoothing","title":"Smoothing","text":"&lt;p&gt;Three smoothing algorithms are available:&lt;/p&gt; Kind Parameter Description &lt;code&gt;\"rolling\"&lt;/code&gt; Window size (integer &amp;gt;= 2) Rolling mean &lt;code&gt;\"exponential\"&lt;/code&gt; Alpha (0 &amp;lt; alpha &amp;lt; 1) Exponential moving average &lt;code&gt;\"gaussian\"&lt;/code&gt; Sigma (&amp;gt; 0) Gaussian smoothing (default) &lt;pre&gt;&lt;code&gt;chart = MlflowChart(\n    experiment_id=\"1\",\n    metric_key=\"loss\",\n    smoothing_kind=\"exponential\",\n    smoothing_param=0.3,\n)\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Set &lt;code&gt;show_slider=False&lt;/code&gt; to hide the smoothing slider from the UI.&lt;/p&gt;"},{"location":"widgets/chart/#auto-polling","title":"Auto-polling","text":"&lt;p&gt;By default, the chart polls every 5 seconds. Customize or disable:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;# Poll every 10 seconds\nchart = MlflowChart(experiment_id=\"1\", metric_key=\"loss\", poll_seconds=10)\n\n# Manual refresh only\nchart = MlflowChart(experiment_id=\"1\", metric_key=\"loss\", poll_seconds=None)\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Always clean up timers&lt;/p&gt; &lt;p&gt;Call &lt;code&gt;chart.stop()&lt;/code&gt; or &lt;code&gt;chart.close()&lt;/code&gt; when done to cancel background polling timers.&lt;/p&gt;"},{"location":"widgets/chart/#api-reference","title":"API reference","text":"&lt;p&gt;See &lt;code&gt;MlflowChart&lt;/code&gt; for the full API.&lt;/p&gt;"},{"location":"widgets/parallel/","title":"MlflowParallelCoordinates","text":"&lt;p&gt;Parallel coordinates chart for comparing runs across hyperparameters and metrics. Each vertical axis is a parameter or metric; each polyline is a run.&lt;/p&gt;"},{"location":"widgets/parallel/#basic-usage","title":"Basic usage","text":"&lt;pre&gt;&lt;code&gt;from mlflow_widgets import MlflowParallelCoordinates\n\nchart = MlflowParallelCoordinates(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n)\nchart\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"widgets/parallel/#filtering-axes","title":"Filtering axes","text":"&lt;p&gt;By default, all parameters and metrics are shown. Restrict to specific keys:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;chart = MlflowParallelCoordinates(\n    experiment_id=\"1\",\n    param_keys=[\"lr\", \"batch_size\"],\n    metric_keys=[\"loss\", \"accuracy\"],\n)\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"widgets/parallel/#color-modes","title":"Color modes","text":"&lt;p&gt;Control how lines are colored using the &lt;code&gt;color_by&lt;/code&gt; parameter:&lt;/p&gt; Value Description &lt;code&gt;\"status\"&lt;/code&gt; Color by run status (default) A metric name Color by metric value gradient &lt;pre&gt;&lt;code&gt;chart = MlflowParallelCoordinates(\n    experiment_id=\"1\",\n    color_by=\"loss\",\n)\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;The widget also provides status filter checkboxes in the UI to show/hide runs by status.&lt;/p&gt;"},{"location":"widgets/parallel/#api-reference","title":"API reference","text":"&lt;p&gt;See &lt;code&gt;MlflowParallelCoordinates&lt;/code&gt; for the full API.&lt;/p&gt;"},{"location":"widgets/selector/","title":"MlflowRunSelector","text":"&lt;p&gt;Pure Python helper that fetches MLflow experiment runs and returns them as a pandas DataFrame. Designed for interactive run selection workflows, especially with Marimo's &lt;code&gt;mo.ui.table&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;Note&lt;/p&gt; &lt;p&gt;MlflowRunSelector is not a widget -- it's a plain Python class. It does not render anything on its own.&lt;/p&gt;"},{"location":"widgets/selector/#basic-usage","title":"Basic usage","text":"&lt;pre&gt;&lt;code&gt;from mlflow_widgets import MlflowRunSelector\n\nselector = MlflowRunSelector(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n)\ndf = selector.to_dataframe()\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;The returned DataFrame includes columns: &lt;code&gt;run_id&lt;/code&gt;, &lt;code&gt;run_name&lt;/code&gt;, &lt;code&gt;status&lt;/code&gt;, &lt;code&gt;start_time&lt;/code&gt;, &lt;code&gt;duration_s&lt;/code&gt;, plus &lt;code&gt;param.&amp;lt;key&amp;gt;&lt;/code&gt; and &lt;code&gt;metric.&amp;lt;key&amp;gt;&lt;/code&gt; for each parameter and metric.&lt;/p&gt;"},{"location":"widgets/selector/#interactive-selection-with-marimo","title":"Interactive selection with Marimo","text":"&lt;p&gt;The primary use case is selecting runs via checkboxes, then passing selected IDs to a chart:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;import marimo as mo\nfrom mlflow_widgets import MlflowRunSelector, MlflowChart\n\nselector = MlflowRunSelector(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n)\ntable = mo.ui.table(selector.to_dataframe(), selection=\"multi\")\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;In another cell:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;selected_ids = MlflowRunSelector.get_run_ids(table.value)\nchart = MlflowChart(runs=selected_ids, metric_key=\"loss\")\nmo.ui.anywidget(chart)\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"widgets/selector/#requirements","title":"Requirements","text":"&lt;ul&gt; &lt;li&gt;pandas must be installed to use &lt;code&gt;to_dataframe()&lt;/code&gt;. It will raise &lt;code&gt;ImportError&lt;/code&gt; with a helpful message if missing.&lt;/li&gt; &lt;/ul&gt;"},{"location":"widgets/selector/#api-reference","title":"API reference","text":"&lt;p&gt;See &lt;code&gt;MlflowRunSelector&lt;/code&gt; for the full API.&lt;/p&gt;"},{"location":"widgets/table/","title":"MlflowRunTable","text":"&lt;p&gt;Interactive HTML table showing experiment runs with parameters, metrics, status badges, and duration. Supports nested runs displayed as collapsible tree nodes.&lt;/p&gt;"},{"location":"widgets/table/#basic-usage","title":"Basic usage","text":"&lt;pre&gt;&lt;code&gt;from mlflow_widgets import MlflowRunTable\n\ntable = MlflowRunTable(\n    tracking_uri=\"http://localhost:5000\",\n    experiment_id=\"1\",\n)\ntable\n&lt;/code&gt;&lt;/pre&gt;"},{"location":"widgets/table/#features","title":"Features","text":"&lt;ul&gt; &lt;li&gt;Sortable columns -- click any column header to sort&lt;/li&gt; &lt;li&gt;Status badges -- color-coded status indicators (FINISHED, RUNNING, FAILED, KILLED)&lt;/li&gt; &lt;li&gt;Nested runs -- parent runs display as collapsible tree nodes with child runs indented beneath&lt;/li&gt; &lt;li&gt;Auto-discovery -- automatically shows all parameters and metrics found across runs&lt;/li&gt; &lt;/ul&gt;"},{"location":"widgets/table/#auto-polling","title":"Auto-polling","text":"&lt;p&gt;Enable periodic refresh to see new runs as they appear:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;table = MlflowRunTable(\n    experiment_id=\"1\",\n    poll_seconds=10,\n)\n&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;By default, auto-polling is disabled (&lt;code&gt;poll_seconds=None&lt;/code&gt;), showing a manual refresh button instead.&lt;/p&gt; &lt;p&gt;Always clean up timers&lt;/p&gt; &lt;p&gt;Call &lt;code&gt;table.stop()&lt;/code&gt; or &lt;code&gt;table.close()&lt;/code&gt; when done to cancel background polling timers.&lt;/p&gt;"},{"location":"widgets/table/#api-reference","title":"API reference","text":"&lt;p&gt;See &lt;code&gt;MlflowRunTable&lt;/code&gt; for the full API.&lt;/p&gt;"}]}
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && rg 'First public release' site/changelog/index.html | head -1</summary>
+
+```bash
+cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && rg 'First public release' site/changelog/index.html | head -1
+```
+
+```
+&lt;p&gt;First public release on &lt;a href="https://pypi.org/project/mlflow-widgets/"&gt;PyPI&lt;/a&gt;.&lt;/p&gt;
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Search index is populated and the changelog snippet inclusion works correctly. Let me also quickly verify the `site/` directory is in `.gitignore` so it doesn't get committed.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **3** results in **1** directory</summary>
+
+Directory: **/Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff** (3 files)
+
+| File |
+|------|
+| `.pytest_cache/.gitignore` |
+| `.ruff_cache/.gitignore` |
+| `.gitignore` |
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/.gitignore</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Need to add `site/` to `.gitignore`.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/.gitignore</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Now let me run the existing tests to make sure nothing is broken.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && uv run task check 2>&1</summary>
+
+```bash
+cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && uv run task check 2>&1
+```
+
+```
+All checks passed!
+============================= test session starts ==============================
+platform darwin -- Python 3.13.2, pytest-9.0.2, pluggy-1.6.0 -- /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/.venv/bin/python3
+cachedir: .pytest_cache
+rootdir: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff
+configfile: pyproject.toml
+collecting ... collected 24 items
+
+tests/test_examples.py::test_example_parses[combo_demo.py] PASSED        [  4%]
+tests/test_examples.py::test_example_parses[demo.py] PASSED              [  8%]
+tests/test_examples.py::test_example_parses[live_tracking.py] PASSED     [ 12%]
+tests/test_examples.py::test_example_parses[nested_demo.py] PASSED       [ 16%]
+tests/test_examples.py::test_example_parses[parallel_demo.py] PASSED     [ 20%]
+tests/test_examples.py::test_example_parses[table_demo.py] PASSED        [ 25%]
+tests/test_import.py::test_version_exists PASSED                         [ 29%]
+tests/test_import.py::test_all_exports PASSED                            [ 33%]
+tests/test_import.py::test_classes_importable PASSED                     [ 37%]
+tests/test_import.py::test_import_without_mlflow PASSED                  [ 41%]
+tests/test_packaging.py::test_wheel_contains_py_typed PASSED             [ 45%]
+tests/test_packaging.py::test_wheel_contains_static_js PASSED            [ 50%]
+tests/test_packaging.py::test_wheel_contains_license PASSED              [ 54%]
+tests/test_packaging.py::test_wheel_contains_metadata PASSED             [ 58%]
+tests/test_widget_init.py::TestMlflowChart::test_default_traitlets PASSED [ 62%]
+tests/test_widget_init.py::TestMlflowChart::test_custom_params PASSED    [ 66%]
+tests/test_widget_init.py::TestMlflowChart::test_do_refresh_observer_registered PASSED [ 70%]
+tests/test_widget_init.py::TestMlflowRunTable::test_default_traitlets PASSED [ 75%]
+tests/test_widget_init.py::TestMlflowRunTable::test_do_refresh_observer_registered PASSED [ 79%]
+tests/test_widget_init.py::TestMlflowParallelCoordinates::test_default_traitlets PASSED [ 83%]
+tests/test_widget_init.py::TestMlflowParallelCoordinates::test_do_refresh_observer_registered PASSED [ 87%]
+tests/test_widget_init.py::TestMlflowRunSelector::test_init_without_experiment PASSED [ 91%]
+tests/test_widget_init.py::TestMlflowRunSelector::test_get_run_ids_from_list PASSED [ 95%]
+tests/test_widget_init.py::TestMlflowRunSelector::test_get_run_ids_empty PASSED [100%]
+
+============================== 24 passed in 0.76s ==============================
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+All 24 tests pass and linting is clean. Let me mark the final todo as complete.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write">
+<details>
+<summary>Tool use: **todo_write**</summary>
+
+
+Parameters:
+
+```json
+{
+  "merge": true
+}
+```
+Result:
+
+```json
+{
+  "finalTodos": [
+    {
+      "content": "Add docs dependencies to pyproject.toml (mkdocs-material, mkdocstrings[python]) and taskipy tasks (docs, docs-build)",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Create mkdocs.yml with Material theme, mkdocstrings plugin, nav structure, repo links",
+      "id": "mkdocs-yml",
+      "status": "completed"
+    },
+    {
+      "content": "Create docs/ directory with all markdown pages: index, installation, getting-started, widgets/*, examples, reference/*, changelog",
+      "id": "docs-content",
+      "status": "completed"
+    },
+    {
+      "content": "Fix MlflowChart docstring copy-paste error (mlflow_chart -\u003e mlflow_widgets)",
+      "id": "fix-docstring",
+      "status": "completed"
+    },
+    {
+      "content": "Create .github/workflows/docs.yml for GitHub Pages deployment on push to main",
+      "id": "gh-workflow",
+      "status": "completed"
+    },
+    {
+      "content": "Update README.md (docs link/badge), CHANGELOG.md (unreleased entry), AGENTS.md (source layout + tasks)",
+      "id": "update-meta",
+      "status": "completed"
+    },
+    {
+      "content": "Run mkdocs build --strict and mkdocs serve to verify everything works",
+      "id": "verify",
+      "status": "completed"
+    }
+  ],
+  "initialTodos": [
+    {
+      "content": "Add docs dependencies to pyproject.toml (mkdocs-material, mkdocstrings[python]) and taskipy tasks (docs, docs-build)",
+      "id": "deps",
+      "status": "completed"
+    },
+    {
+      "content": "Create mkdocs.yml with Material theme, mkdocstrings plugin, nav structure, repo links",
+      "id": "mkdocs-yml",
+      "status": "completed"
+    },
+    {
+      "content": "Create docs/ directory with all markdown pages: index, installation, getting-started, widgets/*, examples, reference/*, changelog",
+      "id": "docs-content",
+      "status": "completed"
+    },
+    {
+      "content": "Fix MlflowChart docstring copy-paste error (mlflow_chart -\u003e mlflow_widgets)",
+      "id": "fix-docstring",
+      "status": "completed"
+    },
+    {
+      "content": "Create .github/workflows/docs.yml for GitHub Pages deployment on push to main",
+      "id": "gh-workflow",
+      "status": "completed"
+    },
+    {
+      "content": "Update README.md (docs link/badge), CHANGELOG.md (unreleased entry), AGENTS.md (source layout + tasks)",
+      "id": "update-meta",
+      "status": "completed"
+    },
+    {
+      "content": "Run mkdocs build --strict and mkdocs serve to verify everything works",
+      "id": "verify",
+      "status": "in_progress"
+    }
+  ],
+  "success": true,
+  "wasMerge": true
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="unknown" data-tool-name="todo_write"><details>
+<summary>Tool use: **todo_write**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+All tasks are complete. Here's a summary of everything that was done:
+
+**Stack chosen:** MkDocs + Material for MkDocs + mkdocstrings[python]
+
+**Files created:**
+
+- `mkdocs.yml` -- full site config with Material theme (dark/light toggle, code copy, search suggest/highlight), mkdocstrings with `paths: [src]` and Google-style docstring parsing
+- `docs/index.md` -- home page with widget overview table and quick example
+- `docs/installation.md` -- pip/uv tabbed install instructions with extras table
+- `docs/getting-started.md` -- MLflow server setup, first chart, Marimo usage
+- `docs/widgets/{chart,table,parallel,selector}.md` -- guide pages for each widget
+- `docs/reference/{index,chart,table,parallel,selector}.md` -- API reference pages using `::: mlflow_widgets.ClassName` directives (auto-generated from docstrings)
+- `docs/examples.md` -- overview of all 6 Marimo demo notebooks
+- `docs/changelog.md` -- includes `CHANGELOG.md` via `--8<--` snippet
+- `.github/workflows/docs.yml` -- GitHub Pages deployment on push to main (uses `actions/deploy-pages`)
+
+**Files modified:**
+
+- `pyproject.toml` -- added `docs` extras, `docs`/`docs-build` taskipy tasks, `Documentation` URL, `site/` to clean task
+- `src/mlflow_widgets/chart.py` -- fixed `mlflow_chart` -> `mlflow_widgets` in docstring example
+- `.gitignore` -- added `site/`
+- `CHANGELOG.md` -- added unreleased entries for docs, tasks, and docstring fix
+- `README.md` -- added docs badge and two new tasks to the task runner table
+- `AGENTS.md` -- added `docs/` to source layout, `docs` tasks, `docs.yml` workflow description, and docs step in "Adding a new widget" checklist
+
+**Verification:**
+
+- `mkdocs build --strict` passes with zero errors/warnings
+- All 15 HTML pages generated (home, installation, getting-started, 4 widget guides, examples, 5 API reference pages, changelog)
+- Search index populated with all content
+- API reference pages contain auto-generated constructor signatures, parameter docs, and source code
+- `uv run task check` (lint + 24 tests) all green
+
+To preview locally: `uv run task docs` (opens at `http://127.0.0.1:8000/mlflow-widgets/`).
+
+---
+
+_**User**_
+
+https://github.com/daviddwlee84/mlflow-widgets/actions/runs/23848714232/job/69522686920 
+Error: Error: Failed to create deployment (status: 404) with build version 28077707b6d72b4ce556a2d642cfed179390a62c. Request ID FFC1:AF01B:15D0DCD:5715A87:69CD1060 Ensure GitHub Pages has been enabled: https://github.com/daviddwlee84/mlflow-widgets/settings/pages
+
+這裡也有手動配置的步驟嗎？
+幫我也記錄到notes中吧
+
+---
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<think><details><summary>Thought Process</summary>
+The user is showing that the GitHub Pages deployment failed because GitHub Pages hasn't been enabled/configured properly in the repository settings. Looking at the second screenshot, the GitHub Pages settings show "Deploy from a branch" as the source, but it needs to be set to "GitHub Actions" instead for our workflow to work.
+
+The user wants me to:
+1. Explain the manual configuration step needed
+2. Update the docs workflow or notes to document this
+3. Create a note in the `notes/` directory about this
+
+Let me look at the error and the screenshots:
+- The deploy job failed with a 404 because GitHub Pages needs to be enabled with "GitHub Actions" as the source (not "Deploy from a branch")
+</details></think>

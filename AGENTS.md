@@ -47,7 +47,8 @@ docs/                      # MkDocs documentation source
 mkdocs.yml                 # MkDocs configuration
 notes/                     # Developer learning notes and cheatsheets
   publishing-to-pypi.md    # PyPI publishing workflow, Trusted Publishing, PEP 639
-  ci-cd-trigger-cheatsheet.md  # What triggers CI vs publish
+  ci-cd-trigger-cheatsheet.md  # What triggers CI vs publish vs docs deploy
+  github-pages-setup.md    # GitHub Pages one-time setup (Source = GitHub Actions)
 ```
 
 ### Key patterns

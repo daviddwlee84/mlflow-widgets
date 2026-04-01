@@ -6,10 +6,11 @@
 
 | 操作 | 觸發的 Workflow | 結果 |
 |------|----------------|------|
-| `git push` 到 main | `ci.yml` | 跑 lint + test + build 驗證，**不發佈** |
-| PR 到 main | `ci.yml` | 同上 |
+| `git push` 到 main | `ci.yml` + `docs.yml` | 跑 lint + test + build 驗證 + **部署文件到 GitHub Pages** |
+| PR 到 main | `ci.yml` | 跑 lint + test + build 驗證，**不發佈、不部署文件** |
 | `git tag v* && git push origin v*` | `publish.yml` → `publish-pypi` job | **發佈到 PyPI** |
 | GitHub UI 手動觸發 (workflow_dispatch) | `publish.yml` → `publish-testpypi` job | 發佈到 TestPyPI |
+| GitHub UI 手動觸發 docs workflow | `docs.yml` | 重新部署文件到 GitHub Pages |
 
 ## 關鍵結論
 
