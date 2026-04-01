@@ -339,7 +339,8 @@ function render({ model, el }) {
   });
 
   refreshBtn.addEventListener("click", () => {
-    model.send({ type: "refresh" });
+    model.set("_do_refresh", (model.get("_do_refresh") || 0) + 1);
+    model.save_changes();
   });
 
   // Tooltip on hover

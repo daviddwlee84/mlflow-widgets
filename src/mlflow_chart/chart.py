@@ -199,8 +199,6 @@ class MlflowChart(anywidget.AnyWidget):
             **kwargs,
         )
 
-        self.on_msg(self._handle_msg)
-
         if self._run_specs and metric_key:
             self.refresh()
 
@@ -315,9 +313,9 @@ class MlflowChart(anywidget.AnyWidget):
         if not self._stopped:
             self._schedule_poll()
 
-    def _handle_msg(self, widget: Any, content: Any, buffers: Any) -> None:
-        if isinstance(content, dict) and content.get("type") == "refresh":
-            self.refresh()
+    @traitlets.observe("_do_refresh")
+    def _on_refresh_request(self, change: dict[str, Any]) -> None:
+        self.refresh()
 
     def stop(self) -> None:
         """Stop auto-polling."""
