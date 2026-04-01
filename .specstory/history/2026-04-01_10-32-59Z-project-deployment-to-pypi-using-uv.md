@@ -4559,3 +4559,200 @@ _**Agent (claude-4.6-opus-high-thinking)**_
 <summary>Tool use: **read_file_v2**</summary>
 
 </details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/README.md</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && git add README.md && git commit --trailer "Made-with: Cursor" -m "$(cat <<'EOF'
+docs: add development setup, task runner, and release sections to README
+EOF
+)" && git push origin main</summary>
+
+```bash
+cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && git add README.md && git commit --trailer "Made-with: Cursor" -m "$(cat <<'EOF'
+docs: add development setup, task runner, and release sections to README
+EOF
+)" && git push origin main
+```
+
+```
+[main c4a69d4] docs: add development setup, task runner, and release sections to README
+ 1 file changed, 49 insertions(+)
+To https://github.com/daviddwlee84/mlflow-widgets.git
+   b6fc820..c4a69d4  main -&gt; main
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Done. The README now has three new sections:
+
+- **Development > Setup** -- shows `git clone` + `uv sync --all-extras` to get the full dev environment in one command
+- **Development > Task Runner** -- table of all 12 `uv run task` commands with descriptions
+- **Development > Release** -- concise version bump / build / tag workflow
+- **License** -- footer linking to the LICENSE file
+
+---
+
+_**User**_
+
+/create-rule 是否是也須要更新 @AGENTS.md 使得它知道整個項目的目的、結構開發、發佈流程 以及一些已知的知識點 @notes 如什麼情況會trigger CI / PyPI publish 等等 然後記得維護 @CHANGELOG.md @README.md 等等諸如此類的細節
+
+---
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<think><details><summary>Thought Process</summary>
+The user wants me to:
+1. Update AGENTS.md to reflect the current project state (development flow, publishing, CI/CD, etc.)
+2. Create a Cursor rule that reminds the agent about maintaining CHANGELOG.md, README.md, and other project conventions
+
+Let me first read the current state of AGENTS.md and the notes files to understand what needs updating.</details></think>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Let me read the current files to understand what needs updating.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/AGENTS.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/notes/ci-cd-trigger-cheatsheet.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/pyproject.toml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/.github/workflows/ci.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/.github/workflows/publish.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Now let me check the existing cursor rules directory.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search">
+<details>
+<summary>Tool use: **glob_file_search** • Searched codebase "" • **0** results in **1** directory</summary>
+
+Directory: **/Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff** (0 files)
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="search" data-tool-name="glob_file_search"><details>
+<summary>Tool use: **glob_file_search**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: mkdir -p /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/.cursor/rules</summary>
+
+```bash
+mkdir -p /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/.cursor/rules
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Now I'll update AGENTS.md to reflect the current project state, and create a Cursor rule for project maintenance conventions.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/AGENTS.md</summary>
+
+Status: **loading**
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>

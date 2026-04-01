@@ -1047,4 +1047,766 @@ _**Agent (gpt-5.4 2026-04-01 11:55:04Z)**_
 
 - questions: `[map[header:Tooling id:tooling_bias options:[map[description:優先用 Python 生態，降低維護與 CI 複雜度。 label:Python-first (Recommended)] map[description:可接受 Node-based docs stack，只要 AI/UX 更好。 label:Node OK]] question:文件工具鏈你比較偏哪種？] map[header:Content id:content_bias options:[map[description:以套件用法、API reference、安裝與範例導覽為主。 label:API + guides (Recommended)] map[description:更重視教學敘事、執行結果與 notebook 體驗。 label:Notebook/tutorial first] map[description:以從 code 自動生出的 reference 為主，手寫內容少。 label:Mostly API reference]] question:這份文件你希望主要服務哪種內容？]]`
 
+**Result:**
+
 </details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-01 12:03:59Z)**_
+
+需求已經夠清楚了，我可以把方案定稿：你的 case 不是「文件平台 showcase」，而是「小到中型 Python library 的 guide + API reference + GitHub Pages + 簡單 search，再加上 AI-friendly 輸出」。在這組約束下，主推薦其實已經很明確。
+
+---
+
+_**User (2026-04-01 12:07:39Z)**_
+
+PLEASE IMPLEMENT THIS PLAN:
+# Python Docs Stack Recommendation for `mlflow-widgets`
+
+## Summary
+
+- **Recommended default for this repo:** `MkDocs + Material for MkDocs + mkdocstrings[python]`
+- **AI-native add-on strategy:** treat `llms.txt` / `.md` mirrors as an additive artifact, not the core driver of the stack choice
+- **Fallback if AI-native output must be first-class and Python-first:** `Sphinx + Furo + MyST + autodoc/apidoc + sphinx-llm`
+- **Not recommended as primary stack here:** `Rspress` or `pdoc`
+
+This recommendation is an **inference** from current official docs plus this repo’s shape:
+- repo is a small Python package with a narrow public API
+- existing docs are mostly Markdown (`README.md`, `notes/*.md`)
+- public API already has usable docstrings
+- desired content is mainly **API + guides**, not notebook-first publishing
+- GitHub Pages hosting and simple search are required
+- low complexity matters more than having the most “AI-native” stack possible
+
+## Recommended Stack
+
+### Primary choice: MkDocs Material
+Use:
+- `mkdocs`
+- `mkdocs-material`
+- `mkdocstrings[python]`
+- optionally `mkdocs-gen-files` only if API pages should be auto-generated from module lists
+
+Why this is the best fit:
+- Markdown-first authoring, which matches the repo’s current docs style
+- built-in client-side search in Material, no external service required
+- easy GitHub Pages deployment from static output
+- Python API reference can be pulled directly from code/docstrings with `::: module.object`
+- simpler than Sphinx for a package of this size
+
+Recommended content model:
+- hand-written guides for install / quickstart / live MLflow setup / Marimo usage / examples
+- one API reference section generated from the public objects in `mlflow_widgets`
+- examples pages derived from the existing `examples/*.py` notebooks/scripts, but summarized rather than fully duplicated
+
+### AI-native layer for the recommended stack
+For MkDocs, do **not** make the whole architecture depend on `llms.txt`.
+
+Preferred approach:
+- keep the docs stack as MkDocs Material
+- generate `llms.txt` and optionally `llms-full.txt` as a post-build artifact
+
+Default choice:
+- prefer a **small custom post-build script** over hard-coupling to a niche plugin
+
+Reason:
+- `mkdocs-llmstxt` exists, but its GitHub README currently says it is in **maintenance mode**
+- it also generates Markdown by cleaning HTML and converting it back to Markdown, which is pragmatic but less direct than native Markdown rendering
+
+## Alternatives and When to Choose Them
+
+### Sphinx + Furo + MyST + `sphinx-llm`
+Choose this only if:
+- AI-facing artifacts are a hard requirement from day one
+- you want the strongest Python-docs ecosystem integration
+- you accept more config and maintenance overhead
+
+Why it is strong:
+- Sphinx autodoc/apidoc/autosummary remain the deepest Python-docs toolchain
+- MyST allows Markdown authoring instead of forcing pure reStructuredText
+- `sphinx-llm` can generate `llms.txt`, `llms-full.txt`, and per-page Markdown alongside HTML
+
+Why it is not the default here:
+- more moving parts than MkDocs
+- heavier for a small library with a compact API surface
+
+### Rspress
+Treat this as a deliberate exception, not best practice for this repo.
+
+Use only if:
+- Node/React/MDX tooling is acceptable
+- AI-native publishing is more important than Python-native API extraction
+- docs are becoming product-like frontend docs rather than package docs
+
+Why it is interesting:
+- built-in full-text search
+- built-in `llms.txt`, `llms-full.txt`, and per-route `.md`
+- GitHub Pages deployment is documented
+
+Why it is not recommended here:
+- Python reference generation is not first-class
+- you would still need a separate Python API-doc generation step
+- its `llms`/SSG-MD feature is explicitly marked **experimental**
+
+### pdoc
+Do not choose this as the main site stack.
+
+Use only if:
+- you want a very small, mostly API-reference site
+- you accept limited information architecture
+
+Why it loses here:
+- pdoc itself says its main use case is API documentation and recommends Sphinx for more complex needs
+- HTML-only output
+- weaker fit for guide + reference hybrid docs
+
+## Notes File to Produce
+
+Create one research note at:
+
+- `notes/docs-stack-evaluation.md`
+
+The note should contain:
+- final recommendation
+- decision criteria
+- comparison table: `MkDocs Material`, `Sphinx/Furo`, `pdoc`, `Quarto`, `Rspress`
+- “best practice for this repo” section
+- AI-native guidance:
+  `llms.txt` is a bonus artifact, not the primary selection criterion
+- suggested future implementation path:
+  `MkDocs Material + mkdocstrings`, then add `llms.txt` generation afterward
+- source links
+
+## Test / Validation Criteria
+
+The note is complete when it:
+- clearly states one primary recommendation, one fallback, and what not to choose
+- maps each option to the repo’s actual constraints
+- distinguishes **current ecosystem facts** from **my recommendation/inference**
+- includes source links for the official docs and plugin/project pages used
+- explicitly calls out the maintenance/experimental status of the AI-native add-ons where relevant
+
+## Assumptions and Defaults
+
+- Language of the note: Traditional Chinese
+- Hosting target: GitHub Pages via GitHub Actions
+- Content bias: API reference plus concise guides, not notebook-first publishing
+- Tooling bias: Python-first, but Node-based options should still be evaluated briefly
+- AI-native requirement: desirable, but not worth a large complexity penalty
+- Search requirement: simple built-in search is sufficient; no Algolia required
+
+## Sources
+
+- MkDocs deploy: [mkdocs.org](https://www.mkdocs.org/user-guide/deploying-your-docs/)
+- Material search: [squidfunk.github.io/mkdocs-material/plugins/search](https://squidfunk.github.io/mkdocs-material/plugins/search/)
+- mkdocstrings Python usage: [mkdocstrings.github.io/python/usage](https://mkdocstrings.github.io/python/usage/)
+- Sphinx autodoc: [sphinx-doc.org](https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html)
+- Sphinx apidoc: [sphinx-doc.org](https://www.sphinx-doc.org/en/master/usage/extensions/apidoc.html)
+- Furo: [pradyunsg.me/furo](https://pradyunsg.me/furo/)
+- MyST Parser: [myst-parser.readthedocs.io](https://myst-parser.readthedocs.io/en/latest/)
+- pdoc: [pdoc.dev](https://pdoc.dev/) and [pdoc limitations](https://pdoc.dev/docs/pdoc.html)
+- Quarto search / GitHub Pages: [quarto.org](https://quarto.org/docs/websites/website-search.html), [quarto.org](https://quarto.org/docs/publishing/github-pages.html)
+- Rspress intro / llms / deploy: [rspress.rs](https://rspress.rs/guide/start/introduction), [rspress.rs](https://rspress.rs/guide/basic/ssg-md), [rspress.rs](https://rspress.rs/zh/guide/basic/deploy)
+- MkDocs llms plugin: [github.com/pawamoy/mkdocs-llmstxt](https://github.com/pawamoy/mkdocs-llmstxt)
+- Sphinx llms extension: [pypi.org/project/sphinx-llm](https://pypi.org/project/sphinx-llm/)
+- GitHub Pages custom workflows: [docs.github.com](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
+- OpenAI crawler docs: [developers.openai.com/api/docs/bots](https://developers.openai.com/api/docs/bots)
+
+
+---
+
+_**Agent (gpt-5.4 2026-04-01 12:08:02Z)**_
+
+我先把外部來源補齊成可引用的事實，再落成一篇中文研究筆記到 `notes/`。重點會是把「生態現況」和「對這個 repo 的建議」分開寫清楚。
+
+_**Agent (gpt-5.4 2026-04-01 12:08:41Z)**_
+
+來源已經夠了。我現在把研究結果整理成一篇可直接留在 repo 的中文筆記，會包含比較表、best practice 結論、AI-native 補充，以及後續若要落地的最小路徑。
+
+_**Agent (gpt-5.4 2026-04-01 12:09:28Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="apply_patch"><details>
+<summary>Tool use: **apply_patch**</summary>
+**Add: `/Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/notes/docs-stack-evaluation.md`**
+
+```diff
++# Python 專案文件方案評估：`mlflow-widgets`
++
++日期：2026-04-01
++
++## 結論先行
++
++對這個 repo，我的主推薦是：
++
++- `MkDocs + Material for MkDocs + mkdocstrings[python]`
++
++備選方案：
++
++- 如果未來把 `llms.txt` / 每頁 `.md` 輸出當成一級需求，而且仍想留在 Python docs 生態，選 `Sphinx + Furo + MyST + autodoc/apidoc + sphinx-llm`
++
++不建議作為本 repo 主方案：
++
++- `Rspress`
++- `pdoc`
++
++這個結論是根據目前 repo 形狀與官方文件做出的判斷，不是抽象地選「最強 docs 平台」。
++
++## 這個 repo 的現況
++
++從 repo 內容來看，這是一個很典型的「小到中型 Python library docs」案例：
++
++- public API 很小，`src/mlflow_widgets/__init__.py` 目前只匯出 `MlflowChart`、`MlflowParallelCoordinates`、`MlflowRunSelector`、`MlflowRunTable`
++- 既有文件主要是 Markdown，像 `README.md`、`CHANGELOG.md`、`notes/*.md`
++- 核心 Python 類別已有 docstring，可直接餵給 API reference 生成器
++- `examples/` 以 Marimo / Python script 為主，不是 notebook portal 型產品文件
++- 需求偏向「guide + API reference + examples 索引」，不是大型多產品 docs portal
++
++所以最重要的不是 framework 花樣，而是：
++
++- Markdown 寫作順手
++- API reference 可從 code 生成
++- 有基本 search
++- GitHub Pages 好部署
++- 之後可以低成本補 AI-friendly artifacts
++
++## 評估準則
++
++本次評估使用以下準則：
++
++- Python package 文件是否是第一級使用情境
++- 能否從 docstring / module 結構直接生成 API reference
++- 是否適合 Markdown-first 工作流
++- 是否自帶或容易提供簡單搜尋
++- 是否容易部署到 GitHub Pages
++- 是否能低摩擦補上 `llms.txt` / `llms-full.txt` / `.md` 輸出
++- 維護成本是否合理
++
++## 方案比較
++
++| 方案 | Python API 自動生成 | Markdown-first | 搜尋 | AI-native 輸出 | GitHub Pages | 複雜度 | 對本 repo 的適配 |
++| --- | --- | --- | --- | --- | --- | --- | --- |
++| `MkDocs + Material + mkdocstrings` | 強 | 強 | 強 | 中，需額外補 | 強 | 低 | 最佳 |
++| `Sphinx + Furo + MyST + sphinx-llm` | 很強 | 中到強 | 強 | 強 | 強 | 中到高 | 次佳 |
++| `pdoc` | 中到強 | 弱 | 中 | 弱 | 強 | 很低 | 偏弱 |
++| `Quarto` | 中 | 強 | 強 | 弱到中 | 強 | 中 | 可用但不是最佳 |
++| `Rspress` | 弱到中 | 強 | 強 | 很強 | 強 | 中 | 不適合作為主方案 |
++
++## 各方案判斷
++
++### 1. MkDocs Material + mkdocstrings
++
++這是我認為目前最符合 Python library best practice 的方案。
++
++原因：
++
++- `Material for MkDocs` 內建 search plugin，不需要另外安裝搜尋套件
++- `mkdocstrings` 的 Python handler 可以直接在 Markdown 裡用 `::: path.to.object` 注入 API docs
++- `mkdocstrings` 官方對 `src/` layout 也有明確建議，推薦用 `paths: [src]`
++- MkDocs 本身就是靜態站，放 GitHub Pages 非常直接
++- 對現有 Markdown 文件最友好，導入成本最低
++
++對這個 repo 尤其適合的點：
++
++- 你不需要大型 Sphinx 生態才有的複雜 cross-project 文檔功能
++- public API 不大，用 `mkdocstrings` 足夠
++- guides 與 notes 已經是 Markdown，幾乎不用改作者習慣
++
++我的判斷：
++
++- 這是目前最穩、最省、最符合 repo 尺寸的主方案
++
++### 2. Sphinx + Furo + MyST + sphinx-llm
++
++這是最合理的 Python-first AI-native 備案。
++
++優點：
++
++- `sphinx.ext.autodoc` 可直接從 docstring 拉文件
++- `sphinx.ext.apidoc` 可以從 Python package 自動產生 API docs source
++- `MyST` 讓 Sphinx 也能舒服地吃 Markdown
++- `Furo` 對小到中型 docset 的閱讀體驗很好
++- `sphinx-llm` 可以生成 `llms.txt`、`llms-full.txt`，也能輸出每頁 Markdown
++
++缺點：
++
++- 設定面和維護成本明顯高於 MkDocs
++- `autodoc` 會 import 你的 module，若 import 有 side effects 要額外注意
++- 對這種 API 面積不大的套件來說，常常有點 overkill
++
++我的判斷：
++
++- 如果未來真的把 AI-facing output 當成核心能力，而不是附加 artifact，這會是最合理的升級路線
++- 但以現在這個 repo，仍然不是第一選擇
++
++### 3. pdoc
++
++`pdoc` 的定位其實很清楚：它主要是 API documentation 工具。
++
++優點：
++
++- 幾乎零設定
++- 對 type annotations 與 docstring 支援不錯
++- 很快就能有一套可看的 API docs
++
++缺點：
++
++- 官方文件直接說它的主要 use case 是 API docs；如果需求更複雜，建議用 Sphinx
++- 官方文件也明講它只支援 HTML output
++- guide / conceptual docs / 多層資訊架構不是它的強項
++
++我的判斷：
++
++- 若這個 repo 只想做極簡 API docs，`pdoc` 可以
++- 但你現在要的是 guide + API + GitHub Pages + AI-native 延伸，`pdoc` 太窄
++
++### 4. Quarto
++
++Quarto 不是壞選擇，但不是這個 repo 的最佳選擇。
++
++優點：
++
++- 官方有 built-in full-text search
++- GitHub Pages 部署成熟
++- 很適合 notebook、教學、報告、研究導向內容
++
++限制：
++
++- 它不是以 Python package API docs 為核心設計
++- API reference 這件事通常需要你再疊其他工具或自己整合
++- 對 library docs 來說，常常不是最短路徑
++
++我的判斷：
++
++- 如果未來 docs 方向變成 notebook/tutorial first，Quarto 的吸引力會上升
++- 但對當前 `mlflow-widgets`，仍不如 MkDocs 直接
++
++### 5. Rspress
++
++Rspress 很有意思，但我不建議拿它當這個 repo 的主 docs stack。
++
++優點：
++
++- 內建全文搜尋
++- 官方已提供 `llms.txt`、`llms-full.txt`、每頁 `.md` 的能力
++- GitHub Pages 部署有官方指引
++
++限制：
++
++- 它是 Node / frontend-first 的文件框架，不是 Python package docs first
++- Python API reference 仍要靠外部工具補
++- 官方把 `llms` 的 SSG-MD 功能標成 experimental
++
++我的判斷：
++
++- 若你是做 framework / frontend product docs，Rspress 值得考慮
++- 對這個 repo，為了拿 AI-native 輸出去換掉整個 Python-friendly docs 工具鏈，不划算
++
++## AI-native 的實務建議
++
++我的建議是把 AI-native 能力拆成兩層：
++
++### 第一層：先把 HTML docs stack 選對
++
++主站先選：
++
++- `MkDocs + Material + mkdocstrings`
++
++理由：
++
++- 這決定的是日常維護成本
++- 這也決定你能不能穩定地從 code 生成 reference
++
++### 第二層：再補 AI-facing artifacts
++
++之後再補：
++
++- `llms.txt`
++- `llms-full.txt`
++- 若需要，再補每頁 `.md`
++
++這些應該被視為附加輸出，而不是主架構選型的核心驅動。
++
++原因：
++
++- `mkdocs-llmstxt` 雖然能做這件事，但它的 GitHub README 目前明確寫著 maintenance mode
++- 它是合理工具，但不值得讓整個 docs stack 綁死在它上面
++- 對這個 repo，更穩的做法是之後用小型自訂 post-build script 產出 `llms.txt`
++
++### 額外提醒：`llms.txt` 不是全部
++
++如果之後要更「AI native」，除了 `llms.txt`，也要一起考慮：
++
++- `robots.txt`
++- crawler / bot policy
++- 穩定的靜態 URL 結構
++- 每頁內容是否夠乾淨、可抽取、可索引
++
++這點的理由是：OpenAI 官方文件目前明確提到 `OAI-SearchBot` 與 `GPTBot` 的 `robots.txt` 控制方式。換句話說，AI 可見性不只取決於你有沒有 `llms.txt`，也和爬蟲可達性有關。
++
++## 對這個 repo 的 best practice
++
++如果以「2026 年現在的小到中型 Python library docs」來看，我認為這個 repo 的 best practice 是：
++
++1. 主站使用 `MkDocs + Material`
++2. API reference 使用 `mkdocstrings[python]`
++3. guides 以 Markdown 手寫，內容聚焦：
++   - installation
++   - quickstart
++   - MLflow server setup
++   - Marimo / Jupyter usage
++   - examples overview
++4. API 頁只針對 public API 輸出，不追求把所有 internal helper 都曝光
++5. GitHub Pages 用 GitHub Actions custom workflow 部署
++6. `llms.txt` 作為第二階段 artifact，而不是第一階段 blocking requirement
++
++這組做法的核心精神是：
++
++- 主 docs stack 保持 Python-first
++- reference 盡量從 code 生成
++- AI-friendly output 用附加層補上
++
++## 建議的後續實作路徑
++
++如果之後要實作，我建議順序如下：
++
++### Phase 1
++
++- 建 `docs/`
++- 上 `mkdocs.yml`
++- 用 `Material for MkDocs`
++- 建首頁、安裝、快速開始、examples、API reference
++- API reference 只接 public API
++
++### Phase 2
++
++- 補 examples 導覽頁
++- 補 GitHub Pages workflow
++- 調整 nav、search、social preview、repo links
++
++### Phase 3
++
++- 用小型 post-build script 生成 `llms.txt`
++- 視需求再補 `llms-full.txt`
++- 若未來 AI-native 比重明顯上升，再重新評估是否要升級到 `Sphinx + sphinx-llm`
++
++## 最終建議
++
++一句話版本：
++
++- **現在就選 `MkDocs + Material + mkdocstrings`**
++- **把 `llms.txt` 當成第二階段補件**
++- **只有在 AI-facing markdown artifact 成為核心需求時，才考慮切到 `Sphinx + Furo + MyST + sphinx-llm`**
++
++## 來源
++
++- MkDocs deploy: <https://www.mkdocs.org/user-guide/deploying-your-docs/>
++- Material search: <https://squidfunk.github.io/mkdocs-material/plugins/search/>
++- mkdocstrings Python usage: <https://mkdocstrings.github.io/python/usage/>
++- Sphinx autodoc: <https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html>
++- Sphinx apidoc: <https://www.sphinx-doc.org/en/master/usage/extensions/apidoc.html>
++- Furo: <https://pradyunsg.me/furo/>
++- MyST Parser: <https://myst-parser.readthedocs.io/en/latest/>
++- pdoc: <https://pdoc.dev/>
++- pdoc limitations: <https://pdoc.dev/docs/pdoc.html>
++- Quarto website search: <https://quarto.org/docs/websites/website-search.html>
++- Quarto GitHub Pages: <https://quarto.org/docs/publishing/github-pages.html>
++- Rspress introduction: <https://rspress.rs/guide/start/introduction>
++- Rspress `llms.txt` / SSG-MD: <https://rspress.rs/guide/basic/ssg-md>
++- Rspress deploy: <https://rspress.rs/guide/basic/deploy>
++- `mkdocs-llmstxt`: <https://github.com/pawamoy/mkdocs-llmstxt>
++- `sphinx-llm`: <https://pypi.org/project/sphinx-llm/>
++- GitHub Pages custom workflows: <https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages>
++- OpenAI crawler docs: <https://developers.openai.com/api/docs/bots>
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-01 12:09:41Z)**_
+
+筆記已寫入。我現在做一次快速自檢，確認內容有包含比較表、best practice、AI-native 補充與來源清單，避免漏掉你要求的欄位。
+
+_**Agent (gpt-5.4 2026-04-01 12:09:42Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '1,260p' notes/docs-stack-evaluation.md`</summary>
+```
+Command: /bin/zsh -lc "sed -n '1,260p' notes/docs-stack-evaluation.md"
+Chunk ID: cce64c
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 2128
+Output:
+# Python 專案文件方案評估：`mlflow-widgets`
+
+日期：2026-04-01
+
+## 結論先行
+
+對這個 repo，我的主推薦是：
+
+- `MkDocs + Material for MkDocs + mkdocstrings[python]`
+
+備選方案：
+
+- 如果未來把 `llms.txt` / 每頁 `.md` 輸出當成一級需求，而且仍想留在 Python docs 生態，選 `Sphinx + Furo + MyST + autodoc/apidoc + sphinx-llm`
+
+不建議作為本 repo 主方案：
+
+- `Rspress`
+- `pdoc`
+
+這個結論是根據目前 repo 形狀與官方文件做出的判斷，不是抽象地選「最強 docs 平台」。
+
+## 這個 repo 的現況
+
+從 repo 內容來看，這是一個很典型的「小到中型 Python library docs」案例：
+
+- public API 很小，`src/mlflow_widgets/__init__.py` 目前只匯出 `MlflowChart`、`MlflowParallelCoordinates`、`MlflowRunSelector`、`MlflowRunTable`
+- 既有文件主要是 Markdown，像 `README.md`、`CHANGELOG.md`、`notes/*.md`
+- 核心 Python 類別已有 docstring，可直接餵給 API reference 生成器
+- `examples/` 以 Marimo / Python script 為主，不是 notebook portal 型產品文件
+- 需求偏向「guide + API reference + examples 索引」，不是大型多產品 docs portal
+
+所以最重要的不是 framework 花樣，而是：
+
+- Markdown 寫作順手
+- API reference 可從 code 生成
+- 有基本 search
+- GitHub Pages 好部署
+- 之後可以低成本補 AI-friendly artifacts
+
+## 評估準則
+
+本次評估使用以下準則：
+
+- Python package 文件是否是第一級使用情境
+- 能否從 docstring / module 結構直接生成 API reference
+- 是否適合 Markdown-first 工作流
+- 是否自帶或容易提供簡單搜尋
+- 是否容易部署到 GitHub Pages
+- 是否能低摩擦補上 `llms.txt` / `llms-full.txt` / `.md` 輸出
+- 維護成本是否合理
+
+## 方案比較
+
+| 方案 | Python API 自動生成 | Markdown-first | 搜尋 | AI-native 輸出 | GitHub Pages | 複雜度 | 對本 repo 的適配 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `MkDocs + Material + mkdocstrings` | 強 | 強 | 強 | 中，需額外補 | 強 | 低 | 最佳 |
+| `Sphinx + Furo + MyST + sphinx-llm` | 很強 | 中到強 | 強 | 強 | 強 | 中到高 | 次佳 |
+| `pdoc` | 中到強 | 弱 | 中 | 弱 | 強 | 很低 | 偏弱 |
+| `Quarto` | 中 | 強 | 強 | 弱到中 | 強 | 中 | 可用但不是最佳 |
+| `Rspress` | 弱到中 | 強 | 強 | 很強 | 強 | 中 | 不適合作為主方案 |
+
+## 各方案判斷
+
+### 1. MkDocs Material + mkdocstrings
+
+這是我認為目前最符合 Python library best practice 的方案。
+
+原因：
+
+- `Material for MkDocs` 內建 search plugin，不需要另外安裝搜尋套件
+- `mkdocstrings` 的 Python handler 可以直接在 Markdown 裡用 `::: path.to.object` 注入 API docs
+- `mkdocstrings` 官方對 `src/` layout 也有明確建議，推薦用 `paths: [src]`
+- MkDocs 本身就是靜態站，放 GitHub Pages 非常直接
+- 對現有 Markdown 文件最友好，導入成本最低
+
+對這個 repo 尤其適合的點：
+
+- 你不需要大型 Sphinx 生態才有的複雜 cross-project 文檔功能
+- public API 不大，用 `mkdocstrings` 足夠
+- guides 與 notes 已經是 Markdown，幾乎不用改作者習慣
+
+我的判斷：
+
+- 這是目前最穩、最省、最符合 repo 尺寸的主方案
+
+### 2. Sphinx + Furo + MyST + sphinx-llm
+
+這是最合理的 Python-first AI-native 備案。
+
+優點：
+
+- `sphinx.ext.autodoc` 可直接從 docstring 拉文件
+- `sphinx.ext.apidoc` 可以從 Python package 自動產生 API docs source
+- `MyST` 讓 Sphinx 也能舒服地吃 Markdown
+- `Furo` 對小到中型 docset 的閱讀體驗很好
+- `sphinx-llm` 可以生成 `llms.txt`、`llms-full.txt`，也能輸出每頁 Markdown
+
+缺點：
+
+- 設定面和維護成本明顯高於 MkDocs
+- `autodoc` 會 import 你的 module，若 import 有 side effects 要額外注意
+- 對這種 API 面積不大的套件來說，常常有點 overkill
+
+我的判斷：
+
+- 如果未來真的把 AI-facing output 當成核心能力，而不是附加 artifact，這會是最合理的升級路線
+- 但以現在這個 repo，仍然不是第一選擇
+
+### 3. pdoc
+
+`pdoc` 的定位其實很清楚：它主要是 API documentation 工具。
+
+優點：
+
+- 幾乎零設定
+- 對 type annotations 與 docstring 支援不錯
+- 很快就能有一套可看的 API docs
+
+缺點：
+
+- 官方文件直接說它的主要 use case 是 API docs；如果需求更複雜，建議用 Sphinx
+- 官方文件也明講它只支援 HTML output
+- guide / conceptual docs / 多層資訊架構不是它的強項
+
+我的判斷：
+
+- 若這個 repo 只想做極簡 API docs，`pdoc` 可以
+- 但你現在要的是 guide + API + GitHub Pages + AI-native 延伸，`pdoc` 太窄
+
+### 4. Quarto
+
+Quarto 不是壞選擇，但不是這個 repo 的最佳選擇。
+
+優點：
+
+- 官方有 built-in full-text search
+
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-01 12:09:58Z)**_
+
+我補一小段，把「上游現況事實」和「對這個 repo 的推薦」明確分開，這樣筆記更符合你原先的驗收條件。
+
+_**Agent (gpt-5.4 2026-04-01 12:10:04Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="apply_patch"><details>
+<summary>Tool use: **apply_patch**</summary>
+**Update: `/Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/notes/docs-stack-evaluation.md`**
+
+```diff
+@@
+ 這個結論是根據目前 repo 形狀與官方文件做出的判斷，不是抽象地選「最強 docs 平台」。
++
++## 事實與建議的界線
++
++以下內容屬於「上游現況事實」：
++
++- Material for MkDocs 有官方 search plugin
++- `mkdocstrings` Python handler 支援從 Python object 生成 API docs
++- Sphinx 官方提供 `autodoc` 與 `apidoc`
++- Rspress 官方提供 `llms.txt` / `.md` 相關能力，且該功能目前標示為 experimental
++- `mkdocs-llmstxt` upstream README 目前標示 maintenance mode
++- pdoc 官方把自己定位為 API documentation 工具，且明講只支援 HTML output
++
++以下內容屬於「我對本 repo 的建議 / inference」：
++
++- 這個 repo 最佳主方案是 `MkDocs + Material + mkdocstrings`
++- `llms.txt` 應視為第二階段 artifact，而不是第一階段選型核心
++- `Rspress` 與 `pdoc` 不適合作為本 repo 的主方案
++- 若未來 AI-facing output 變成核心需求，再升級到 `Sphinx + Furo + MyST + sphinx-llm`
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-01 12:10:17Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '1,80p' notes/docs-stack-evaluation.md`</summary>
+```
+Command: /bin/zsh -lc "sed -n '1,80p' notes/docs-stack-evaluation.md"
+Chunk ID: d1ce77
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 824
+Output:
+# Python 專案文件方案評估：`mlflow-widgets`
+
+日期：2026-04-01
+
+## 結論先行
+
+對這個 repo，我的主推薦是：
+
+- `MkDocs + Material for MkDocs + mkdocstrings[python]`
+
+備選方案：
+
+- 如果未來把 `llms.txt` / 每頁 `.md` 輸出當成一級需求，而且仍想留在 Python docs 生態，選 `Sphinx + Furo + MyST + autodoc/apidoc + sphinx-llm`
+
+不建議作為本 repo 主方案：
+
+- `Rspress`
+- `pdoc`
+
+這個結論是根據目前 repo 形狀與官方文件做出的判斷，不是抽象地選「最強 docs 平台」。
+
+## 事實與建議的界線
+
+以下內容屬於「上游現況事實」：
+
+- Material for MkDocs 有官方 search plugin
+- `mkdocstrings` Python handler 支援從 Python object 生成 API docs
+- Sphinx 官方提供 `autodoc` 與 `apidoc`
+- Rspress 官方提供 `llms.txt` / `.md` 相關能力，且該功能目前標示為 experimental
+- `mkdocs-llmstxt` upstream README 目前標示 maintenance mode
+- pdoc 官方把自己定位為 API documentation 工具，且明講只支援 HTML output
+
+以下內容屬於「我對本 repo 的建議 / inference」：
+
+- 這個 repo 最佳主方案是 `MkDocs + Material + mkdocstrings`
+- `llms.txt` 應視為第二階段 artifact，而不是第一階段選型核心
+- `Rspress` 與 `pdoc` 不適合作為本 repo 的主方案
+- 若未來 AI-facing output 變成核心需求，再升級到 `Sphinx + Furo + MyST + sphinx-llm`
+
+## 這個 repo 的現況
+
+從 repo 內容來看，這是一個很典型的「小到中型 Python library docs」案例：
+
+- public API 很小，`src/mlflow_widgets/__init__.py` 目前只匯出 `MlflowChart`、`MlflowParallelCoordinates`、`MlflowRunSelector`、`MlflowRunTable`
+- 既有文件主要是 Markdown，像 `README.md`、`CHANGELOG.md`、`notes/*.md`
+- 核心 Python 類別已有 docstring，可直接餵給 API reference 生成器
+- `examples/` 以 Marimo / Python script 為主，不是 notebook portal 型產品文件
+- 需求偏向「guide + API reference + examples 索引」，不是大型多產品 docs portal
+
+所以最重要的不是 framework 花樣，而是：
+
+- Markdown 寫作順手
+- API reference 可從 code 生成
+- 有基本 search
+- GitHub Pages 好部署
+- 之後可以低成本補 AI-friendly artifacts
+
+## 評估準則
+
+本次評估使用以下準則：
+
+- Python package 文件是否是第一級使用情境
+- 能否從 docstring / module 結構直接生成 API reference
+- 是否適合 Markdown-first 工作流
+- 是否自帶或容易提供簡單搜尋
+- 是否容易部署到 GitHub Pages
+- 是否能低摩擦補上 `llms.txt` / `llms-full.txt` / `.md` 輸出
+- 維護成本是否合理
+
+## 方案比較
+
+| 方案 | Python API 自動生成 | Markdown-first | 搜尋 | AI-native 輸出 | GitHub Pages | 複雜度 | 對本 repo 的適配 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `MkDocs + Material + mkdocstrings` | 強 | 強 | 強 | 中，需額外補 | 強 | 低 | 最佳 |
+| `Sphinx + Furo + MyST + sphinx-llm` | 很強 | 中到強 | 強 | 強 | 強 | 中到高 | 次佳 |
+| `pdoc` | 中到強 | 弱 | 中 | 弱 | 強 | 很低 | 偏弱 |
+| `Quarto` | 中 | 強 | 強 | 弱到中 | 強 | 中 | 可用但不是最佳 |
+| `Rspress` | 弱到中 | 強 | 強 | 很強 | 強 | 中 | 不適合作為主方案 |
+
+## 各方案判斷
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-01 12:10:35Z)**_
+
+研究筆記已整理到 [notes/docs-stack-evaluation.md](/Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/notes/docs-stack-evaluation.md)。
+
+內容包含主推薦、備選與不建議方案、比較表、針對這個 repo 的 best practice、AI-native 補充、後續實作路徑，以及來源連結；另外也補了一節把「上游事實」和「我對本 repo 的建議/inference」明確分開。
+
+這次沒有跑測試，因為只新增文件筆記，沒有改動程式碼或設定。
