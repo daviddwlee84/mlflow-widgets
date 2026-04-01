@@ -39,6 +39,15 @@ chart = MlflowChart(
 chart
 ```
 
+## For AI assistants
+
+This site exposes LLM-friendly endpoints:
+
+- [`/llms.txt`](https://daviddwlee84.github.io/mlflow-widgets/llms.txt) -- compact index following the [llmstxt.org](https://llmstxt.org/) spec
+- [`/llms-full.txt`](https://daviddwlee84.github.io/mlflow-widgets/llms-full.txt) -- all documentation concatenated into a single file
+
+Every page is also available as raw Markdown at the same URL path with an `.md` extension (e.g. `/installation/index.md`).
+
 ## Links
 
 - [PyPI](https://pypi.org/project/mlflow-widgets/)

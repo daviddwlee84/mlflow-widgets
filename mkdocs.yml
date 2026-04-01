@@ -43,13 +43,25 @@ plugins:
             show_source: true
             show_root_heading: true
             show_root_full_path: false
+            show_root_toc_entry: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
             members_order: source
             docstring_style: google
             merge_init_into_class: true
             show_signature_annotations: true
             separate_signature: true
+            inherited_members: false
+          inventories:
+            - https://docs.python.org/3/objects.inv
   - llmstxt:
       full_output: llms-full.txt
+      markdown_description: >
+        Anywidget-based notebook widgets for MLflow experiment visualization.
+        Provides MlflowChart (live metric line chart), MlflowRunTable (sortable
+        run table), MlflowParallelCoordinates (parallel coordinates chart), and
+        MlflowRunSelector (DataFrame-based run picker). Works in Jupyter, Marimo,
+        and any notebook supporting anywidget.
       sections:
         Guides:
           - index.md
@@ -64,12 +76,19 @@ plugins:
         Changelog:
           - changelog.md
   - copy-to-llm:
-      repo_url: "https://raw.githubusercontent.com/daviddwlee84/mlflow-widgets/main"
+      repo_url: "https://daviddwlee84.github.io/mlflow-widgets"
       button_hover_color: "var(--md-primary-fg-color)"
       toast_bg_color: "var(--md-primary-fg-color)"
 
 markdown_extensions:
   - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - tables
+  - md_in_html
+  - toc:
+      permalink: true
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight:
@@ -78,10 +97,6 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
-  - toc:
-      permalink: true
-  - attr_list
-  - md_in_html
 
 nav:
   - Home: index.md
@@ -100,3 +115,10 @@ nav:
       - MlflowParallelCoordinates: reference/parallel.md
       - MlflowRunSelector: reference/selector.md
   - Changelog: changelog.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/daviddwlee84/mlflow-widgets
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/mlflow-widgets/

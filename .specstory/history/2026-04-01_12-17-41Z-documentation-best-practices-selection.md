@@ -3890,7 +3890,7 @@ e.g.
     - search.highlight
     - search.share
     - toc.follow
-```
+```  
 
 ---
 
@@ -3938,6 +3938,279 @@ _**Agent (claude-4.6-opus-high-thinking)**_
 <tool-use data-tool-type="write" data-tool-name="edit_file_v2">
 
 <details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/mkdocs.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Now add the recommended features.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/mkdocs.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Let me verify the build still passes.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && uv run mkdocs build --strict 2>&1 | tail -5</summary>
+
+```bash
+cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && uv run mkdocs build --strict 2>&1 | tail -5
+```
+
+```
+[31m │[0m  [4mhttps://squidfunk.github.io/mkdocs-material/blog/2026/02/18/mkdocs-2.0/[0m
+[0m
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/site
+INFO    -  Documentation built in 0.84 seconds
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Build passes. Let me verify the copy-to-llm `repo_url` is now baked into the HTML.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2">
+<details><summary>Tool use: **run_terminal_command_v2** • Run command: cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && rg 'raw.githubusercontent' site/index.html</summary>
+
+```bash
+cd /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff && rg 'raw.githubusercontent' site/index.html
+```
+
+```
+&lt;meta name="mkdocs-copy-to-llm-repo-url" content="https://raw.githubusercontent.com/daviddwlee84/mlflow-widgets/main"&gt;
+
+```
+</details>
+</tool-use>
+
+<tool-use data-tool-type="shell" data-tool-name="run_terminal_command_v2"><details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+The `repo_url` is now correctly set to `https://raw.githubusercontent.com/daviddwlee84/mlflow-widgets/main`. Two changes made:
+
+**Fix: `copy-to-llm` repo_url**
+
+Added `repo_url` pointing to this repo's raw content URL. Without it, the plugin was falling back to the Polkadot docs domain (the project it was originally built for). Now "Copy markdown link", "View as markdown", "Open in ChatGPT", and "Open in Claude" will all use the correct URLs.
+
+**Added Material features:**
+
+| Feature | What it does |
+|---------|-------------|
+| `navigation.instant` | SPA-like navigation -- pages load without full reload, much faster |
+| `navigation.instant.progress` | Shows a progress bar at the top during page transitions |
+| `search.share` | Adds a share button to search results so you can link someone to a specific query |
+| `toc.follow` | Auto-highlights the current section in the right-side table of contents as you scroll |
+
+---
+
+_**User**_
+
+我知道了 因爲我們是用 Material 所以 @mkdocs.yml:66-69 repo_url 如果導向raw index.md 會找不到
+而這樣改應該就好了
+
+另外再幫我看看 MkDocs還有沒有什麼好加的config 🤔
+https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/ 
+```yaml
+site_name: MyProject
+site_description: Documentation for MyProject
+site_url: https://example.com
+repo_url: https://github.com/yourname/yourrepo
+repo_name: yourname/yourrepo
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+    - search.share
+    - toc.follow
+
+nav:
+  - Home: index.md
+  - Guides:
+      - guides/getting-started.md
+      - guides/configuration.md
+      - guides/examples.md
+  - API:
+      - api/index.md
+      - api/core.md
+      - api/utils.md
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_root_heading: true
+            show_root_toc_entry: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            separate_signature: true
+            show_signature_annotations: true
+            docstring_style: google
+            members_order: source
+            inherited_members: false
+          inventories:
+            - https://docs.python.org/3/objects.inv
+  - llmstxt:
+      full_output: llms-full.txt
+      markdown_description: >
+        Documentation for MyProject, including tutorials, configuration,
+        examples, and Python API reference generated with mkdocstrings.
+      sections:
+        Overview:
+          - index.md
+        Guides:
+          - guides/*.md
+        API Reference:
+          - api/*.md
+  - copy-to-llm
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/yourname/yourrepo
+
+extra_css:
+  - stylesheets/extra.css
+```
+
+然後我們可能最好在 @docs/index.md 明確提到
+llms.txt 相關內容
+```
+## For AI assistants
+
+This site also exposes:
+
+- `/llms.txt` — compact index for LLMs
+- `/llms-full.txt` — larger combined documentation export
+```
+
+---
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/mkdocs.yml</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2">
+<details><summary>Tool use: **read_file_v2** • Read file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/docs/index.md</summary>
+
+</details>
+</tool-use>
+
+<tool-use data-tool-type="read" data-tool-name="read_file_v2"><details>
+<summary>Tool use: **read_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<think><details><summary>Thought Process</summary>
+Good. The user already changed `repo_url` from the raw GitHub URL to `https://daviddwlee84.github.io/mlflow-widgets` (the site URL). That makes sense since the llmstxt plugin already generates `.md` files at those paths.
+
+Now let me make the improvements:
+
+1. Fix `copy-to-llm` `repo_url` - the user already did this, so it's now `https://daviddwlee84.github.io/mlflow-widgets` which is correct since the `mkdocs-llmstxt` plugin places `.md` files at those paths
+
+
+2. I need to enhance the mkdocstrings configuration with better documentation options like `show_root_toc_entry`, `show_symbol_type_heading`, and Python inventories for cross-referencing, plus add a `markdown_description` to the llmstxt plugin.
+3. I should also add social media icons to the footer, enable some useful markdown extensions like definition lists and footnotes, add an "For AI assistants" section to the main docs page, and clean up the copy-to-llm configuration.
+4. Looking at what the reference config offers versus what we currently have, I can see clear gaps in mkdocstrings options, the llmstxt plugin description, markdown extensions, and social links—I'll selectively add the ones that genuinely improve the documentation.</details></think>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+Good catch on the `repo_url` -- pointing to the site URL means the "View as markdown" links will correctly find the `.md` files generated by `mkdocs-llmstxt`. Let me now apply the improvements across the board.
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/mkdocs.yml</summary>
+
+</details>
+
+</tool-use>
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2"><details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+</details></tool-use>
+
+_**Agent (claude-4.6-opus-high-thinking)**_
+
+<tool-use data-tool-type="write" data-tool-name="edit_file_v2">
+
+<details><summary>Tool use: **edit_file_v2** • Edit file: /Volumes/Data/Program/tries/2026-04-01-mlflow-chart-wigglystuff/mkdocs.yml</summary>
+
+Status: **loading**
 
 </details>
 
