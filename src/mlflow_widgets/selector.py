@@ -111,6 +111,7 @@ class MlflowRunSelector:
                 "run_id": r["run_id"],
                 "run_name": r["run_name"],
                 "status": r["status"],
+                "parent_run_id": r.get("parent_run_id"),
                 "start_time": (
                     datetime.fromtimestamp(r["start_time"] / 1000.0).strftime(
                         "%Y-%m-%d %H:%M:%S"

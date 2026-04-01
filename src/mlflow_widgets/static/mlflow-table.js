@@ -30,6 +30,48 @@ const STATUS_BADGE = {
   KILLED:   { bg: "#f5f5f5", fg: "#666",    label: "killed"   },
 };
 
+function buildTree(data) {
+  const byId = new Map();
+  for (const row of data) byId.set(row.run_id, row);
+
+  const roots = [];
+  const childrenOf = new Map();
+  for (const row of data) {
+    const pid = row.parent_run_id;
+    if (pid && byId.has(pid)) {
+      if (!childrenOf.has(pid)) childrenOf.set(pid, []);
+      childrenOf.get(pid).push(row);
+    } else {
+      roots.push(row);
+    }
+  }
+  return { roots, childrenOf };
+}
+
+function flattenTree(roots, childrenOf, expanded, sortFn) {
+  const result = [];
+  const sorted = sortFn ? [...roots].sort(sortFn) : roots;
+  for (const row of sorted) {
+    const children = childrenOf.get(row.run_id) || [];
+    const hasChildren = children.length > 0;
+    result.push({ row, depth: 0, hasChildren });
+    if (hasChildren && expanded.has(row.run_id)) {
+      const sortedChildren = sortFn ? [...children].sort(sortFn) : children;
+      for (const child of sortedChildren) {
+        const grandchildren = childrenOf.get(child.run_id) || [];
+        result.push({ row: child, depth: 1, hasChildren: grandchildren.length > 0 });
+        if (grandchildren.length > 0 && expanded.has(child.run_id)) {
+          const sortedGC = sortFn ? [...grandchildren].sort(sortFn) : grandchildren;
+          for (const gc of sortedGC) {
+            result.push({ row: gc, depth: 2, hasChildren: false });
+          }
+        }
+      }
+    }
+  }
+  return result;
+}
+
 function render({ model, el }) {
   const container = document.createElement("div");
   container.style.fontFamily = "system-ui, sans-serif";
@@ -67,6 +109,36 @@ function render({ model, el }) {
 
   let sortCol = null;
   let sortAsc = true;
+  const expanded = new Set();
+
+  function makeSortFn() {
+    if (!sortCol) return null;
+    return (a, b) => {
+      let va, vb;
+      if (sortCol === "run_name" || sortCol === "status") {
+        va = (a[sortCol] || "").toLowerCase();
+        vb = (b[sortCol] || "").toLowerCase();
+      } else if (sortCol === "start_time" || sortCol === "duration_s") {
+        va = a[sortCol] ?? -Infinity;
+        vb = b[sortCol] ?? -Infinity;
+      } else if (sortCol.startsWith("p:")) {
+        const k = sortCol.slice(2);
+        va = (a.params || {})[k] || "";
+        vb = (b.params || {})[k] || "";
+        const na = parseFloat(va), nb = parseFloat(vb);
+        if (!isNaN(na) && !isNaN(nb)) { va = na; vb = nb; }
+      } else if (sortCol.startsWith("m:")) {
+        const k = sortCol.slice(2);
+        va = (a.metrics || {})[k] ?? -Infinity;
+        vb = (b.metrics || {})[k] ?? -Infinity;
+      } else {
+        va = 0; vb = 0;
+      }
+      if (va < vb) return sortAsc ? -1 : 1;
+      if (va > vb) return sortAsc ? 1 : -1;
+      return 0;
+    };
+  }
 
   function buildTable() {
     const data = model.get("_table_data") || [];
@@ -79,34 +151,9 @@ function render({ model, el }) {
       return;
     }
 
-    const sorted = [...data];
-    if (sortCol) {
-      sorted.sort((a, b) => {
-        let va, vb;
-        if (sortCol === "run_name" || sortCol === "status") {
-          va = (a[sortCol] || "").toLowerCase();
-          vb = (b[sortCol] || "").toLowerCase();
-        } else if (sortCol === "start_time" || sortCol === "duration_s") {
-          va = a[sortCol] ?? -Infinity;
-          vb = b[sortCol] ?? -Infinity;
-        } else if (sortCol.startsWith("p:")) {
-          const k = sortCol.slice(2);
-          va = (a.params || {})[k] || "";
-          vb = (b.params || {})[k] || "";
-          const na = parseFloat(va), nb = parseFloat(vb);
-          if (!isNaN(na) && !isNaN(nb)) { va = na; vb = nb; }
-        } else if (sortCol.startsWith("m:")) {
-          const k = sortCol.slice(2);
-          va = (a.metrics || {})[k] ?? -Infinity;
-          vb = (b.metrics || {})[k] ?? -Infinity;
-        } else {
-          va = 0; vb = 0;
-        }
-        if (va < vb) return sortAsc ? -1 : 1;
-        if (va > vb) return sortAsc ? 1 : -1;
-        return 0;
-      });
-    }
+    const { roots, childrenOf } = buildTree(data);
+    const hasNesting = childrenOf.size > 0;
+    const flatRows = flattenTree(roots, childrenOf, expanded, makeSortFn());
 
     const table = document.createElement("table");
     table.style.cssText = "border-collapse:collapse;width:100%;font-size:13px";
@@ -143,19 +190,49 @@ function render({ model, el }) {
     table.appendChild(thead);
 
     const tbody = document.createElement("tbody");
-    for (const row of sorted) {
+    for (const { row, depth, hasChildren } of flatRows) {
       const tr = document.createElement("tr");
+      const bgDefault = depth > 0 ? "#fafbff" : "";
+      tr.style.background = bgDefault;
       tr.addEventListener("mouseenter", () => { tr.style.background = "#f5f8ff"; });
-      tr.addEventListener("mouseleave", () => { tr.style.background = ""; });
+      tr.addEventListener("mouseleave", () => { tr.style.background = bgDefault; });
 
       for (const col of columns) {
         const td = document.createElement("td");
         td.style.cssText = "padding:5px 10px;border-bottom:1px solid #eee;white-space:nowrap";
 
         if (col.key === "run_name") {
-          td.textContent = row.run_name || row.run_id.slice(0, 8);
-          td.title = row.run_id;
+          const indent = depth * 20;
+          td.style.paddingLeft = (10 + indent) + "px";
           td.style.fontWeight = "500";
+
+          if (hasChildren && hasNesting) {
+            const toggle = document.createElement("span");
+            toggle.style.cssText = "cursor:pointer;display:inline-block;width:16px;font-size:11px;color:#888;user-select:none";
+            const isExpanded = expanded.has(row.run_id);
+            toggle.textContent = isExpanded ? "\u25bc" : "\u25b6";
+            toggle.addEventListener("click", (e) => {
+              e.stopPropagation();
+              if (expanded.has(row.run_id)) expanded.delete(row.run_id);
+              else expanded.add(row.run_id);
+              buildTable();
+            });
+            td.appendChild(toggle);
+          } else if (hasNesting) {
+            const spacer = document.createElement("span");
+            spacer.style.display = "inline-block";
+            spacer.style.width = depth > 0 ? "16px" : "16px";
+            if (depth > 0) {
+              spacer.textContent = "\u2514";
+              spacer.style.cssText = "display:inline-block;width:16px;color:#ccc;font-size:12px";
+            }
+            td.appendChild(spacer);
+          }
+
+          const nameSpan = document.createElement("span");
+          nameSpan.textContent = row.run_name || row.run_id.slice(0, 8);
+          td.appendChild(nameSpan);
+          td.title = row.run_id;
         } else if (col.key === "status") {
           const badge = STATUS_BADGE[row.status] || { bg: "#f5f5f5", fg: "#666", label: row.status };
           const span = document.createElement("span");

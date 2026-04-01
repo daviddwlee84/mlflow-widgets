@@ -56,6 +56,10 @@ def _search_runs_detailed_rest(tracking_uri: str, experiment_id: str) -> list[di
         end_ms = int(info.get("end_time", 0))
         duration_s = (end_ms - start_ms) / 1000.0 if end_ms > 0 and start_ms > 0 else None
 
+        tags = {}
+        for t in run_data.get("tags", []):
+            tags[t["key"]] = t["value"]
+
         results.append({
             "run_id": info.get("run_id", ""),
             "run_name": info.get("run_name", info.get("run_id", "")[:8]),
@@ -64,6 +68,7 @@ def _search_runs_detailed_rest(tracking_uri: str, experiment_id: str) -> list[di
             "duration_s": duration_s,
             "params": params,
             "metrics": metrics,
+            "parent_run_id": tags.get("mlflow.parentRunId"),
         })
     return results
 
@@ -85,6 +90,7 @@ def _search_runs_detailed_client(client: Any, experiment_id: str) -> list[dict]:
             "duration_s": duration_s,
             "params": dict(r.data.params),
             "metrics": {k: v for k, v in r.data.metrics.items()},
+            "parent_run_id": r.data.tags.get("mlflow.parentRunId"),
         })
     return results
 

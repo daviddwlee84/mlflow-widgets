@@ -89,10 +89,15 @@ def _search_runs_rest(tracking_uri: str, experiment_id: str) -> list[dict]:
     results = []
     for run in data.get("runs", []):
         info = run.get("info", {})
+        run_data = run.get("data", {})
+        tags = {}
+        for t in run_data.get("tags", []):
+            tags[t["key"]] = t["value"]
         results.append({
             "id": info.get("run_id", ""),
             "label": info.get("run_name", info.get("run_id", "")[:8]),
             "status": info.get("status", "UNKNOWN"),
+            "parent_run_id": tags.get("mlflow.parentRunId"),
         })
     return results
 
@@ -241,6 +246,7 @@ class MlflowChart(anywidget.AnyWidget):
                     "id": r.info.run_id,
                     "label": r.info.run_name or r.info.run_id[:8],
                     "status": r.info.status,
+                    "parent_run_id": r.data.tags.get("mlflow.parentRunId"),
                 }
                 for r in runs
             ]

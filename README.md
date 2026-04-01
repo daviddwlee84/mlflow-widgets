@@ -32,6 +32,7 @@ chart
 ### MlflowRunTable
 
 Interactive HTML table showing experiment runs with params, metrics, status, and duration.
+Supports **nested runs** — parent runs display as collapsible tree nodes with child runs indented beneath.
 
 ```python
 from mlflow_widgets import MlflowRunTable
@@ -43,10 +44,27 @@ table = MlflowRunTable(
 table
 ```
 
+### MlflowParallelCoordinates
+
+Parallel coordinates chart for comparing runs across hyperparameters and metrics.
+Each axis is a parameter or metric; each line is a run, colored by status.
+
+```python
+from mlflow_widgets import MlflowParallelCoordinates
+
+chart = MlflowParallelCoordinates(
+    tracking_uri="http://localhost:5000",
+    experiment_id="1",
+)
+chart
+```
+
 ## Features
 
 - Live-updating canvas-based line chart
-- Experiment run table with sortable columns
+- Experiment run table with sortable columns and nested run tree view
+- Parallel coordinates chart for hyperparameter/metric comparison
+- Status-based coloring and filtering (finished, running, failed, killed)
 - Multiple run comparison with color-coded lines
 - Smoothing controls: rolling mean, exponential moving average, gaussian
 - Hover tooltips with exact values
@@ -75,6 +93,8 @@ See `examples/` for Marimo notebook demos:
 - `demo.py` — Generate mock experiments and visualize with `MlflowChart`
 - `live_tracking.py` — Track an experiment on-the-fly with live chart updates
 - `table_demo.py` — Browse experiment runs with `MlflowRunTable`
+- `nested_demo.py` — Parent/child nested runs with tree-view table
+- `parallel_demo.py` — Parallel coordinates chart with status filtering
 
 ```bash
 # Install demo dependencies
@@ -85,4 +105,7 @@ mlflow server --port 5000 &
 
 # Run a demo
 marimo edit examples/demo.py
+
+# Run demos (recommend) + auto refresh when editted (by coding agent etc.)
+MLFLOW_TRACKING_URI=http://localhost:5000 marimo edit --watch .
 ```
