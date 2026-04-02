@@ -116,11 +116,15 @@ widget
 
 See `examples/` for Marimo notebook demos:
 
+Browse the full example index with descriptions and MoLab links in
+[`examples/README.md`](examples/README.md).
+
 - `demo.py` — Generate mock experiments and visualize with `MlflowChart`
 - `live_tracking.py` — Track an experiment on-the-fly with live chart updates
 - `table_demo.py` — Browse experiment runs with `MlflowRunTable`
 - `nested_demo.py` — Parent/child nested runs with tree-view table
 - `parallel_demo.py` — Parallel coordinates chart with status filtering
+- `combo_demo.py` — Select runs in a table, then chart the selected metrics
 
 ```bash
 # Install demo dependencies

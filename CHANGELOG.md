@@ -16,10 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `docs` and `docs-build` taskipy tasks
 - GitHub Actions workflow for automatic docs deployment on push to main
 - Expanded README badge reference and usage notes in `notes/readme-badges.md`
+- Example index in `examples/README.md` with a Markdown table, per-demo descriptions, and Open in MoLab badges
 
 ### Fixed
 
 - Incorrect import in `MlflowChart` docstring example (`mlflow_chart` -> `mlflow_widgets`)
+- README demo list now includes `combo_demo.py` and links to the example index
 
 ### Changed
 
